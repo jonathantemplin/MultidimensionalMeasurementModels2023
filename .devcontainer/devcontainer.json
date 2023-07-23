@@ -20,7 +20,8 @@
 		"vscode": {
 			"extensions": [
 				"quarto.quarto",
-				"peakchen90.open-html-in-browser"
+				"peakchen90.open-html-in-browser",
+				"github.copilot"
 			]
 		}
 	} 
