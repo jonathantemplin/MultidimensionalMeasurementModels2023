@@ -1,6 +1,9 @@
-Syllabus.md
 
-_Note:_ The online syllabus at the address provided above will always have the most current information.
+---
+title: "Multidimensional Measurement Models Syllabus (PSQF 7375; Fall 2023)"
+format: gfm
+---
+
 
 
 ## Course Information
@@ -14,12 +17,14 @@ _Note:_ The online syllabus at the address provided above will always have the m
 | Office Phone:        | 319-335-6429                    |
 | Classroom:           | S210A Lindquist Center          |
 | Course Meeting Time: | W 12:30-15:20                   |
-| Course Office Hours: | W 14:00-16:00 or by appointment |
+| Course Office Hours: | M 15:00-17:00 or by appointment |
 |                      |                                 |
 
- 
 
-\#\#\# Course Objectives, Materials, and Prerequesites
+_Note:_ The online syllabus at the address provided above will always have the most current information.
+
+ 
+### Course Objectives, Materials, and Prerequesites
 
 In this course, a unified Bayesian modeling approach will be presented across what have been traditionally taught as separate families of psychometric models. Focusing more directly how to use Bayesian methods in psychometrics, this course will to cover Bayesian theory along with applied treatments of popular psychometric models, including confirmatory factor analysis (CFA), item response theory (IRT), latent class analysis, diagnostic classification models, and Bayesian networks. The focus of this course will be on model building directly in Bayesian programs (i.e., \_stan\_ and \_JAGS\_) rather than the use of packages that build such code automatically. Time permitting, multilevel models and multilevel psychometric models will be presented. 
 
