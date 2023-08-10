@@ -1,0 +1,167 @@
+Syllabus.md
+
+_Note:_ The online syllabus at the address provided above will always have the most current information.
+
+
+## Course Information
+
+|                      |                                 |
+| -------------------- | ------------------------------: |
+| Instructor:          | Jonathan Templin                |
+| email:               | jonathan-templin@uiowa.edu      |
+| Course website:      |                                 |
+| Office:              | S210B Lindquist Center          |
+| Office Phone:        | 319-335-6429                    |
+| Classroom:           | S210A Lindquist Center          |
+| Course Meeting Time: | W 12:30-15:20                   |
+| Course Office Hours: | W 14:00-16:00 or by appointment |
+|                      |                                 |
+
+ 
+
+\#\#\# Course Objectives, Materials, and Prerequesites
+
+In this course, a unified Bayesian modeling approach will be presented across what have been traditionally taught as separate families of psychometric models. Focusing more directly how to use Bayesian methods in psychometrics, this course will to cover Bayesian theory along with applied treatments of popular psychometric models, including confirmatory factor analysis (CFA), item response theory (IRT), latent class analysis, diagnostic classification models, and Bayesian networks. The focus of this course will be on model building directly in Bayesian programs (i.e., \_stan\_ and \_JAGS\_) rather than the use of packages that build such code automatically. Time permitting, multilevel models and multilevel psychometric models will be presented. 
+
+As class will begin promptly at 12:30pm each Wednesday and Friday, I ask that you arrive by that time so as to ensure we have enough time to cover all materials.
+
+\#\# Course Readings
+
+The course will follow some of the chapters of Bayesian Psychometric Modeling (2016) by Roy Levy and Bob Mislevy. The University of Iowa Library has electronic access to the book at https://ebookcentral.proquest.com/lib/uiowa/detail.action?docID=4532358. Additional readings will be posted on our course website or via our course ICON site.
+
+\#\# Course Topic List
+
+Please note, due to uncertainties in how long instruction will take to be delivered, a list of topics to be covered is presented in this syllabus. The precise schedule for upcoming classes will be posted on the course website. Not all topics may be covered.
+
+\#\#\# Bayesian Topics
+
+\* Foundational Bayesian Concepts
+\* Bayesian Estimation Methods
+\* MCMC Convergence Diagnostics
+\* Model fit assessment with posterior predictive model checks
+\* Missing Data in MCMC Estimation
+\* Bayesian Software:
+  \* Stan
+  \* Using Argon for estimation
+\* MCMC Algorithms: 
+  \* Gibbs Sampling
+  \* Metropolis-Hastings 
+  \* Hamiltonian Monte Carlo
+\* Bayesian Model Comparison using Information Criteria
+
+\#\#\# Psychometric Topics
+
+\* Introduction to Psychometric Modeling
+\* Bayesian Confirmatory Factor Analysis
+\* Bayesian Psychometric Model Fit Assessment
+  \* PPMC
+  \* Model comparison methods
+\* Bayesian Item Response Theory:
+  \* Binary Response Models
+  \* Polytomous Response Models
+	\* Graded responses
+	\* Partial credit models
+	\* Nominal responses
+\* Bayesian Models for Other Item Response Data:
+  \* Psychometric Models for Count Data
+  \* Psychometric Models for Censored or Truncated Data
+\* Bayesian Models for Non-Continuous Latent Variables:
+  \* Bayesian Latent Class Models
+  \* Bayesian Diagnostic Classification Models
+\* Bayesian Structural Equation Models
+\* Bayesian Networks
+\* Bayesian Multilevel Models
+\* Bayesian Multilevel Structural Equation Modeling
+
+\#\# Course Website/Technology
+ICON \*will\* be used for grades, submission of assignments, disseminating course readings, and course communications. 
+
+ICON \*will not\* be used for lecture materials. Instead, we will use freely available commercial software for communication and dissemination of course materials. Course lecture slides, lecture examples, video files, assignments, and information are available on the website, https://jonathantemplin.com/bayesian-psychometric-modeling-fall-2022/. Additionally, all course materials will be available using the course Git repository at: https://github.com/jonathantemplin/Bayesian-Psychometric-Modeling-Course-Fall2022.
+
+All lectures will be archived on YouTube (my YouTube channel is https://jonathantemplin.com/YouTube). 
+
+\#\#\# Statistical Computing
+The course will use the R statistical package with the R Studio development suite along with a set of R packages (both Bayesian and Non-Bayesian). Additionally, we will use the stan open-source Bayesian estimation program. R and R Studio work with stan by using a series of downloadable packages which will be used throughout the course. 
+
+R, R Studio, and stan are available for free from the following websites:
+R: https://www.r-project.org/
+R Studio: https://www.rstudio.com/
+stan: https://mc-stan.org/
+
+The University of Iowa enables access for many of these programs through their research computing resources: 
+R Studio Notebooks: https://notebooks.hpc.uiowa.edu/
+High Performance Computing: https://hpc.uiowa.edu/
+
+Although this software is available at the University of Iowa, I ask that you install all versions on your local computer as campus resources can be difficult to use for many analyses.
+
+\#\# Homework, Formative Assessments, and Course Project
+Student evaluation will be made based three components: (1) homework assignments (60% of course grade), (2) formative assessments (20% of course grade), and (3) a course project (20% of course grade).
+
+Mathematically, the grade percentage can be expressed as:
+
+$$GP = .6\\times HP + .2 \\times FP + .2 \\times CP, $$
+Where:
+
+\* GP is the Grade Percentage
+\* HP is the Homework Percentage
+\* FP is the Formative Assessment Percentage
+\* CP is the Course Project Percentage
+
+\#\#\# Homework Assignments
+There will be a set of homework assignments, the number to be determined. For each assignment, students will have a minimum of two weeks to complete the assignment. Homework assignments will weighted equally with respect to the 60%/ of the course grade accounted for by homework. The lowest homework percentage will be dropped (to allow for grace for late homework).
+
+Mathematically, the homework percentage can be expressed as:
+
+$$HP = \\left[\\frac{\\left( \\sum\_{h=1}^H P\_h \\right)-\\min\_h P\_h} {H-1}\\right],$$
+where $P\_h$ is the percent correct on homework $h$, with $H$ total homeworks.
+
+In order to be able to provide the entire class with prompt feedback, late homework assignments will not be accepted. However, extensions may be granted as needed for extenuating circumstances (e.g., conferences, family obligations) if requested at least three weeks in advance of the due date. Additionally, late homework due to emergencies will be accepted with documentation of the circumstances of the emergency.
+
+All assignments must be completed in R, using R Markdown as a file format, and submitted via ICON. Although students are encouraged to work together on the concepts underlying homework, all answers must be from student’s own work (writing and syntax) and not be copied or paraphrased from anyone else’s answers. Grammar and writing will be assessed by each homework and will factor into the homework grade.
+
+
+\#\#\# Formative Assessments
+Each week, students will take a short formative assessment in ICON. The purpose of the formative assessment is to help students obtain a picture of their understanding of course materials. All genuine attempts (i.e., not haphazard answers) at completion will receive full credit. All formative assessments will be weighted equally with respect to the 20%/ of the course grade.
+
+\#\#\# Course Project
+
+To help reinforce practice with the material in this course, a course project, as assessed in several parts, is required. You may (and are encouraged to) work collaboratively in groups of up to two on all parts of the project. Ideally, the project would lead to a publishable paper that would be submitted following the semester. All non-presentation parts of the project should be written in R Markdown.
+
+Your project may be on nearly any aspect of Bayesian Psychometric Models, including any data you may have that you wish to analyze. A list of project ideas will also be presented where you can select one.
+
+\#\#\## Part 1: Introduction and Research Questions/Hypotheses (Due October 7th)
+
+Part one of the project should provide a brief literature review of the area of research that your project addresses and provide a set of research questions and/or hypotheses you seek to answer with your study. Please keep this section to no more than 10 pages of double-spaced text (not including the title page, figures, tables, or references) that comes from the output of the Markdown document. 
+
+You may wish to preregister your hypotheses: https://www.cos.io/initiatives/prereg. 
+
+\#\#\## Part 2: Project Presentation (Presentations During Last Week of Class)
+
+Part two is a project presentation where you present your research findings to the class in a 20-minute presentation. The presentation materials are due on December 2nd and you will deliver your presentation during the last week of class.
+
+\#\#\## Part 3: Final Project Paper (Due December 14th)
+
+Your final project paper is due on Wednesday, December 14th. It must have your (brief) literature review, research questions/hypotheses, methods, results, and discussion sections. Please limit your paper to 20 pages of double-spaced text (not including the title page, figures, tables, or references) that comes from the output of the R Markdown document. 
+
+\#\#\# Course Grading System
+
+| Point Total   | Letter Grade |
+| ------------- | :----------- |
+| 100 and Above | A+           |
+| 99-93         | A            |
+| 92-90         | A-           |
+| 89-87         | B+           |
+| 86-83         | B            |
+| 82-80         | B-           |
+| 79-77         | C+           |
+| 76-73         | C            |
+| 72-70         | C-           |
+| 69-60         | D            |
+| Below 60      | F            |
+|               |              |
+
+
+
+\#\# University of Iowa Course Policies and Resources for Students
+
+Please see https://provost.uiowa.edu/student-course-policies for additional policies and resources.
