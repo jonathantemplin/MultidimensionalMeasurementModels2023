@@ -1,140 +1,212 @@
-# Multidimensional Measurement Models Syllabus (PSQF 7375; Fall 2023)
+Multidimensional Measurement Models Syllabus (PSQF 7375; Fall 2023)
+================
 
-*Note:* The online syllabus at the address provided above will always
-have the most current information.
+*Note:* The [online
+syllabus](https://jonathantemplin.github.io/MultidimensionalMeasurementModels2023/)
+will always have the most current information.
 
 ## Course Information
 
-|                      |                                 |
-|----------------------|--------------------------------:|
-| Instructor:          |                Jonathan Templin |
-| email:               |      jonathan-templin@uiowa.edu |
-| Course website:      |                                 |
-| Office:              |          S210B Lindquist Center |
-| Office Phone:        |                    319-335-6429 |
-| Classroom:           |          S210A Lindquist Center |
-| Course Meeting Time: |                   W 12:30-15:20 |
-| Course Office Hours: | M 15:00-17:00 or by appointment |
-|                      |                                 |
+|                      |                                                                            |
+|----------------------|---------------------------------------------------------------------------:|
+| Instructor:          |                                                           Jonathan Templin |
+| email:               |                                                 jonathan-templin@uiowa.edu |
+| Course website:      | <https://jonathantemplin.github.io/MultidimensionalMeasurementModels2023/> |
+| Office:              |                                                     S210B Lindquist Center |
+| Office Phone:        |                                                               319-335-6429 |
+| Classroom:           |                                                     S210A Lindquist Center |
+| Course Meeting Time: |                                                              W 12:30-15:20 |
+| Course Office Hours: |                                            F 09:00-11:00 or by appointment |
+|                      |                                                                            |
 
-### Course Objectives, Materials, and Prerequesites
+## Course Introduction
 
-In this course, a unified Bayesian modeling approach will be presented
-across what have been traditionally taught as separate families of
-psychometric models. Focusing more directly how to use Bayesian methods
-in psychometrics, this course will to cover Bayesian theory along with
-applied treatments of popular psychometric models, including
-confirmatory factor analysis (CFA), item response theory (IRT), latent
-class analysis, diagnostic classification models, and Bayesian networks.
-The focus of this course will be on model building directly in Bayesian
-programs (i.e., \_stan\_ and \_JAGS\_) rather than the use of packages
-that build such code automatically. Time permitting, multilevel models
-and multilevel psychometric models will be presented.
+Multidimensional Measurement Models is an advanced PhD-level course with
+a specialized focus on applications of measurement models with more than
+one latent variable, primarily in the fields of education and the social
+sciences. This comprehensive course is designed to provide an in-depth
+exploration of multidimensional item response theory (MIRT), diagnostic
+classification models (DCMs), and mixture models as essential tools for
+understanding complex psychological and social phenomena.
 
-As class will begin promptly at 12:30pm each Wednesday and Friday, I ask
-that you arrive by that time so as to ensure we have enough time to
-cover all materials.
+As contemporary psychological measurement in the educational and social
+sciences continues to grow in complexity, the need for sophisticated
+measurement techniques has become increasingly apparent. Traditional
+unidimensional measurement models often fall short in capturing the
+multifaceted nature of human attributes and behaviors, hindering
+accurate assessments and classifications. In response to these
+challenges, multidimensional measurement models, including mixture
+models, have emerged as powerful tools, enabling researchers and
+practitioners to more effectively measure and understand intricate
+constructs.
 
-\## Course Readings
+This course is designed for PhD-level students with a strong background
+in psychometrics, statistical modeling, and quantitative research
+methods. Participants should be familiar with basic unidimensional item
+response theory and have experience working with statistical software
+such as R.
 
-The course will follow some of the chapters of Bayesian Psychometric
-Modeling (2016) by Roy Levy and Bob Mislevy. The University of Iowa
-Library has electronic access to the book at
-https://ebookcentral.proquest.com/lib/uiowa/detail.action?docID=4532358.
-Additional readings will be posted on our course website or via our
-course ICON site.
+## Course Objectives
 
-\## Course Topic List
+This course will provide students with an understanding of
+multidimensional measurement models, their theoretical underpinnings,
+and their practical applications in educational and social science
+contexts. By the end of the course, participants will be able to:
 
-Please note, due to uncertainties in how long instruction will take to
-be delivered, a list of topics to be covered is presented in this
-syllabus. The precise schedule for upcoming classes will be posted on
-the course website. Not all topics may be covered.
+1.  **Understand Multidimensional Item Response Theory (MIRT):** Delve
+    into the foundational principles of MIRT, examining how it extends
+    traditional unidimensional models to account for the measurement of
+    multiple latent dimensions. Understand the mathematical and
+    statistical intricacies involved in fitting MIRT models to empirical
+    data.
 
-\### Bayesian Topics
+2.  **Analyze Multidimensional Data:** Gain proficiency in applying
+    advanced statistical techniques to analyze multidimensional data.
+    Explore methods for estimating latent trait scores, examining item
+    characteristics, and assessing model fit for complex measurement
+    structures.
 
-\* Foundational Bayesian Concepts \* Bayesian Estimation Methods \* MCMC
-Convergence Diagnostics \* Model fit assessment with posterior
-predictive model checks \* Missing Data in MCMC Estimation \* Bayesian
-Software: \* Stan \* Using Argon for estimation \* MCMC Algorithms: \*
-Gibbs Sampling \* Metropolis-Hastings \* Hamiltonian Monte Carlo \*
-Bayesian Model Comparison using Information Criteria
+3.  **Interpret Diagnostic Classification Models (DCMs):** Explore
+    diagnostic classification models, a class of psychometric models
+    that focus on classifying individuals into latent classes or
+    profiles based on their response patterns. Understand how DCMs
+    enhance diagnostic accuracy by accounting for multidimensionality
+    and differential item functioning.
 
-\### Psychometric Topics
+4.  **Examine Mixture Models:** Study mixture models as a class of
+    multidimensional measurement models that account for heterogeneity
+    within populations. Learn how mixture models can uncover distinct
+    latent subgroups characterized by unique response patterns, shedding
+    light on hidden structures within the data.
 
-\* Introduction to Psychometric Modeling \* Bayesian Confirmatory Factor
-Analysis \* Bayesian Psychometric Model Fit Assessment \* PPMC \* Model
-comparison methods \* Bayesian Item Response Theory: \* Binary Response
-Models \* Polytomous Response Models \* Graded responses \* Partial
-credit models \* Nominal responses \* Bayesian Models for Other Item
-Response Data: \* Psychometric Models for Count Data \* Psychometric
-Models for Censored or Truncated Data \* Bayesian Models for
-Non-Continuous Latent Variables: \* Bayesian Latent Class Models \*
-Bayesian Diagnostic Classification Models \* Bayesian Structural
-Equation Models \* Bayesian Networks \* Bayesian Multilevel Models \*
-Bayesian Multilevel Structural Equation Modeling
+5.  **Apply Models in Education and Social Sciences:** Discover the
+    practical applications of multidimensional measurement models,
+    including mixture models, in various domains. Explore how these
+    models can inform decision-making, educational planning, and social
+    intervention strategies.
 
-\## Course Website/Technology ICON \*will\* be used for grades,
-submission of assignments, disseminating course readings, and course
-communications.
+6.  **Critically Evaluate Research Literature:** Develop the skills to
+    critically analyze and evaluate existing research studies that
+    utilize multidimensional measurement models, including mixture
+    models. Understand the advantages and limitations of these models in
+    addressing complex research questions.
 
-ICON \*will not\* be used for lecture materials. Instead, we will use
+## Course Structure
+
+The course is organized into modules that progressively build a solid
+foundation in MIRT, DCMs, and mixture models. The modules will cover
+theoretical concepts, mathematical formulations, computational
+techniques, and practical implementation. Participants will engage in
+hands-on exercises, data analysis projects, and discussions to reinforce
+their understanding and application of these advanced measurement
+models.
+
+Each class meeting (170 minutes) will be divided into four sections:
+
+1.  A lecture (approximately 80 minutes; from 12:30-13:50 each class
+    meeting)
+2.  A break (10 minutes; from 13:50-14:00 each class meeting)
+3.  A discussion of the reading(s) from each week (approximately 20
+    minutes; from 14:00-14:20 each class meeting)
+4.  Coding/programming exercises (approximately 60 minutes; from
+    14:20-15:20 each class meeting)
+
+**Class will begin promptly at 12:30 each Wednesday.** Please arrive by
+that time to limit distractions to those listening to lecture.
+
+## Coursework
+
+There will not be a hybrid option this semester; all students are
+expected to attend class in person. If you are not feeling well, you can
+watch the course videos when they are posted on YouTube, which should
+
+### Course Assignments
+
+A set of homework assignments will be administered throughout the
+semester. These assignments will be designed to help you learn the
+material and to provide you with an opportunity to practice estimation
+of each model. The assignments will be graded on a 100-point scale. The
+assignments will be due at 11:59pm on the date indicated on the course
+website. Late assignments will not be accepted.
+
+### Course Readings
+
+The course will use a sample of book chapters and papers, with at least
+one reading assigned each week. The readings will be available on ICON.
+**You are expected to read the assigned readings before class and
+participate in the class discussion of each reading.**
+
+### Course Website/Technology
+
+ICON **will** be used for grades, formative assessments, submission of
+assignments, disseminating course readings, and course communications.
+
+ICON **will not** be used for lecture materials. Instead, we will use
 freely available commercial software for communication and dissemination
 of course materials. Course lecture slides, lecture examples, video
 files, assignments, and information are available on the website,
-https://jonathantemplin.com/bayesian-psychometric-modeling-fall-2022/.
-Additionally, all course materials will be available using the course
-Git repository at:
-https://github.com/jonathantemplin/Bayesian-Psychometric-Modeling-Course-Fall2022.
+<https://jonathantemplin.github.io/MultidimensionalMeasurementModels2023/>.
 
 All lectures will be archived on YouTube (my YouTube channel is
 https://jonathantemplin.com/YouTube).
 
-\### Statistical Computing The course will use the R statistical package
-with the R Studio development suite along with a set of R packages (both
-Bayesian and Non-Bayesian). Additionally, we will use the stan
-open-source Bayesian estimation program. R and R Studio work with stan
-by using a series of downloadable packages which will be used throughout
-the course.
+### Statistical Computing
 
-R, R Studio, and stan are available for free from the following
-websites: R: https://www.r-project.org/ R Studio:
-https://www.rstudio.com/ stan: https://mc-stan.org/
+The course will use the R statistical package with the R Studio
+development suite along with a set of R packages (both Bayesian and
+Non-Bayesian). As we will be investigating several estimation methods,
+we will use a variety of R packages, Just Another Gibbs Sampler
+[https://mcmc-jags.sourceforge.io/](JAGS), [https://mc-stan.org](Stan),
+and [https://www.statmodel.com](Mplus). All packages have been built
+into an Apptainer container that can be used on Argon, the University of
+Iowa’s HPC cluster.
+
+We will use Argon in our in-class coding exercises. To access Argon, you
+must have an SSH client installed on your machine. Mac and Linux users
+have SSH clients already installed, but Windows machines do not. If you
+are using a Windows machine, you will need to install an SSH client. I
+recommend [https://www.chiark.greenend.org.uk/\~sgtatham/putty/](PuTTY)
+for Windows users or installing the free Windows Subsystem for Linux
+(WSL) and using the SSH client in the WSL.
 
 The University of Iowa enables access for many of these programs through
 their research computing resources: R Studio Notebooks:
 https://notebooks.hpc.uiowa.edu/ High Performance Computing:
 https://hpc.uiowa.edu/
 
-Although this software is available at the University of Iowa, I ask
-that you install all versions on your local computer as campus resources
-can be difficult to use for many analyses.
+### Grading
 
-\## Homework, Formative Assessments, and Course Project Student
-evaluation will be made based three components: (1) homework assignments
-(60% of course grade), (2) formative assessments (20% of course grade),
-and (3) a course project (20% of course grade).
+Student evaluation will be made based three components: (1) homework
+assignments (50% of course grade), (2) formative assessments (20% of
+course grade), and (3) a one-on-one verbal final examination (30% of
+course grade).
 
 Mathematically, the grade percentage can be expressed as:
 
-$$GP = .6\\times HP + .2 \\times FP + .2 \\times CP, $$ Where:
+$$GP = .5\times HP + .2 \times FP + .3 \times F, $$
 
-\* GP is the Grade Percentage \* HP is the Homework Percentage \* FP is
-the Formative Assessment Percentage \* CP is the Course Project
-Percentage
+Where:
 
-\### Homework Assignments There will be a set of homework assignments,
-the number to be determined. For each assignment, students will have a
-minimum of two weeks to complete the assignment. Homework assignments
-will weighted equally with respect to the 60%/ of the course grade
-accounted for by homework. The lowest homework percentage will be
-dropped (to allow for grace for late homework).
+- GP is the Grade Percentage
+- HP is the Homework Percentage
+- FP is the Formative Assessment Percentage
+- F is the Final Examination Percentage
+
+### Homework Assignments
+
+There will be a set of homework assignments (the exact number to be
+determined). For each assignment, students will have a minimum of one
+week to complete the assignment. Homework assignments will weighted
+equally with respect to the 50% of the course grade accounted for by
+homework. The lowest homework percentage will be dropped (rather than
+allowing late homework).
 
 Mathematically, the homework percentage can be expressed as:
 
-$$HP = \\left[\\frac{\\left( \\sum\_{h=1}^H P\_h \\right)-\\min\_h P\_h} {H-1}\\right],$$
-where $P\_h$ is the percent correct on homework $h$, with $H$ total
-homeworks.
+$$HP = \left[\frac{\left( \sum_{h=1}^H P_h \right)-\min_h P_h} {H-1}\right],$$
+
+where $P_h$ is the percent correct on homework $h$, with $H$ being the
+total number of homework assignments.
 
 In order to be able to provide the entire class with prompt feedback,
 late homework assignments will not be accepted. However, extensions may
@@ -150,57 +222,30 @@ student’s own work (writing and syntax) and not be copied or paraphrased
 from anyone else’s answers. Grammar and writing will be assessed by each
 homework and will factor into the homework grade.
 
-\### Formative Assessments Each week, students will take a short
-formative assessment in ICON. The purpose of the formative assessment is
-to help students obtain a picture of their understanding of course
-materials. All genuine attempts (i.e., not haphazard answers) at
-completion will receive full credit. All formative assessments will be
-weighted equally with respect to the 20%/ of the course grade.
+### Formative Assessments
 
-\### Course Project
+Each week, there will be a short formative assessment in ICON. The
+purpose of the formative assessment is to help students obtain a picture
+of their understanding of course materials. All genuine attempts (i.e.,
+not haphazard answers) at completion will receive full credit. All
+formative assessments will be weighted equally with respect to the 20%
+of the course grade.
 
-To help reinforce practice with the material in this course, a course
-project, as assessed in several parts, is required. You may (and are
-encouraged to) work collaboratively in groups of up to two on all parts
-of the project. Ideally, the project would lead to a publishable paper
-that would be submitted following the semester. All non-presentation
-parts of the project should be written in R Markdown.
+### Verbal Final Examination
 
-Your project may be on nearly any aspect of Bayesian Psychometric
-Models, including any data you may have that you wish to analyze. A list
-of project ideas will also be presented where you can select one.
+As we live in the era of large language models, rather than a written
+project, students will be required to complete a verbal final
+examination. The verbal final examination will be a one-on-one meeting
+with the instructor. The verbal final examination will account for 30%
+of the course grade.
 
-\#### Part 1: Introduction and Research Questions/Hypotheses (Due
-October 7th)
+The contents of the final will be the entirety of the course materials,
+with an emphasis on the readings and the homework assignments. The
+verbal final examination will be held from 12pm-4pm on Wednesday,
+December 13th. A sign-up sheet for an examination time blocks will be
+posted on ICON.
 
-Part one of the project should provide a brief literature review of the
-area of research that your project addresses and provide a set of
-research questions and/or hypotheses you seek to answer with your study.
-Please keep this section to no more than 10 pages of double-spaced text
-(not including the title page, figures, tables, or references) that
-comes from the output of the Markdown document.
-
-You may wish to preregister your hypotheses:
-https://www.cos.io/initiatives/prereg.
-
-\#### Part 2: Project Presentation (Presentations During Last Week of
-Class)
-
-Part two is a project presentation where you present your research
-findings to the class in a 20-minute presentation. The presentation
-materials are due on December 2nd and you will deliver your presentation
-during the last week of class.
-
-\#### Part 3: Final Project Paper (Due December 14th)
-
-Your final project paper is due on Wednesday, December 14th. It must
-have your (brief) literature review, research questions/hypotheses,
-methods, results, and discussion sections. Please limit your paper to 20
-pages of double-spaced text (not including the title page, figures,
-tables, or references) that comes from the output of the R Markdown
-document.
-
-\### Course Grading System
+## Course Grading System
 
 | Point Total   | Letter Grade |
 |---------------|:-------------|
@@ -217,7 +262,7 @@ document.
 | Below 60      | F            |
 |               |              |
 
-\## University of Iowa Course Policies and Resources for Students
+## University of Iowa Course Policies and Resources for Students
 
 Please see https://provost.uiowa.edu/student-course-policies for
 additional policies and resources.

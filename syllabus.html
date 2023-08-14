@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.433">
+<meta name="generator" content="quarto-1.2.269">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>syllabus</title>
+<title>Multidimensional Measurement Models Syllabus (PSQF 7375; Fall 2023)</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -17,7 +17,7 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  margin: 0 0.8em 0.2em -1.6em;
   vertical-align: middle;
 }
 </style>
@@ -34,7 +34,6 @@ ul.task-list li input[type="checkbox"] {
 <link href="syllabus_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="syllabus_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 </head>
@@ -45,9 +44,24 @@ ul.task-list li input[type="checkbox"] {
 
 <main class="content" id="quarto-document-content">
 
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Multidimensional Measurement Models Syllabus (PSQF 7375; Fall 2023)</h1>
+</div>
 
 
-<p><em>Note:</em> The online syllabus at the address provided above will always have the most current information.</p>
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<p><em>Note:</em> The <a href="https://jonathantemplin.github.io/MultidimensionalMeasurementModels2023/">online syllabus</a> will always have the most current information.</p>
 <section id="course-information" class="level2">
 <h2 class="anchored" data-anchor-id="course-information">Course Information</h2>
 <table class="table">
@@ -62,7 +76,7 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 <tr class="odd">
 <td>Course website:</td>
-<td style="text-align: right;"></td>
+<td style="text-align: right;"><a href="https://jonathantemplin.github.io/MultidimensionalMeasurementModels2023/">https://jonathantemplin.github.io/MultidimensionalMeasurementModels2023/</a></td>
 </tr>
 <tr class="even">
 <td>Office:</td>
@@ -82,7 +96,7 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 <tr class="even">
 <td>Course Office Hours:</td>
-<td style="text-align: right;">M 15:00-17:00 or by appointment</td>
+<td style="text-align: right;">F 09:00-11:00 or by appointment</td>
 </tr>
 <tr class="odd">
 <td></td>
@@ -90,46 +104,94 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 </tbody>
 </table>
-<section id="course-objectives-materials-and-prerequesites" class="level3">
-<h3 class="anchored" data-anchor-id="course-objectives-materials-and-prerequesites">Course Objectives, Materials, and Prerequesites</h3>
-<p>In this course, a unified Bayesian modeling approach will be presented across what have been traditionally taught as separate families of psychometric models. Focusing more directly how to use Bayesian methods in psychometrics, this course will to cover Bayesian theory along with applied treatments of popular psychometric models, including confirmatory factor analysis (CFA), item response theory (IRT), latent class analysis, diagnostic classification models, and Bayesian networks. The focus of this course will be on model building directly in Bayesian programs (i.e., _stan_ and _JAGS_) rather than the use of packages that build such code automatically. Time permitting, multilevel models and multilevel psychometric models will be presented.</p>
-<p>As class will begin promptly at 12:30pm each Wednesday and Friday, I ask that you arrive by that time so as to ensure we have enough time to cover all materials.</p>
-<p>## Course Readings</p>
-<p>The course will follow some of the chapters of Bayesian Psychometric Modeling (2016) by Roy Levy and Bob Mislevy. The University of Iowa Library has electronic access to the book at https://ebookcentral.proquest.com/lib/uiowa/detail.action?docID=4532358. Additional readings will be posted on our course website or via our course ICON site.</p>
-<p>## Course Topic List</p>
-<p>Please note, due to uncertainties in how long instruction will take to be delivered, a list of topics to be covered is presented in this syllabus. The precise schedule for upcoming classes will be posted on the course website. Not all topics may be covered.</p>
-<p>### Bayesian Topics</p>
-<p>* Foundational Bayesian Concepts * Bayesian Estimation Methods * MCMC Convergence Diagnostics * Model fit assessment with posterior predictive model checks * Missing Data in MCMC Estimation * Bayesian Software: * Stan * Using Argon for estimation * MCMC Algorithms: * Gibbs Sampling * Metropolis-Hastings * Hamiltonian Monte Carlo * Bayesian Model Comparison using Information Criteria</p>
-<p>### Psychometric Topics</p>
-<p>* Introduction to Psychometric Modeling * Bayesian Confirmatory Factor Analysis * Bayesian Psychometric Model Fit Assessment * PPMC * Model comparison methods * Bayesian Item Response Theory: * Binary Response Models * Polytomous Response Models * Graded responses * Partial credit models * Nominal responses * Bayesian Models for Other Item Response Data: * Psychometric Models for Count Data * Psychometric Models for Censored or Truncated Data * Bayesian Models for Non-Continuous Latent Variables: * Bayesian Latent Class Models * Bayesian Diagnostic Classification Models * Bayesian Structural Equation Models * Bayesian Networks * Bayesian Multilevel Models * Bayesian Multilevel Structural Equation Modeling</p>
-<p>## Course Website/Technology ICON *will* be used for grades, submission of assignments, disseminating course readings, and course communications.</p>
-<p>ICON *will not* be used for lecture materials. Instead, we will use freely available commercial software for communication and dissemination of course materials. Course lecture slides, lecture examples, video files, assignments, and information are available on the website, https://jonathantemplin.com/bayesian-psychometric-modeling-fall-2022/. Additionally, all course materials will be available using the course Git repository at: https://github.com/jonathantemplin/Bayesian-Psychometric-Modeling-Course-Fall2022.</p>
+</section>
+<section id="course-introduction" class="level2">
+<h2 class="anchored" data-anchor-id="course-introduction">Course Introduction</h2>
+<p>Multidimensional Measurement Models is an advanced PhD-level course with a specialized focus on applications of measurement models with more than one latent variable, primarily in the fields of education and the social sciences. This comprehensive course is designed to provide an in-depth exploration of multidimensional item response theory (MIRT), diagnostic classification models (DCMs), and mixture models as essential tools for understanding complex psychological and social phenomena.</p>
+<p>As contemporary psychological measurement in the educational and social sciences continues to grow in complexity, the need for sophisticated measurement techniques has become increasingly apparent. Traditional unidimensional measurement models often fall short in capturing the multifaceted nature of human attributes and behaviors, hindering accurate assessments and classifications. In response to these challenges, multidimensional measurement models, including mixture models, have emerged as powerful tools, enabling researchers and practitioners to more effectively measure and understand intricate constructs.</p>
+<p>This course is designed for PhD-level students with a strong background in psychometrics, statistical modeling, and quantitative research methods. Participants should be familiar with basic unidimensional item response theory and have experience working with statistical software such as R.</p>
+</section>
+<section id="course-objectives" class="level2">
+<h2 class="anchored" data-anchor-id="course-objectives">Course Objectives</h2>
+<p>This course will provide students with an understanding of multidimensional measurement models, their theoretical underpinnings, and their practical applications in educational and social science contexts. By the end of the course, participants will be able to:</p>
+<ol type="1">
+<li><p><strong>Understand Multidimensional Item Response Theory (MIRT):</strong> Delve into the foundational principles of MIRT, examining how it extends traditional unidimensional models to account for the measurement of multiple latent dimensions. Understand the mathematical and statistical intricacies involved in fitting MIRT models to empirical data.</p></li>
+<li><p><strong>Analyze Multidimensional Data:</strong> Gain proficiency in applying advanced statistical techniques to analyze multidimensional data. Explore methods for estimating latent trait scores, examining item characteristics, and assessing model fit for complex measurement structures.</p></li>
+<li><p><strong>Interpret Diagnostic Classification Models (DCMs):</strong> Explore diagnostic classification models, a class of psychometric models that focus on classifying individuals into latent classes or profiles based on their response patterns. Understand how DCMs enhance diagnostic accuracy by accounting for multidimensionality and differential item functioning.</p></li>
+<li><p><strong>Examine Mixture Models:</strong> Study mixture models as a class of multidimensional measurement models that account for heterogeneity within populations. Learn how mixture models can uncover distinct latent subgroups characterized by unique response patterns, shedding light on hidden structures within the data.</p></li>
+<li><p><strong>Apply Models in Education and Social Sciences:</strong> Discover the practical applications of multidimensional measurement models, including mixture models, in various domains. Explore how these models can inform decision-making, educational planning, and social intervention strategies.</p></li>
+<li><p><strong>Critically Evaluate Research Literature:</strong> Develop the skills to critically analyze and evaluate existing research studies that utilize multidimensional measurement models, including mixture models. Understand the advantages and limitations of these models in addressing complex research questions.</p></li>
+</ol>
+</section>
+<section id="course-structure" class="level2">
+<h2 class="anchored" data-anchor-id="course-structure">Course Structure</h2>
+<p>The course is organized into modules that progressively build a solid foundation in MIRT, DCMs, and mixture models. The modules will cover theoretical concepts, mathematical formulations, computational techniques, and practical implementation. Participants will engage in hands-on exercises, data analysis projects, and discussions to reinforce their understanding and application of these advanced measurement models.</p>
+<p>Each class meeting (170 minutes) will be divided into four sections:</p>
+<ol type="1">
+<li>A lecture (approximately 80 minutes; from 12:30-13:50 each class meeting)</li>
+<li>A break (10 minutes; from 13:50-14:00 each class meeting)</li>
+<li>A discussion of the reading(s) from each week (approximately 20 minutes; from 14:00-14:20 each class meeting)</li>
+<li>Coding/programming exercises (approximately 60 minutes; from 14:20-15:20 each class meeting)</li>
+</ol>
+<p><strong>Class will begin promptly at 12:30 each Wednesday.</strong> Please arrive by that time to limit distractions to those listening to lecture.</p>
+</section>
+<section id="coursework" class="level2">
+<h2 class="anchored" data-anchor-id="coursework">Coursework</h2>
+<p>There will not be a hybrid option this semester; all students are expected to attend class in person. If you are not feeling well, you can watch the course videos when they are posted on YouTube, which should</p>
+<section id="course-assignments" class="level3">
+<h3 class="anchored" data-anchor-id="course-assignments">Course Assignments</h3>
+<p>A set of homework assignments will be administered throughout the semester. These assignments will be designed to help you learn the material and to provide you with an opportunity to practice estimation of each model. The assignments will be graded on a 100-point scale. The assignments will be due at 11:59pm on the date indicated on the course website. Late assignments will not be accepted.</p>
+</section>
+<section id="course-readings" class="level3">
+<h3 class="anchored" data-anchor-id="course-readings">Course Readings</h3>
+<p>The course will use a sample of book chapters and papers, with at least one reading assigned each week. The readings will be available on ICON. <strong>You are expected to read the assigned readings before class and participate in the class discussion of each reading.</strong></p>
+</section>
+<section id="course-websitetechnology" class="level3">
+<h3 class="anchored" data-anchor-id="course-websitetechnology">Course Website/Technology</h3>
+<p>ICON <strong>will</strong> be used for grades, formative assessments, submission of assignments, disseminating course readings, and course communications.</p>
+<p>ICON <strong>will not</strong> be used for lecture materials. Instead, we will use freely available commercial software for communication and dissemination of course materials. Course lecture slides, lecture examples, video files, assignments, and information are available on the website, <a href="https://jonathantemplin.github.io/MultidimensionalMeasurementModels2023/">https://jonathantemplin.github.io/MultidimensionalMeasurementModels2023/</a>.</p>
 <p>All lectures will be archived on YouTube (my YouTube channel is https://jonathantemplin.com/YouTube).</p>
-<p>### Statistical Computing The course will use the R statistical package with the R Studio development suite along with a set of R packages (both Bayesian and Non-Bayesian). Additionally, we will use the stan open-source Bayesian estimation program. R and R Studio work with stan by using a series of downloadable packages which will be used throughout the course.</p>
-<p>R, R Studio, and stan are available for free from the following websites: R: https://www.r-project.org/ R Studio: https://www.rstudio.com/ stan: https://mc-stan.org/</p>
+</section>
+<section id="statistical-computing" class="level3">
+<h3 class="anchored" data-anchor-id="statistical-computing">Statistical Computing</h3>
+<p>The course will use the R statistical package with the R Studio development suite along with a set of R packages (both Bayesian and Non-Bayesian). As we will be investigating several estimation methods, we will use a variety of R packages, Just Another Gibbs Sampler <a href="JAGS">https://mcmc-jags.sourceforge.io/</a>, <a href="Stan">https://mc-stan.org</a>, and <a href="Mplus">https://www.statmodel.com</a>. All packages have been built into an Apptainer container that can be used on Argon, the University of Iowa’s HPC cluster.</p>
+<p>We will use Argon in our in-class coding exercises. To access Argon, you must have an SSH client installed on your machine. Mac and Linux users have SSH clients already installed, but Windows machines do not. If you are using a Windows machine, you will need to install an SSH client. I recommend <a href="PuTTY">https://www.chiark.greenend.org.uk/~sgtatham/putty/</a> for Windows users or installing the free Windows Subsystem for Linux (WSL) and using the SSH client in the WSL.</p>
 <p>The University of Iowa enables access for many of these programs through their research computing resources: R Studio Notebooks: https://notebooks.hpc.uiowa.edu/ High Performance Computing: https://hpc.uiowa.edu/</p>
-<p>Although this software is available at the University of Iowa, I ask that you install all versions on your local computer as campus resources can be difficult to use for many analyses.</p>
-<p>## Homework, Formative Assessments, and Course Project Student evaluation will be made based three components: (1) homework assignments (60% of course grade), (2) formative assessments (20% of course grade), and (3) a course project (20% of course grade).</p>
+</section>
+<section id="grading" class="level3">
+<h3 class="anchored" data-anchor-id="grading">Grading</h3>
+<p>Student evaluation will be made based three components: (1) homework assignments (50% of course grade), (2) formative assessments (20% of course grade), and (3) a one-on-one verbal final examination (30% of course grade).</p>
 <p>Mathematically, the grade percentage can be expressed as:</p>
-<p><span class="math display">\[GP = .6\\times HP + .2 \\times FP + .2 \\times CP, \]</span> Where:</p>
-<p>* GP is the Grade Percentage * HP is the Homework Percentage * FP is the Formative Assessment Percentage * CP is the Course Project Percentage</p>
-<p>### Homework Assignments There will be a set of homework assignments, the number to be determined. For each assignment, students will have a minimum of two weeks to complete the assignment. Homework assignments will weighted equally with respect to the 60%/ of the course grade accounted for by homework. The lowest homework percentage will be dropped (to allow for grace for late homework).</p>
+<p><span class="math display">\[GP = .5\times HP + .2 \times FP + .3 \times F, \]</span></p>
+<p>Where:</p>
+<ul>
+<li>GP is the Grade Percentage</li>
+<li>HP is the Homework Percentage</li>
+<li>FP is the Formative Assessment Percentage</li>
+<li>F is the Final Examination Percentage</li>
+</ul>
+</section>
+<section id="homework-assignments" class="level3">
+<h3 class="anchored" data-anchor-id="homework-assignments">Homework Assignments</h3>
+<p>There will be a set of homework assignments (the exact number to be determined). For each assignment, students will have a minimum of one week to complete the assignment. Homework assignments will weighted equally with respect to the 50% of the course grade accounted for by homework. The lowest homework percentage will be dropped (rather than allowing late homework).</p>
 <p>Mathematically, the homework percentage can be expressed as:</p>
-<p><span class="math display">\[HP = \\left[\\frac{\\left( \\sum\_{h=1}^H P\_h \\right)-\\min\_h P\_h} {H-1}\\right],\]</span> where <span class="math inline">\(P\_h\)</span> is the percent correct on homework <span class="math inline">\(h\)</span>, with <span class="math inline">\(H\)</span> total homeworks.</p>
+<p><span class="math display">\[HP = \left[\frac{\left( \sum_{h=1}^H P_h \right)-\min_h P_h} {H-1}\right],\]</span></p>
+<p>where <span class="math inline">\(P_h\)</span> is the percent correct on homework <span class="math inline">\(h\)</span>, with <span class="math inline">\(H\)</span> being the total number of homework assignments.</p>
 <p>In order to be able to provide the entire class with prompt feedback, late homework assignments will not be accepted. However, extensions may be granted as needed for extenuating circumstances (e.g., conferences, family obligations) if requested at least three weeks in advance of the due date. Additionally, late homework due to emergencies will be accepted with documentation of the circumstances of the emergency.</p>
 <p>All assignments must be completed in R, using R Markdown as a file format, and submitted via ICON. Although students are encouraged to work together on the concepts underlying homework, all answers must be from student’s own work (writing and syntax) and not be copied or paraphrased from anyone else’s answers. Grammar and writing will be assessed by each homework and will factor into the homework grade.</p>
-<p>### Formative Assessments Each week, students will take a short formative assessment in ICON. The purpose of the formative assessment is to help students obtain a picture of their understanding of course materials. All genuine attempts (i.e., not haphazard answers) at completion will receive full credit. All formative assessments will be weighted equally with respect to the 20%/ of the course grade.</p>
-<p>### Course Project</p>
-<p>To help reinforce practice with the material in this course, a course project, as assessed in several parts, is required. You may (and are encouraged to) work collaboratively in groups of up to two on all parts of the project. Ideally, the project would lead to a publishable paper that would be submitted following the semester. All non-presentation parts of the project should be written in R Markdown.</p>
-<p>Your project may be on nearly any aspect of Bayesian Psychometric Models, including any data you may have that you wish to analyze. A list of project ideas will also be presented where you can select one.</p>
-<p>#### Part 1: Introduction and Research Questions/Hypotheses (Due October 7th)</p>
-<p>Part one of the project should provide a brief literature review of the area of research that your project addresses and provide a set of research questions and/or hypotheses you seek to answer with your study. Please keep this section to no more than 10 pages of double-spaced text (not including the title page, figures, tables, or references) that comes from the output of the Markdown document.</p>
-<p>You may wish to preregister your hypotheses: https://www.cos.io/initiatives/prereg.</p>
-<p>#### Part 2: Project Presentation (Presentations During Last Week of Class)</p>
-<p>Part two is a project presentation where you present your research findings to the class in a 20-minute presentation. The presentation materials are due on December 2nd and you will deliver your presentation during the last week of class.</p>
-<p>#### Part 3: Final Project Paper (Due December 14th)</p>
-<p>Your final project paper is due on Wednesday, December 14th. It must have your (brief) literature review, research questions/hypotheses, methods, results, and discussion sections. Please limit your paper to 20 pages of double-spaced text (not including the title page, figures, tables, or references) that comes from the output of the R Markdown document.</p>
-<p>### Course Grading System</p>
+</section>
+<section id="formative-assessments" class="level3">
+<h3 class="anchored" data-anchor-id="formative-assessments">Formative Assessments</h3>
+<p>Each week, there will be a short formative assessment in ICON. The purpose of the formative assessment is to help students obtain a picture of their understanding of course materials. All genuine attempts (i.e., not haphazard answers) at completion will receive full credit. All formative assessments will be weighted equally with respect to the 20% of the course grade.</p>
+</section>
+<section id="verbal-final-examination" class="level3">
+<h3 class="anchored" data-anchor-id="verbal-final-examination">Verbal Final Examination</h3>
+<p>As we live in the era of large language models, rather than a written project, students will be required to complete a verbal final examination. The verbal final examination will be a one-on-one meeting with the instructor. The verbal final examination will account for 30% of the course grade.</p>
+<p>The contents of the final will be the entirety of the course materials, with an emphasis on the readings and the homework assignments. The verbal final examination will be held from 12pm-4pm on Wednesday, December 13th. A sign-up sheet for an examination time blocks will be posted on ICON.</p>
+</section>
+</section>
+<section id="course-grading-system" class="level2">
+<h2 class="anchored" data-anchor-id="course-grading-system">Course Grading System</h2>
 <table class="table">
 <thead>
 <tr class="header">
@@ -188,9 +250,10 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 </tbody>
 </table>
-<p>## University of Iowa Course Policies and Resources for Students</p>
-<p>Please see https://provost.uiowa.edu/student-course-policies for additional policies and resources.</p>
 </section>
+<section id="university-of-iowa-course-policies-and-resources-for-students" class="level2">
+<h2 class="anchored" data-anchor-id="university-of-iowa-course-policies-and-resources-for-students">University of Iowa Course Policies and Resources for Students</h2>
+<p>Please see https://provost.uiowa.edu/student-course-policies for additional policies and resources.</p>
 </section>
 
 </main>
@@ -222,23 +285,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     icon: icon
   };
   anchorJS.add('.anchored');
-  const isCodeAnnotation = (el) => {
-    for (const clz of el.classList) {
-      if (clz.startsWith('code-annotation-')) {                     
-        return true;
-      }
-    }
-    return false;
-  }
   const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
+    target: function(trigger) {
+      return trigger.previousElementSibling;
     }
   });
   clipboard.on('success', function(e) {
@@ -303,92 +352,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return note.innerHTML;
     });
   }
-      let selectedAnnoteEl;
-      const selectorForAnnotation = ( cell, annotation) => {
-        let cellAttr = 'data-code-cell="' + cell + '"';
-        let lineAttr = 'data-code-annotation="' +  annotation + '"';
-        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
-        return selector;
-      }
-      const selectCodeLines = (annoteEl) => {
-        const doc = window.document;
-        const targetCell = annoteEl.getAttribute("data-target-cell");
-        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
-        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
-        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
-        const lineIds = lines.map((line) => {
-          return targetCell + "-" + line;
-        })
-        let top = null;
-        let height = null;
-        let parent = null;
-        if (lineIds.length > 0) {
-            //compute the position of the single el (top and bottom and make a div)
-            const el = window.document.getElementById(lineIds[0]);
-            top = el.offsetTop;
-            height = el.offsetHeight;
-            parent = el.parentElement.parentElement;
-          if (lineIds.length > 1) {
-            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
-            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
-            height = bottom - top;
-          }
-          if (top !== null && height !== null && parent !== null) {
-            // cook up a div (if necessary) and position it 
-            let div = window.document.getElementById("code-annotation-line-highlight");
-            if (div === null) {
-              div = window.document.createElement("div");
-              div.setAttribute("id", "code-annotation-line-highlight");
-              div.style.position = 'absolute';
-              parent.appendChild(div);
-            }
-            div.style.top = top - 2 + "px";
-            div.style.height = height + 4 + "px";
-            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
-            if (gutterDiv === null) {
-              gutterDiv = window.document.createElement("div");
-              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
-              gutterDiv.style.position = 'absolute';
-              const codeCell = window.document.getElementById(targetCell);
-              const gutter = codeCell.querySelector('.code-annotation-gutter');
-              gutter.appendChild(gutterDiv);
-            }
-            gutterDiv.style.top = top - 2 + "px";
-            gutterDiv.style.height = height + 4 + "px";
-          }
-          selectedAnnoteEl = annoteEl;
-        }
-      };
-      const unselectCodeLines = () => {
-        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
-        elementsIds.forEach((elId) => {
-          const div = window.document.getElementById(elId);
-          if (div) {
-            div.remove();
-          }
-        });
-        selectedAnnoteEl = undefined;
-      };
-      // Attach click handler to the DT
-      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
-      for (const annoteDlNode of annoteDls) {
-        annoteDlNode.addEventListener('click', (event) => {
-          const clickedEl = event.target;
-          if (clickedEl !== selectedAnnoteEl) {
-            unselectCodeLines();
-            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
-            if (activeEl) {
-              activeEl.classList.remove('code-annotation-active');
-            }
-            selectCodeLines(clickedEl);
-            clickedEl.classList.add('code-annotation-active');
-          } else {
-            // Unselect the line
-            unselectCodeLines();
-            clickedEl.classList.remove('code-annotation-active');
-          }
-        });
-      }
   const findCites = (el) => {
     const parentEl = el.parentElement;
     if (parentEl) {
