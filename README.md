@@ -8,6 +8,7 @@ This repo contains course materials for the Multidimensional Measurement Models 
 | -------------------- | ------------------------------: |
 | Instructor:          | Jonathan Templin                |
 | email:               | jonathan-templin@uiowa.edu      |
+| Syllabus: | [https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/blob/77cf03df1d0216902c7bd43991a339b75f23b020/syllabus/syllabus.pdf](https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/blob/77cf03df1d0216902c7bd43991a339b75f23b020/syllabus/syllabus.pdf) |
 | Course website:      | [https://jonathantemplin.github.io/MultidimensionalMeasurementModels2023/](https://jonathantemplin.github.io/MultidimensionalMeasurementModels2023/)                           |
 | Course repo:         | [https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023](https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023) |
 | Lecture videos:      | Shown after week 1              | 
@@ -69,3 +70,10 @@ Please see the main website for the most up-to-date schedule, required readings,
 | **Section 5** | **Multidimensionality is Desired** |
 | 12/06/2023 | Construct Definitions and the Challenge of Subscores |
 | 12/13/2023 | Final Exam |
+
+# References
+
+Bartholomew, D. J., Knott, M., & Moustaki, I. (2011). Latent variable models and factor analysis: A unified approach (3rd ed.). Wiley.
+
+Reckase, M. D. (2009). Multidimensional item response theory. Springer.
+
