@@ -9,7 +9,8 @@ This repo contains course materials for the Multidimensional Measurement Models 
 | Instructor:          | Jonathan Templin                |
 | email:               | jonathan-templin@uiowa.edu      |
 | Course website:      | [https://jonathantemplin.github.io/MultidimensionalMeasurementModels2023/](https://jonathantemplin.github.io/MultidimensionalMeasurementModels2023/)                           |
-| Course repo:         | [https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023](https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023)
+| Course repo:         | [https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023](https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023) |
+| Lecture videos:      | Shown after week 1              | 
 | Office:              | S210B Lindquist Center          |
 | Office Phone:        | 319-335-6429                    |
 | Classroom:           | S210A Lindquist Center          |
@@ -19,7 +20,7 @@ This repo contains course materials for the Multidimensional Measurement Models 
 
 ## Course Schedule 
 
-### Week 1: August 23, 2023
+### Week 1: August 23, 2023: Introduction; What is Dimensionality; Estimation Toolbox
 
 * Read prior to class: 
   * [Course Syllabus](https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/blob/main/syllabus/syllabus.pdf)
@@ -36,7 +37,7 @@ This repo contains course materials for the Multidimensional Measurement Models 
   * Example Job Submissions
     * [https://jonathantemplin.com/introduction-to-the-university-of-iowa-high-performance-computing-system-argon-and-iowa-interactive-data-analytics-service-idas/](https://jonathantemplin.com/introduction-to-the-university-of-iowa-high-performance-computing-system-argon-and-iowa-interactive-data-analytics-service-idas/)
   
-  ### Week 2: August 30, 2023
+  ### Week 2: August 30, 2023: Psychometric Prerequisites (Generalized Models, IRT, Structural vs. Measurement Models, Basic MIRT Models)
 
   * Read prior to class (note: readings are on [ICON](https://icon.uiowa.edu)): 
     * For discussion: Chapter 1: Bartholomew, Knott, and Moustaki (2011) 
@@ -48,8 +49,7 @@ This repo contains course materials for the Multidimensional Measurement Models 
 Please see the main website for the most up-to-date schedule, required readings, and assignment information.
 
 | Date | Topic | 
-| ---- | ----- | 
-| 08/30/2023 | Psychometric Prerequisites (Generalized Models, IRT, Structural vs. Measurement Models, Basic MIRT Models) | 
+| ---- | ----- |  
 | 09/06/2023 | Model Fit | 
 | **Section 2** | **Hard Reality of Multidimensionality** |
 | 09/13/2023 | Multidimensional Difficulties (Identifiability, empirical identification, quantifying dimensionality) |
