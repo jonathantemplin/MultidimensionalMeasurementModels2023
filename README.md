@@ -24,12 +24,23 @@ This repo contains course materials for the Multidimensional Measurement Models 
 * Read prior to class: 
   * [Course Syllabus](https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/blob/main/syllabus/syllabus.pdf)
 * Lecture slides: 
-  * 
-* Coding activity: 
+  * [https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/blob/main/materials/Week%2001/mmm2023_lecture01_intro.pdf](https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/blob/main/materials/Week%2001/mmm2023_lecture01_intro.pdf)
+* Coding activity: Introduction to High Performance Computing and Argon
+  * [HPC Argon Wiki])(https://wiki.uiowa.edu/display/hpcdocs/HPC+Documentation+Home)
+  * Slides: 
+    * [https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/blob/main/materials/Week%2001/mmm2023_lecture01_hpc.pdf](https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/blob/main/materials/Week%2001/mmm2023_lecture01_hpc.pdf)
   * Computing Setup:
     * Visual Studio Code (with Extensions)
     * R (via Rig)
-    * Mounting Argon Drives Locally
+    * Mounting Argon Drives Locally 
+  * Example Job Submissions
+    * [https://jonathantemplin.com/introduction-to-the-university-of-iowa-high-performance-computing-system-argon-and-iowa-interactive-data-analytics-service-idas/](https://jonathantemplin.com/introduction-to-the-university-of-iowa-high-performance-computing-system-argon-and-iowa-interactive-data-analytics-service-idas/)
+  
+  ### Week 2: August 30, 2023
+
+  * Read prior to class (note: readings are on [ICON](https://icon.uiowa.edu)): 
+    * For discussion: Chapter 1: Bartholomew, Knott, and Moustaki (2011) 
+    * For reference: Chapter 2: Reckase (2009) 
 
 
 ## Tentative Remaining Course Schedule
