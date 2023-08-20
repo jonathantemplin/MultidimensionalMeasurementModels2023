@@ -9,6 +9,7 @@ This repo contains course materials for the Multidimensional Measurement Models 
 | Instructor:          | Jonathan Templin                |
 | email:               | jonathan-templin@uiowa.edu      |
 | Course website:      | [https://jonathantemplin.github.io/MultidimensionalMeasurementModels2023/](https://jonathantemplin.github.io/MultidimensionalMeasurementModels2023/)                           |
+| Course repo:         | [https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023](https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023)
 | Office:              | S210B Lindquist Center          |
 | Office Phone:        | 319-335-6429                    |
 | Classroom:           | S210A Lindquist Center          |
@@ -18,14 +19,25 @@ This repo contains course materials for the Multidimensional Measurement Models 
 
 ## Course Schedule 
 
-## Tentative Course Schedule
+### Week 1: August 23, 2023
+
+* Read prior to class: 
+  * [Course Syllabus](https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/blob/main/syllabus/syllabus.pdf)
+* Lecture slides: 
+  * 
+* Coding activity: 
+  * Computing Setup:
+    * Visual Studio Code (with Extensions)
+    * R (via Rig)
+    * Mounting Argon Drives Locally
+
+
+## Tentative Remaining Course Schedule
 
 Please see the main website for the most up-to-date schedule, required readings, and assignment information.
 
 | Date | Topic | 
 | ---- | ----- | 
-| **Section 1** | **Preliminaries** |
-| 08/23/2023 | Introduction; What is Dimensionality; Estimation Toolbox | 
 | 08/30/2023 | Psychometric Prerequisites (Generalized Models, IRT, Structural vs. Measurement Models, Basic MIRT Models) | 
 | 09/06/2023 | Model Fit | 
 | **Section 2** | **Hard Reality of Multidimensionality** |
