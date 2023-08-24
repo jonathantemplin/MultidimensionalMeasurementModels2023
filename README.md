@@ -27,6 +27,9 @@ This repo contains course materials for the Multidimensional Measurement Models 
   * [Course Syllabus](https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/blob/main/syllabus/syllabus.pdf)
 * Lecture slides: 
   * [https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/blob/main/materials/Week%2001/mmm2023_lecture01_intro.pdf](https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/blob/main/materials/Week%2001/mmm2023_lecture01_intro.pdf)
+  * Lecture Videos:
+    * Part 1: [https://youtu.be/81B4bYhLi-o](https://youtu.be/81B4bYhLi-o)
+    * Part 2: [https://youtu.be/PuqfqScaFyo](https://youtu.be/PuqfqScaFyo); Note, audio only after about 5 minutes.
 * Coding activity: Introduction to High Performance Computing and Argon
   * [HPC Argon Wiki])(https://wiki.uiowa.edu/display/hpcdocs/HPC+Documentation+Home)
   * Slides: 
@@ -38,11 +41,19 @@ This repo contains course materials for the Multidimensional Measurement Models 
   * Example Job Submissions
     * [https://jonathantemplin.com/introduction-to-the-university-of-iowa-high-performance-computing-system-argon-and-iowa-interactive-data-analytics-service-idas/](https://jonathantemplin.com/introduction-to-the-university-of-iowa-high-performance-computing-system-argon-and-iowa-interactive-data-analytics-service-idas/)
   
-  ### Week 2: August 30, 2023: Psychometric Prerequisites (Generalized Models, IRT, Structural vs. Measurement Models, Basic MIRT Models)
+### Week 2, August 30, 2023: Argon 
 
-  * Read prior to class (note: readings are on [ICON](https://icon.uiowa.edu)): 
-    * For discussion: Chapter 1: Bartholomew, Knott, and Moustaki (2011) 
-    * For reference: Chapter 2: Reckase (2009) 
+* Read prior to class: Nothing
+* Useful Links
+  * Argon Wiki: [https://wiki.uiowa.edu/display/hpcdocs/HPC+Documentation+Home](https://wiki.uiowa.edu/display/hpcdocs/HPC+Documentation+Home)
+  * Notebooks Site: [https://notebooks.hpc.uiowa.edu/](https://notebooks.hpc.uiowa.edu/)
+
+
+### Week 3: September 6, 2023: Psychometric Prerequisites (Generalized Models, IRT, Structural vs. Measurement Models, Basic MIRT Models)
+
+* Read prior to class (note: readings are on [ICON](https://icon.uiowa.edu)): 
+  * For discussion: Chapter 1: Bartholomew, Knott, and Moustaki (2011) 
+  * For reference: Chapter 2: Reckase (2009) 
 
 
 ## Tentative Remaining Course Schedule
