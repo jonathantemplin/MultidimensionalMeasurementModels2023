@@ -11,7 +11,7 @@ This repo contains course materials for the Multidimensional Measurement Models 
 | Syllabus: | [https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/blob/77cf03df1d0216902c7bd43991a339b75f23b020/syllabus/syllabus.pdf](https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/blob/77cf03df1d0216902c7bd43991a339b75f23b020/syllabus/syllabus.pdf) |
 | Course website:      | [https://jonathantemplin.github.io/MultidimensionalMeasurementModels2023/](https://jonathantemplin.github.io/MultidimensionalMeasurementModels2023/)                           |
 | Course repo:         | [https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023](https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023) |
-| Lecture videos:      | Shown after week 1              | 
+| Lecture videos:      | [https://www.youtube.com/playlist?list=PLSmMs4UgmSMhVd66KyC7O9hU9ZPl6qskk](https://www.youtube.com/playlist?list=PLSmMs4UgmSMhVd66KyC7O9hU9ZPl6qskk)             | 
 | Office:              | S210B Lindquist Center          |
 | Office Phone:        | 319-335-6429                    |
 | Classroom:           | S210A Lindquist Center          |
