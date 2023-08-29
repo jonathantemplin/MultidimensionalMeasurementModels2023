@@ -8,10 +8,10 @@ This repo contains course materials for the Multidimensional Measurement Models 
 | -------------------- | ------------------------------: |
 | Instructor:          | Jonathan Templin                |
 | email:               | jonathan-templin@uiowa.edu      |
-| Syllabus: | [https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/blob/77cf03df1d0216902c7bd43991a339b75f23b020/syllabus/syllabus.pdf](https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/blob/77cf03df1d0216902c7bd43991a339b75f23b020/syllabus/syllabus.pdf) |
-| Course website:      | [https://jonathantemplin.github.io/MultidimensionalMeasurementModels2023/](https://jonathantemplin.github.io/MultidimensionalMeasurementModels2023/)                           |
-| Course repo:         | [https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023](https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023) |
-| Lecture videos:      | [https://www.youtube.com/playlist?list=PLSmMs4UgmSMhVd66KyC7O9hU9ZPl6qskk](https://www.youtube.com/playlist?list=PLSmMs4UgmSMhVd66KyC7O9hU9ZPl6qskk)             | 
+| Syllabus: | [Syllabus Link](https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/blob/77cf03df1d0216902c7bd43991a339b75f23b020/syllabus/syllabus.pdf) |
+| Course website:      | [Course Website Link](https://jonathantemplin.github.io/MultidimensionalMeasurementModels2023/)                           |
+| Course repo:         | [Github Repo](https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023) |
+| Lecture videos:      | [YouTube Playlist](https://www.youtube.com/playlist?list=PLSmMs4UgmSMhVd66KyC7O9hU9ZPl6qskk)             | 
 | Office:              | S210B Lindquist Center          |
 | Office Phone:        | 319-335-6429                    |
 | Classroom:           | S210A Lindquist Center          |
@@ -19,7 +19,8 @@ This repo contains course materials for the Multidimensional Measurement Models 
 | Course Office Hours: | F 09:00-11:00 or by appointment |
 |                      |                                 |
 
-## Course Schedule 
+
+## Course Schedule
 
 ### Week 1: August 23, 2023: Introduction; What is Dimensionality; Estimation Toolbox
 
@@ -44,10 +45,17 @@ This repo contains course materials for the Multidimensional Measurement Models 
 ### Week 2, August 30, 2023: Argon 
 
 * Read prior to class: Nothing
+* Lecture handout: 
+  * [https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/blob/main/materials/Week02/mmm2023_argon.md](https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/blob/main/materials/Week02/mmm2023_argon.md)
+* Lecture Videos:
+  * Shown after class
 * Useful Links
   * Argon Wiki: [https://wiki.uiowa.edu/display/hpcdocs/HPC+Documentation+Home](https://wiki.uiowa.edu/display/hpcdocs/HPC+Documentation+Home)
   * Notebooks Site: [https://notebooks.hpc.uiowa.edu/](https://notebooks.hpc.uiowa.edu/)
-
+  * Jonathan's awesome Argon guide: [https://jonathantemplin.com/introduction-to-the-university-of-iowa-high-performance-computing-system-argon-and-iowa-interactive-data-analytics-service-idas/](https://jonathantemplin.com/introduction-to-the-university-of-iowa-high-performance-computing-system-argon-and-iowa-interactive-data-analytics-service-idas/)
+* Homework 1 Assigned (Due 09/12/2023) [ICON](https://icon.uiowa.edu):
+  * Note: Your personal data set is on Argon (see ICON for details)
+* Formative Assessment 1 Assigned (Due 09/05/2023)--on ICON [ICON](https://icon.uiowa.edu)
 
 ### Week 3: September 6, 2023: Psychometric Prerequisites (Generalized Models, IRT, Structural vs. Measurement Models, Basic MIRT Models)
 
@@ -62,11 +70,10 @@ Please see the main website for the most up-to-date schedule, required readings,
 
 | Date | Topic | 
 | ---- | ----- |  
-| 09/06/2023 | Model Fit | 
+| 09/13/2023 | Model Fit | 
 | **Section 2** | **Hard Reality of Multidimensionality** |
-| 09/13/2023 | Multidimensional Difficulties (Identifiability, empirical identification, quantifying dimensionality) |
-| 09/20/2023 | Estimation Methods (Marginal Maximum Likelihood; E-M Algorithm) |
-| 09/27/2023 | Estimation Methods (Limited Information; Bayesian Methods) |
+| 09/20/2023 | Multidimensional Difficulties (Identifiability, empirical identification, quantifying dimensionality) |
+| 09/27/2023 | Estimation Methods (Marginal Maximum Likelihood; Limited Information; Bayesian Methods) |
 | **Section 3** | **Multidimensionality is Bad** |
 | 10/04/2023 | Exploratory Models; Consequences of Multidimensionality; Unwanted Dimensionality  |
 | 10/11/2023 | Multidimensionality by Design (rater effects, testlets)  |
