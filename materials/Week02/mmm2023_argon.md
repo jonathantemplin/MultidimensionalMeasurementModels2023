@@ -182,7 +182,7 @@ module load r/4.2.2_gcc-9.5.0
 
 ## Running Jobs on Argon
 
-Please refer to (https://jonathantemplin.com/introduction-to-the-university-of-iowa-high-performance-computing-system-argon-and-iowa-interactive-data-analytics-service-idas/)[https://jonathantemplin.com/introduction-to-the-university-of-iowa-high-performance-computing-system-argon-and-iowa-interactive-data-analytics-service-idas/] for how to run jobs on Argon.
+Please refer to [https://jonathantemplin.com/introduction-to-the-university-of-iowa-high-performance-computing-system-argon-and-iowa-interactive-data-analytics-service-idas/](https://jonathantemplin.com/introduction-to-the-university-of-iowa-high-performance-computing-system-argon-and-iowa-interactive-data-analytics-service-idas/) for how to run jobs on Argon.
 
 ## Running Jobs with Apptainer
 
