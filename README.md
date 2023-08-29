@@ -10,7 +10,7 @@ This repo contains course materials for the Multidimensional Measurement Models 
 | email:               | jonathan-templin@uiowa.edu      |
 | Syllabus: | [Syllabus Link](https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/blob/77cf03df1d0216902c7bd43991a339b75f23b020/syllabus/syllabus.pdf) |
 | Course website:      | [Course Website Link](https://jonathantemplin.github.io/MultidimensionalMeasurementModels2023/)                           |
-| Course repo:         | [Github Repo](https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023) |
+| Course repo:         | [GitHub Repo](https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023) |
 | Lecture videos:      | [YouTube Playlist](https://www.youtube.com/playlist?list=PLSmMs4UgmSMhVd66KyC7O9hU9ZPl6qskk)             | 
 | Office:              | S210B Lindquist Center          |
 | Office Phone:        | 319-335-6429                    |
@@ -32,7 +32,7 @@ This repo contains course materials for the Multidimensional Measurement Models 
     * Part 1: [https://youtu.be/81B4bYhLi-o](https://youtu.be/81B4bYhLi-o)
     * Part 2: [https://youtu.be/PuqfqScaFyo](https://youtu.be/PuqfqScaFyo); Note, audio only after about 5 minutes.
 * Coding activity: Introduction to High Performance Computing and Argon
-  * [HPC Argon Wiki])(https://wiki.uiowa.edu/display/hpcdocs/HPC+Documentation+Home)
+  * [HPC Argon Wiki](https://wiki.uiowa.edu/display/hpcdocs/HPC+Documentation+Home)
   * Slides: 
     * [https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/blob/main/materials/Week%2001/mmm2023_lecture01_hpc.pdf](https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/blob/main/materials/Week%2001/mmm2023_lecture01_hpc.pdf)
   * Computing Setup:
@@ -55,7 +55,7 @@ This repo contains course materials for the Multidimensional Measurement Models 
   * Jonathan's awesome Argon guide: [https://jonathantemplin.com/introduction-to-the-university-of-iowa-high-performance-computing-system-argon-and-iowa-interactive-data-analytics-service-idas/](https://jonathantemplin.com/introduction-to-the-university-of-iowa-high-performance-computing-system-argon-and-iowa-interactive-data-analytics-service-idas/)
 * Homework 1 Assigned (Due 09/12/2023) [ICON](https://icon.uiowa.edu):
   * Note: Your personal data set is on Argon (see ICON for details)
-* Formative Assessment 1 Assigned (Due 09/05/2023)--on ICON [ICON](https://icon.uiowa.edu)
+* Formative Assessment 1 Assigned (Due 09/05/2023)--on [ICON](https://icon.uiowa.edu)
 
 ### Week 3: September 6, 2023: Psychometric Prerequisites (Generalized Models, IRT, Structural vs. Measurement Models, Basic MIRT Models)
 

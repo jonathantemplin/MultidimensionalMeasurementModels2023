@@ -133,19 +133,19 @@ The following command will transfer a file from Argon to your local computer:
 
 ### Text Editors
 
-A text editor is a program that is used to create and edit text files. There are many different text editors that are available on Argon. The following sections will cover some of the most common text editors that are available on Argon.
+A text editor is a program that is used to create and edit text files. There are many text editors that are available on Argon. The following sections will cover some of the most common text editors that are available on Argon.
 
 #### Nano
 
-Nano is a very simple text editor that is available on Argon. Nano is a good text editor for beginners because it is very easy to use. To open a file in nano, use the following command:
+Nano is a very simple text editor that is available on Argon. Nano is a good text editor for beginners because it is very easy to use. To open a file in Nano, use the following command:
 
 ```nano <file>```
 
-To save a file in nano, use the following command:
+To save a file in Nano, use the following command:
 
 ```Ctrl + O```
 
-To exit nano, use the following command:
+To exit Nano, use the following command:
 
 ```Ctrl + X```
 
@@ -156,7 +156,7 @@ Modules are used to manage the software environment on Argon. Modules allow you 
 
 #### Loading Modules
 
-The following command will list all of the available modules:
+The following command will list all available modules:
 
 ```module avail```
 
@@ -168,7 +168,7 @@ The following command will unload a module:
 
 ```module unload <module>```
 
-The following command will list all of the loaded modules:
+The following command will list all loaded modules:
 
 ```module list```
 
