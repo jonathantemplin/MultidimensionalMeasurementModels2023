@@ -47,8 +47,7 @@ This repo contains course materials for the Multidimensional Measurement Models 
 * Read prior to class: Nothing
 * Lecture handout: 
   * [https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/blob/main/materials/Week02/mmm2023_argon.md](https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/blob/main/materials/Week02/mmm2023_argon.md)
-* Lecture Videos:
-  * Shown after class
+* Lecture Videos [https://youtu.be/U9I2U9neYTE](https://youtu.be/U9I2U9neYTE)
 * Useful Links
   * Argon Wiki: [https://wiki.uiowa.edu/display/hpcdocs/HPC+Documentation+Home](https://wiki.uiowa.edu/display/hpcdocs/HPC+Documentation+Home)
   * Notebooks Site: [https://notebooks.hpc.uiowa.edu/](https://notebooks.hpc.uiowa.edu/)
