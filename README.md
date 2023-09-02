@@ -62,6 +62,19 @@ This repo contains course materials for the Multidimensional Measurement Models 
   * For discussion: Chapter 1: Bartholomew, Knott, and Moustaki (2011) 
   * For reference: Chapter 2: Reckase (2009) 
 
+* Links to Lecture Materials:
+  * [Lecture Slides](https://jonathantemplin.github.io/MultidimensionalMeasurementModels2023/materials/Week03/03_Psychometric_Prerequisites.html#/title-slide)
+  * [Lecture Handout (Same content as slides, but in docx format)](https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/raw/main/materials/Week03/03_Psychometric_Prerequisites_Handout.docx)
+  * [Coding Activity] (https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/blob/main/materials/Week03/03_Coding_Activity.md)
+
+* Formative Assessment 2 Assigned (Due 09/12/2023 --on [ICON](https://icon.uiowa.edu)
+
+### Week 4: September 13, 2023: Model Fit
+
+* Read prior to class (note: readings are on [ICON](https://icon.uiowa.edu)): 
+  * Cai, L., Maydeu-Olivares, A., Coffman, D.L. and Thissen, D. (2006), Limited-information goodness-of-fit testing of item response theory models for sparse 2P tables. British Journal of Mathematical and Statistical Psychology, 59: 173-194. https://doi-org.proxy.lib.uiowa.edu/10.1348/000711005X66419
+  
+
 
 ## Tentative Remaining Course Schedule
 
@@ -69,7 +82,6 @@ Please see the main website for the most up-to-date schedule, required readings,
 
 | Date | Topic | 
 | ---- | ----- |  
-| 09/13/2023 | Model Fit | 
 | **Section 2** | **Hard Reality of Multidimensionality** |
 | 09/20/2023 | Multidimensional Difficulties (Identifiability, empirical identification, quantifying dimensionality) |
 | 09/27/2023 | Estimation Methods (Marginal Maximum Likelihood; Limited Information; Bayesian Methods) |
