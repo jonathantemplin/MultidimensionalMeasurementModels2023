@@ -65,9 +65,9 @@ This repo contains course materials for the Multidimensional Measurement Models 
 * Links to Lecture Materials:
   * [Lecture Slides](https://jonathantemplin.github.io/MultidimensionalMeasurementModels2023/materials/Week03/03_Psychometric_Prerequisites.html#/title-slide)
   * [Lecture Handout (Same content as slides, but in docx format)](https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/raw/main/materials/Week03/03_Psychometric_Prerequisites_Handout.docx)
-  * [Coding Activity] (https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/blob/main/materials/Week03/03_Coding_Activity.md)
+  * [Coding Activity](https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/blob/main/materials/Week03/03_Coding_Activity.md)
 
-* Formative Assessment 2 Assigned (Due 09/12/2023 --on [ICON](https://icon.uiowa.edu)
+* Formative Assessment 2 Assigned (Due 09/12/2023)--on [ICON](https://icon.uiowa.edu)
 
 ### Week 4: September 13, 2023: Model Fit
 
