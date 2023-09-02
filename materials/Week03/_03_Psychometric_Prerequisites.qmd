@@ -1,0 +1,454 @@
+---
+title: "Psychometric Prerequisites"
+author: "Multidimensional Measurement Models (Fall 2023): Lecture 3" 
+---
+
+# Today's Lecture
+
+* Context matters: Your data sets
+  * Educational standards
+* Psychometric Prerequisites
+  * Q-matrices
+  * Latent Variable Measurement Models
+    * Binary IRT models
+    * Polytomous IRT models
+    * Confirmatory Factor models
+  * Latent Variable Structural Models 
+* Model Identification
+<!-- * Joint distributions
+  * Multivariate normal distribution
+  * Multivariate Bernoulli distribution -->
+
+
+## Context Matters: Your Data Sets
+
+The data sets you will use in this class are from educational assessments:
+
+* Large, urban district in a rectangular midwestern state
+* District-wide benchmark assessments (given three times per year)
+* Results used for helping students progress through the curriculum
+* Subjects assessed: Mathematics and English Language Arts (ELA; where ELA == Reading only)
+
+Note: These are not the *actual* assessments but are similar in structure and content and created by a bootstrapping process
+
+## Data Set Format
+
+Each data set is saved as in the RData format
+
+* Can be imported into R with the ```load()``` function
+* Data contain a list object named ```temp```
+  * The ```temp``` object has a Q-matrix and the response matrix
+
+```{r}
+load("9-10th_Grade_Q2.RData")
+
+ls()
+
+names(temp)
+Qmatrix = temp$Qmatrix
+responseMatrix = temp$responseMatrix
+```
+
+## Q-matrices
+
+Q-matrices are a way to specify which latent variables are measured by which items
+
+* The Q-matrix is a binary matrix
+  * Each row is an item
+  * Each column is a latent variable
+  * Each entry is a one or a zero
+    * One means the latent variable is measured by the item
+    * Zero means the latent variable is not measured by the item
+
+```{r}
+head(Qmatrix)
+```
+
+## The Latent Variables
+
+Latent variables are built by specification: 
+
+* What is their distribution? (nearly all are normally distributed)
+* How do you specify their scale: mean and standard deviation? (step two in our model analysis steps)
+
+You create latent variables by specifying which items measure which latent variables in an analysis model
+
+* Called different names by different fields:
+  * Alignment (educational measurement)
+  * Factor pattern matrix (factor analysis)
+  * Q-matrix (Question matrix; diagnostic models and multidimensional IRT)
+
+## Q-Matrices in Class Data
+
+The column names in the class data Q-matrix reflect different educational standards being assessed
+
+* The assessments were created to assess these standards directly
+* Each standard has a unique code
+  * A guide to what the code references is found here [https://commoncore.tcoe.org/Content/Public/doc/tcoe_understanding_standards_codes.pdf](https://commoncore.tcoe.org/Content/Public/doc/tcoe_understanding_standards_codes.pdf)
+
+Question for discussion: What are the latent variables we must estimate in the class data?
+
+
+## From Q-matrix to Model
+
+The alignment provides a specification of which latent variables are measured by which items
+
+* Sometimes we say items "load onto" factors
+
+The mathematical definition of either of these terms is simply whether or not a latent variable appears as a predictor for an item
+
+* For instance, item one appears to measure nongovernment conspiracies, meaning its alignment (row vector of the Q-matrix) would be:
+```{r}
+Qmatrix[1,]
+```
+
+The model for the first item is then built with only the factors measured by the item as being present:
+
+
+$$ 
+f(E\left(Y_{p1} \mid \boldsymbol{\theta}_p\right) ) = \mu_1 + \lambda_{11} \theta_{p1}
+$$
+
+# Psychometric Measurement Models
+
+Psychometric Measurement Models to model the relationship between observed variables and latent variables
+
+* Observed variables are the items in the assessment
+* Latent variables are the factors measured by the items
+
+The models discussed today all model the expected value (mean) of the observed variables as a function of the latent variables
+
+## Binary IRT Models
+
+Binary IRT models are used when the observed variables are binary (0/1) variables
+
+* The distribution of the observed variables is a Bernoulli distribution
+
+$$f\left(Y_{pi} \right) = \pi_i^{Y_{pi}} \left(1-\pi_i \right)^{\left(1-Y_{pi} \right)} $$
+
+Where:
+
+* $Y_{pi}$ is the response for person $p$ on item $i$
+* $\pi_i = E\left(Y_{pi}\right)$ is the probability of a correct response on item $i$ and is the expected value of the Bernoulli distribution
+  
+## Binary IRT Models
+
+There are many different binary IRT models, the most common fall under the family of models identified by the number of parameters in the model
+
+* Often, the parameterization used for binary models is discrimination/difficulty when only one latent variable is present
+
+$$E\left(Y_{pi} | \theta_p \right) = P\left(Y_{pi} = 1 | \theta_p \right)  =
+   c_i + (d_i - c_i) \left( \frac{\exp\left( a_i \left(\theta_p -b_i \right) \right)}{1 + \exp\left( a_i \left(\theta_p -b_i \right) \right)} \right) $$
+
+Where:
+
+* $b_i$ is the item difficulty (parameter one)
+* $a_i$ is the item discrimination (parameter two)
+* $c_i$ is the lower asymptote (guessing parameter; parameter three)
+* $d_i$ is the upper asymptote (discrimination parameter; parameter four)
+
+## More Binary IRT Models
+
+The model on the previous page is the four-parameter logistic model (4PL)
+
+* The logistic function is a link function mapping probability of a correct response (the expected value of the item) to the real number line 
+* The inverse logistic function is the inverse link function mapping the real number line to the probability of a correct response
+
+Many link functions exist, including:
+
+* Normal ogive (probit) link function
+* Log link function
+* Log-log link function
+* Cumulative log-log
+* Complementary log-log
+
+## Slope Intercept Form
+
+Depending on the context, the slope/intercept parameterization can also be used:
+
+$$E\left(Y_{pi} | \theta_p \right) = P\left(Y_{pi} = 1 | \theta_p \right)  =
+   c_i + (d_i - c_i) \left( \frac{\exp \left( \mu_i + \lambda_i \theta_p \right)}{1 + \exp \left( \mu_i + \lambda_i \theta_p \right) }\right) $$
+
+* Here, (when $\theta$ is standardized)
+  * The item intercept $\mu_i = a_i b_i$ is the expected log odds of a correct response when the latent variable is zero
+  * The item loading/slope/discrimination $\lambda_i = a_i$ is the expected change in log odds of a correct response for a one unit change in the latent variable
+* The slope/intercept parameterization is often used in the context of linear models
+
+## Multidimensional IRT Models
+
+We then can add the Q-matrix for expanding the model to multiple latent variables:
+
+$$E\left(Y_{pi} | \theta_p \right) = P\left(Y_{pi} = 1 | \theta_p \right)  =
+   c_i + (d_i - c_i) \left( \frac{\exp \left( \mu_i + \sum_{d=1}^D q_{id} \lambda_{id} \theta_{pd} \right)}{1 + \exp \left( \mu_i + \sum_{d=1}^D q_{id} \lambda_{id} \theta_{pd} \right) }\right) $$
+
+Where:
+
+* $D$ is the number of latent variables
+* $q_{id}$ is the Q-matrix entry for item $i$ and latent variable $d$
+
+Note: Not all items need to measure all latent variables (some $q_{id} = 0$)
+
+## Polytomous IRT Models
+
+Polytomous IRT models are used for discrete categorical observed variables
+
+* The assumed distribution for observed variables is a categorical distribution
+* A categorical distribution is a multinomial distribution with a single trial
+
+## Categorical distribution
+
+The PMF of the categorical distribution is:
+
+$$f\left(Y_{pi} \right) = \prod_{c=1}^{C_i} \pi_{ic}^{Y_{pic}} $$
+
+Where:
+
+* $C_i$ is the number of categories for item $i$
+* $Y_{pic}$ is the response for person $p$ on item $i$ in category $c$
+* $\pi_{ic} = E\left(Y_{pic}\right)$ is the probability of a response on item $i$ in category $c$ and is the expected value of the categorical distribution
+* $\sum_{c=1}^{C_i} \pi_{ic} = 1$ is the constraint that the probabilities sum to one
+
+
+## Graded Response Models
+
+The graded response model is an ordered logistic regression model where:
+
+$$P\left(Y_{ic } \mid \theta \right) = \left\{ 
+\begin{array}{lr}
+1-P^*\left(Y_{i1} \mid \theta \right) & \text{if } c=1 \\
+P^*\left(Y_{i{c-1}} \mid \theta \right) - P^*\left(Y_{i{c}} \mid \theta \right) & \text{if } 1<c<C_i \\
+P^*\left(Y_{i{C_i -1} } \mid \theta \right) & \text{if } c=C_i \\
+\end{array} \right.$$
+
+Where:
+
+$$P^*\left(Y_{i{c}} \mid \theta \right)  = \frac{\exp(\mu_{ic}+\sum_{d=1}^D q_{id} \lambda_{id} \theta_{pd})}{1+\exp(\mu_{ic}+\sum_{d=1}^D q_{id} \lambda_{id} \theta_{pd})}$$
+
+With:
+
+* $C_i-1$ Ordered intercepts: $\mu_{i1} > \mu_{i2} > \ldots > \mu_{i,C_i-1}$
+
+## Nominal Response Models
+
+The nominal response model is an unordered logistic regression model where:
+
+$$P\left(Y_{ic } \mid \theta \right) = \frac{\exp(\mu_{ic}+\sum_{d=1}^D q_{id} \lambda_{idc} \theta_{pd})}{\sum_{c=1}^{C_i} \exp(\mu_{ic}+\sum_{d=1}^D q_{id} \lambda_{idc} \theta_{pd})}$$
+
+With:
+
+* $C_i$ Unordered intercepts: $\mu_{i1}, \mu_{i2}, \ldots, \mu_{iC_i}$
+  * One constraint must be implemented to identify the model, typically either
+    * $\sum_{c=1}^{C_i} \mu_{ic} = 0$
+    * One $\mu_{iC_i} = 0$
+    
+* $C_i$ Unordered slopes: $\lambda_{i1}, \lambda_{i2}, \ldots, \lambda_{iC_i}$
+  * One constraint _per dimension_ must be implemented to identify the model, typically either
+    * $\sum_{c=1}^{C_i-1} \lambda_{idc} = 1$
+    * One $\lambda_{idC_i} = 1$
+
+## Confirmatory Factor Models
+
+Confirmatory factor models are used when the observed variables are continuous (interval/ratio) variables
+
+* The distribution of the observed variables is a normal distribution
+* The PDF of the normal distribution is: 
+
+$$ f\left(Y_{pi}\right) = \frac{1}{\sqrt{2\pi \sigma^2}} \exp \left( -\frac{\left(Y_{pi} - \mu_i\right)^2}{2\sigma^2} \right)  $$
+
+## Confirmatory Factor Models
+
+The CFA model is then:
+
+$$ Y_{pi} = \mu_i + \sum_{d=1}^D q_{id} \lambda_{idc} \theta_{pd} + e_{pi}$$ 
+
+Where:
+
+* $Y_{pi}$ is the response for person $p$ on item $i$
+* $e_{pi} \sim N\left(0, \psi^2 \right)$ is the error term for person $p$ on item $i$
+* $\psi^2$ is the variance of the error term
+* $\mu_i$ is the item intercept
+* $\lambda_{id}$ is the item loading/slope for item $i$ and latent variable $d$
+* $\theta_{pd}$ is the latent variable score for person $p$ and latent variable $d$
+* $D$ is the number of latent variables
+* $q_{id}$ is the Q-matrix entry for item $i$ and latent variable $d$
+
+
+# More Q-matrix Stuff
+
+We could show the model with the Q-matrix entries:
+
+$$ 
+f(E\left(Y_{p1} \mid \boldsymbol{\theta}_p\right) ) = \mu_1 + q_{11}\left( \lambda_{11} \theta_{p1} \right) + q_{12}\left( \lambda_{12} \theta_{p2} \right) = \mu_1 + \boldsymbol{\theta}_p  \text{diag}\left(\boldsymbol{q}_i \right) \boldsymbol{\lambda}_{1}
+$$
+
+* $\boldsymbol{\lambda}_{1} = \left[
+\begin{array}{c} 
+\lambda_{11} \\
+\lambda_{12} 
+\end{array}
+\right]$ contains all *possible* factor loadings for item 1 (size $2 \times 1$)
+
+* $\boldsymbol{\theta}_p = \left[
+\begin{array}{cc}
+\theta_{p1}  & \theta_{p2} \\
+\end{array}
+\right]$ contains the factor scores for person $p$ (size $1 \times 2$)
+
+* $\text{diag}\left(\boldsymbol{q}_i \right) = \boldsymbol{q}_i \left[
+\begin{array}{cc}
+1  & 0 \\
+0 & 1
+\end{array}
+\right] = \left[
+\begin{array}{cc}
+0  & 1 \\
+\end{array}
+\right]
+\left[
+\begin{array}{cc}
+1  & 0 \\
+0 & 1
+\end{array}
+\right] = \left[
+\begin{array}{cc}
+0  & 0 \\
+0 & 1
+\end{array}
+\right]$ is a diagonal matrix of ones times the vector of Q-matrix entries for item 1
+
+The matrix product then gives:
+
+$$\boldsymbol{\theta}_p  \text{diag}\left(\boldsymbol{q}_i \right) \boldsymbol{\lambda}_{1} = \left[
+\begin{array}{cc}
+\theta_{p1}  & \theta_{p2} \\
+\end{array}
+\right]\left[
+\begin{array}{cc}
+0  & 0 \\
+0 & 1
+\end{array}
+\right] \left[
+\begin{array}{c} 
+\lambda_{11} \\
+\lambda_{12} 
+\end{array}
+\right] = \left[
+\begin{array}{cc}
+\theta_{p1}  & \theta_{p2} \\
+\end{array}
+\right]\left[
+\begin{array}{c} 
+0 \\
+\lambda_{12} 
+\end{array}
+\right] = \lambda_{12}\theta_{p2}$$
+
+The Q-matrix functions like a partial version of the model (predictor) matrix that we saw in linear models
+
+## Latent Variable Interactions
+
+Although infrequently shown in psychometric measurement models of the IRT/CFA family, latent variable interactions can be modeled
+
+For example, a binary item measuring two latent variables could be modeled as:
+
+$$E\left(Y_{pi} | \theta_p \right) = P\left(Y_{pi} = 1 | \theta_p \right)  =
+   c_i + (d_i - c_i) \left( \frac{\exp \left( \mu_i + \lambda_{i1} \theta_{p1} + \lambda_{i2} \theta_{p2} + \lambda_{i12} \theta_{p1} \theta_{p2} \right)}{1 + \exp \left( \mu_i + \lambda_{i1} \theta_{p1} + \lambda_{i2} \theta_{p2} + \lambda_{i12} \theta_{p1} \theta_{p2} \right) }\right) $$
+
+Notes:
+
+* The interaction between latent variables is modeled as a product of the latent variables
+* Diagnostic classification models is one latent variable model family that prominantly uses latent variable interactions
+* We will discuss latent variable interactions in more detail later in the semester
+
+
+# Latent Variable Structural Models
+
+Latent variable structural models are models for the distributions of the latent variables
+
+* When saturated, these are just distribution parameters that are estimated
+* But, models for the latent variables can be built
+  * Simultaneous equations (structural equations)
+
+
+
+## Our Example: Multivariate Normal Distribution
+
+For our example, we will assume the set of traits follows a multivariate normal distribution
+
+$$
+f\left(\boldsymbol{\theta}_p \right) = \left(2 \pi \right)^{-\frac{D}{2}} \det\left(\boldsymbol{\Sigma}_\theta \right)^{-\frac{1}{2}}\exp\left[-\frac{1}{2}\left(\boldsymbol{\theta}_p - \boldsymbol{\mu}_\theta \right)^T\boldsymbol{\Sigma}_\theta^{-1}\left(\boldsymbol{\theta}_p - \boldsymbol{\mu}_\theta \right) \right]
+$$
+Where:
+
+* $\pi \approx 3.14$
+* $D$ is the number of latent variables (dimensions)
+* $\boldsymbol{\Sigma}_\theta$ is the covariance matrix of the latent variables
+  * $\boldsymbol{\Sigma}_\theta^{-1}$ is the inverse of the covariance matrix
+* $\boldsymbol{\mu}_\theta$ is the mean vector of the latent variables
+* $\det\left( \cdot\right)$ is the matrix determinant function
+* $\left(\cdot \right)^T$ is the matrix transpose operator
+
+Alternatively, we would specify $\boldsymbol{\theta}_p \sim N_D\left( \boldsymbol{\mu}_\theta, \boldsymbol{\Sigma}_\theta \right)$; but, we cannot always estimate $\boldsymbol{\mu}_\theta$ and $\boldsymbol{\Sigma}_\theta$
+
+
+# Identification of Latent Traits, Part 1
+
+Psychometric models require two types of identification to be valid:
+
+1. Empirical Identification
+
+  * The minimum number of items that must measure each latent variable
+  * From CFA: three observed variables for each latent variable (or two if the latent variable is correlated with another latent variable)
+
+Bayesian priors can help to make models with fewer items than these criteria suggest estimable
+
+* The parameter estimates (item parameters and latent variable estimates) often have MCMC convergence issues and should not be trusted
+* Use the CFA standard in your work
+
+## Identification of Latent Traits, Part 2
+
+Psychometric models require two types of identification to be valid:
+
+2. Scale Identification (i.e., what the mean/variance is for each latent variable)
+
+  * The additional set of constraints needed to set the mean and standard deviation (variance) of the latent variables
+  * Two main methods to set the scale:
+    * Marker item parameters
+      * For variances: Set the loading/slope to one for one observed variable per latent variable
+        * Can estimate the latent variable's variance (the diagonal of $\boldsymbol{\Sigma}_\theta$)
+      * For means: Set the item intercept to one for one observed variable perlatent variable
+        * Can estimate the latent variable's mean (in $\boldsymbol{\mu}_\theta$)
+    * Standardized factors
+      * Set the variance for all latent variables to one
+      * Set the mean for all latent variables to zero
+      * Estimate all unique off-diagonal correlations (covariances) in $\boldsymbol{\Sigma}_\theta$
+
+## More on Scale Identification
+
+Bayesian priors can let you believe you can estimate more parameters than the non-Bayesian standards suggest
+
+* For instance, all item parameters and the latent variable means/variances
+
+Like empirical identification, these estimates are often unstable and are not recommended
+
+Most common:
+
+* Standardized latent variables
+  * Used for scale development and/or when scores are of interest directly
+  
+* Marker item for latent variables and zero means
+  * Used for cases where latent variables may become outcomes (and that variance needs explained)
+
+## Wrapping Up
+  
+* Psychometric models are models for the relationship between observed variables and latent variables
+* Psychometric models are built from the Q-matrix
+* Psychometric models require two types of identification to be valid:
+  * Empirical Identification
+  * Scale Identification
+
+## Next Time
+
+* Alternative models for model comparison
+* Model fit
+

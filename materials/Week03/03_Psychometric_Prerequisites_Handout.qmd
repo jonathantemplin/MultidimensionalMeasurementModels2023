@@ -1,0 +1,7 @@
+---
+title: "Psychometric Prerequisites"
+author: "Multidimensional Measurement Models (Fall 2023): Lecture 3" 
+format: docx
+---
+
+{{< include _03_Psychometric_Prerequisites.qmd >}}
