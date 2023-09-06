@@ -34,7 +34,7 @@ This repo contains course materials for the Multidimensional Measurement Models 
 * Coding activity: Introduction to High Performance Computing and Argon
   * [HPC Argon Wiki](https://wiki.uiowa.edu/display/hpcdocs/HPC+Documentation+Home)
   * Slides: 
-    * [https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/blob/main/materials/Week%2001/mmm2023_lecture01_hpc.pdf](https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/blob/main/materials/Week%2001/mmm2023_lecture01_hpc.pdf)
+    * [https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/blob/main/materials/Week01/mmm2023_lecture01_hpc.pdf](https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/blob/main/materials/Week%2001/mmm2023_lecture01_hpc.pdf)
   * Computing Setup:
     * Visual Studio Code (with Extensions)
     * R (via Rig)
@@ -67,7 +67,7 @@ This repo contains course materials for the Multidimensional Measurement Models 
   * [Lecture Video](https://youtu.be/ksK3-bvMKn4)
   * [Lecture Handout (Same content as slides, but in docx format)](https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/raw/main/materials/Week03/03_Psychometric_Prerequisites_Handout.docx)
   * [Coding Activity](https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/blob/main/materials/Week03/03_Coding_Activity.md)
-    * [My Coding Activity File]
+    * [My Coding Activity File](https://raw.githubusercontent.com/jonathantemplin/MultidimensionalMeasurementModels2023/main/materials/Week03/03_classSimulation.R)
 
 
 * Formative Assessment 2 Assigned (Due 09/12/2023)--on [ICON](https://icon.uiowa.edu)
