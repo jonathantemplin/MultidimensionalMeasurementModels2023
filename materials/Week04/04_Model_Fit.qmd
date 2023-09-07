@@ -1,0 +1,14 @@
+---
+title: "Model Fit"
+author: "Multidimensional Measurement Models (Fall 2023): Lecture 4" 
+format: 
+  revealjs:
+    multiplex: false
+    footer: "Multidimensional Measurement Models (Fall 2023): Lecture 4"
+    theme: ["pp.scss"]
+    slide-number: c/t
+    incremental: false
+editor: source
+---
+
+{{< include _04_Model_Fit.qmd >}}

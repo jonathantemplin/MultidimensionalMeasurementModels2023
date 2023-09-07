@@ -1,0 +1,7 @@
+---
+title: "Model Fit"
+author: "Multidimensional Measurement Models (Fall 2023): Lecture 4" 
+format: docx
+---
+
+{{< include _04_Model_Fit.qmd >}}
