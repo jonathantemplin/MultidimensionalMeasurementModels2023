@@ -78,8 +78,8 @@ This repo contains course materials for the Multidimensional Measurement Models 
   * Cai, L., Maydeu-Olivares, A., Coffman, D.L. and Thissen, D. (2006), Limited-information goodness-of-fit testing of item response theory models for sparse 2P tables. British Journal of Mathematical and Statistical Psychology, 59: 173-194. https://doi-org.proxy.lib.uiowa.edu/10.1348/000711005X66419
   
 * Links to Lecture Materials:
-  * Lecture Slides: 
-  * Lecture Handout (Same content as slides, but in docx format): 
+  * Lecture Slides: [https://jonathantemplin.github.io/MultidimensionalMeasurementModels2023/materials/Week04/04_Model_Fit.html#/title-slide](https://jonathantemplin.github.io/MultidimensionalMeasurementModels2023/materials/Week04/04_Model_Fit.html#/title-slide)
+  * Lecture Handout (Same content as slides, but in docx format): [https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/raw/main/materials/Week04/04_Model_Fit_Handout.docx](https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/raw/main/materials/Week04/04_Model_Fit_Handout.docx)
   * Lecture Video: Posted after class
   * Coding Activity:
     * My Coding Activity File: Posted after class
