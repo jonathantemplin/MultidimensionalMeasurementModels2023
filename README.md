@@ -52,8 +52,7 @@ This repo contains course materials for the Multidimensional Measurement Models 
   * Argon Wiki: [https://wiki.uiowa.edu/display/hpcdocs/HPC+Documentation+Home](https://wiki.uiowa.edu/display/hpcdocs/HPC+Documentation+Home)
   * Notebooks Site: [https://notebooks.hpc.uiowa.edu/](https://notebooks.hpc.uiowa.edu/)
   * Jonathan's awesome Argon guide: [https://jonathantemplin.com/introduction-to-the-university-of-iowa-high-performance-computing-system-argon-and-iowa-interactive-data-analytics-service-idas/](https://jonathantemplin.com/introduction-to-the-university-of-iowa-high-performance-computing-system-argon-and-iowa-interactive-data-analytics-service-idas/)
-* Homework 1 Assigned (Due 09/12/2023) [ICON](https://icon.uiowa.edu):
-  * Note: Your personal data set is on Argon (see ICON for details)
+
 * Formative Assessment 1 Assigned (Due 09/05/2023)--on [ICON](https://icon.uiowa.edu)
 
 ### Week 3: September 6, 2023: Psychometric Prerequisites (Generalized Models, IRT, Structural vs. Measurement Models, Basic MIRT Models)
@@ -74,6 +73,9 @@ This repo contains course materials for the Multidimensional Measurement Models 
 
 ### Week 4: September 13, 2023: Model Fit
 
+* Homework 1 Due 09/12/2023 [ICON](https://icon.uiowa.edu):
+  * Note: Your personal data set is on Argon (see ICON for details)
+
 * Read prior to class (note: readings are on [ICON](https://icon.uiowa.edu)): 
   * Cai, L., Maydeu-Olivares, A., Coffman, D.L. and Thissen, D. (2006), Limited-information goodness-of-fit testing of item response theory models for sparse 2P tables. British Journal of Mathematical and Statistical Psychology, 59: 173-194. https://doi-org.proxy.lib.uiowa.edu/10.1348/000711005X66419
   
@@ -84,9 +86,13 @@ This repo contains course materials for the Multidimensional Measurement Models 
   * Coding Activity:
     * My Coding Activity File: Posted after class
 
+* Homework 2 Due 09/27/2023 [ICON](https://icon.uiowa.edu):
+  
 ### Week 5: September 20, 2023: Multidimensional Difficulties (Identifiability, empirical identification, quantifying dimensionality)
 
-Materials forthcoming
+* Read Prior to Class: Reckase (2009) Chapter 3 on [ICON](https://www.icon.uiowa.edu)
+
+
 
 ## Tentative Remaining Course Schedule
 
