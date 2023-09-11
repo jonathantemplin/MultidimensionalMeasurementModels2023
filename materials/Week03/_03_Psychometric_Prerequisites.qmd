@@ -24,7 +24,7 @@ author: "Multidimensional Measurement Models (Fall 2023): Lecture 3"
 
 The data sets you will use in this class are from educational assessments:
 
-* Large, urban district in a rectangular midwestern state
+* Large, urban district in a rectangular Midwestern state
 * District-wide benchmark assessments (given three times per year)
 * Results used for helping students progress through the curriculum
 * Subjects assessed: Mathematics and English Language Arts (ELA; where ELA == Reading only)
@@ -95,9 +95,9 @@ The alignment provides a specification of which latent variables are measured by
 
 * Sometimes we say items "load onto" factors
 
-The mathematical definition of either of these terms is simply whether or not a latent variable appears as a predictor for an item
+The mathematical definition of either of these terms is simply whether a latent variable appears as a predictor for an item
 
-* For instance, item one appears to measure nongovernment conspiracies, meaning its alignment (row vector of the Q-matrix) would be:
+* For instance, item one appears to measure the first standard, meaning its alignment (row vector of the Q-matrix) would be:
 ```{r}
 Qmatrix[1,]
 ```
@@ -357,7 +357,7 @@ $$E\left(Y_{pi} | \theta_p \right) = P\left(Y_{pi} = 1 | \theta_p \right)  =
 Notes:
 
 * The interaction between latent variables is modeled as a product of the latent variables
-* Diagnostic classification models is one latent variable model family that prominantly uses latent variable interactions
+* Diagnostic classification models is one latent variable model family that prominently uses latent variable interactions
 * We will discuss latent variable interactions in more detail later in the semester
 
 
@@ -416,7 +416,7 @@ Psychometric models require two types of identification to be valid:
     * Marker item parameters
       * For variances: Set the loading/slope to one for one observed variable per latent variable
         * Can estimate the latent variable's variance (the diagonal of $\boldsymbol{\Sigma}_\theta$)
-      * For means: Set the item intercept to one for one observed variable perlatent variable
+      * For means: Set the item intercept to one for one observed variable per latent variable
         * Can estimate the latent variable's mean (in $\boldsymbol{\mu}_\theta$)
     * Standardized factors
       * Set the variance for all latent variables to one

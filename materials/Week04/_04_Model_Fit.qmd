@@ -160,7 +160,7 @@ f \left( \boldsymbol{Y}_p \right) = \int_{\boldsymbol{\theta}_p} f \left( \bolds
 \end{array}
 $$
 
-* While this seems difficult due to the integral, the multivariate normal distribution has a nice property that makes this integral solveable in closed form
+* While this seems difficult due to the integral, the multivariate normal distribution has a nice property that makes this integral solvable in closed form
 
 ## Properties of the Multivariate Normal Distribution
 
@@ -319,8 +319,8 @@ $$ \chi^2 = \sum_{\boldsymbol{y}} \frac{ \left( n_{\boldsymbol{y}} - N \pi_{\bol
 
 **This is often called the full-information item fit statistic**
 
-* __Full information__ means all of the data is used
-  * As opposed to __limited information__ where only some of the data is used
+* __Full information__ means all the data is used
+  * As opposed to __limited information__ where only some data (i.e., data summaries) is used
 
 ## IRT Model-Implied Conditional Distribution
 
@@ -342,7 +342,7 @@ $$ P \left( Y_{pi} = y_{pi} \mid \boldsymbol{\theta}_p \right) = \pi_{pi}^{Y_{pi
 
 ## IRT Model-Implied Multivariate Conditional Distribution
 
-The multivariate conditional distribution necessitates the assumption that item repsonses are independent conditional on $\boldsymbol{\theta}_p$:
+The multivariate conditional distribution necessitates the assumption that item responses are independent conditional on $\boldsymbol{\theta}_p$:
 
 $$ P \left( \boldsymbol{Y}_{pi} = \boldsymbol{y}_{pi} \mid \boldsymbol{\theta}_p \right) = \prod_{i=1}^I \pi_{pi}^{Y_{pi}} \left(1 - \pi_{pi}\right)^{(1-Y_{pi})} $$
 

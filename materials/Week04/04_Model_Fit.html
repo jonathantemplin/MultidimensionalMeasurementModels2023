@@ -522,7 +522,7 @@ f \left( \boldsymbol{Y}_p \right) = \int_{\boldsymbol{\theta}_p} f \left( \bolds
 \end{array}
 \]</span></p>
 <ul>
-<li>While this seems difficult due to the integral, the multivariate normal distribution has a nice property that makes this integral solveable in closed form</li>
+<li>While this seems difficult due to the integral, the multivariate normal distribution has a nice property that makes this integral solvable in closed form</li>
 </ul>
 </section>
 <section id="properties-of-the-multivariate-normal-distribution" class="slide level2">
@@ -715,9 +715,9 @@ Var \left[ \boldsymbol{Y}_p \right] = Var \left[ \boldsymbol{\mu} + \boldsymbol{
 <h2>Comparing Frequency Expected vs Observed</h2>
 <p><strong>This is often called the full-information item fit statistic</strong></p>
 <ul>
-<li><strong>Full information</strong> means all of the data is used
+<li><strong>Full information</strong> means all the data is used
 <ul>
-<li>As opposed to <strong>limited information</strong> where only some of the data is used</li>
+<li>As opposed to <strong>limited information</strong> where only some data (i.e., data summaries) is used</li>
 </ul></li>
 </ul>
 </section>
@@ -740,7 +740,7 @@ Var \left[ \boldsymbol{Y}_p \right] = Var \left[ \boldsymbol{\mu} + \boldsymbol{
 </section>
 <section id="irt-model-implied-multivariate-conditional-distribution" class="slide level2">
 <h2>IRT Model-Implied Multivariate Conditional Distribution</h2>
-<p>The multivariate conditional distribution necessitates the assumption that item repsonses are independent conditional on <span class="math inline">\(\boldsymbol{\theta}_p\)</span>:</p>
+<p>The multivariate conditional distribution necessitates the assumption that item responses are independent conditional on <span class="math inline">\(\boldsymbol{\theta}_p\)</span>:</p>
 <p><span class="math display">\[ P \left( \boldsymbol{Y}_{pi} = \boldsymbol{y}_{pi} \mid \boldsymbol{\theta}_p \right) = \prod_{i=1}^I \pi_{pi}^{Y_{pi}} \left(1 - \pi_{pi}\right)^{(1-Y_{pi})} \]</span></p>
 <p>Where:</p>
 <p><span class="math display">\[\pi_{pi} =  P \left( Y_{pi} = 1 \mid \boldsymbol{\theta}_p \right) = \frac{\exp \left(\mu_i + \sum_{d=1}^D q_{1d} \lambda_{id} \theta_{pd} \right)}{1+\exp \left(\mu_i + \sum_{d=1}^D q_{1d} \lambda_{id} \theta_{pd} \right)} \]</span></p>
