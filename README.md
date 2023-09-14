@@ -83,7 +83,7 @@ This repo contains course materials for the Multidimensional Measurement Models 
   * Lecture Slides: [https://jonathantemplin.github.io/MultidimensionalMeasurementModels2023/materials/Week04/04_Model_Fit.html#/title-slide](https://jonathantemplin.github.io/MultidimensionalMeasurementModels2023/materials/Week04/04_Model_Fit.html#/title-slide)
   * Lecture Handout (Same content as slides, but in docx format): [https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/raw/main/materials/Week04/04_Model_Fit_Handout.docx](https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/raw/main/materials/Week04/04_Model_Fit_Handout.docx)
   * Lecture Videos:
-    * Part 1: [https://youtu.be/Ri6EVZ1FjP4](https://youtu.be/Ri6EVZ1FjP4)
+    * Part 1: [https://youtu.be/ojufSzYIBTA](https://youtu.be/ojufSzYIBTA)
     * Part 2: [https://youtu.be/AwDcNQ31ca8](https://youtu.be/AwDcNQ31ca8)
   * Coding Activity: None this week
 
