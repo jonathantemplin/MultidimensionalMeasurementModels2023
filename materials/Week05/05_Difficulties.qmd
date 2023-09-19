@@ -1,0 +1,7 @@
+---
+title: "Multidimensional Model Difficulties"
+author: "Multidimensional Measurement Models (Fall 2023): Lecture 5" 
+format: html
+---
+
+{{< include _05_Difficulties.qmd >}}
