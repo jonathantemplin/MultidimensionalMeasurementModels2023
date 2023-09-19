@@ -91,9 +91,17 @@ This repo contains course materials for the Multidimensional Measurement Models 
   
 ### Week 5: September 20, 2023: Multidimensional Difficulties (Identifiability, empirical identification, quantifying dimensionality)
 
-* Read Prior to Class: Reckase (2009) Chapter 3 on [ICON](https://www.icon.uiowa.edu)
+* Read Prior to Class: Torres Irraba (2009)  on [ICON](https://www.icon.uiowa.edu)
+* Formative Assessment 4 Assigned (Due 09/19/2023)--on [ICON](https://icon.uiowa.edu)
+* Links to Lecture Materials:
+  * Lecture Slides: [https://jonathantemplin.github.io/MultidimensionalMeasurementModels2023/materials/Week05/05_Difficulties.html](https://jonathantemplin.github.io/MultidimensionalMeasurementModels2023/materials/Week05/05_Difficulties.html)
+  * Lecture Handout (Same content as slides, but in docx format): [https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/raw/main/materials/Week05/05_Difficulties_Handout.docx](https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/raw/main/materials/Week05/05_Difficulties_Handout.docx)
+  * Lecture Videos: (loaded after class)
+  * Coding Activity: [https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/blob/main/materials/Week05/05_Coding_Activity.md](https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/blob/main/materials/Week05/05_Coding_Activity.md)
 
+### Week 6: September 27, 2023: Estimation Methods (Marginal Maximum Likelihood; Limited Information; Bayesian Methods)
 
+Details forthcoming
 
 ## Tentative Remaining Course Schedule
 
@@ -101,7 +109,6 @@ Please see the main website for the most up-to-date schedule, required readings,
 
 | Date | Topic | 
 | ---- | ----- |  
-| 09/27/2023 | Estimation Methods (Marginal Maximum Likelihood; Limited Information; Bayesian Methods) |
 | **Section 3** | **Multidimensionality is Bad** |
 | 10/04/2023 | Exploratory Models; Consequences of Multidimensionality; Unwanted Dimensionality  |
 | 10/11/2023 | Multidimensionality by Design (rater effects, testlets)  |
