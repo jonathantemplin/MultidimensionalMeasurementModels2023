@@ -92,7 +92,7 @@ This repo contains course materials for the Multidimensional Measurement Models 
 ### Week 5: September 20, 2023: Multidimensional Difficulties (Identifiability, empirical identification, quantifying dimensionality)
 
 * Read Prior to Class: Torres Irribarra & Arneson (2023) on [ICON](https://www.icon.uiowa.edu)
-* Formative Assessment 4 Assigned (Due 09/19/2023)--on [ICON](https://icon.uiowa.edu)
+* Formative Assessment 4 Assigned (Due 09/26/2023)--on [ICON](https://icon.uiowa.edu)
 * Links to Lecture Materials:
   * Lecture Slides: [https://jonathantemplin.github.io/MultidimensionalMeasurementModels2023/materials/Week05/05_Difficulties.html](https://jonathantemplin.github.io/MultidimensionalMeasurementModels2023/materials/Week05/05_Difficulties.html)
   * Lecture Handout (Same content as slides, but in docx format): [https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/raw/main/materials/Week05/05_Difficulties_Handout.docx](https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/raw/main/materials/Week05/05_Difficulties_Handout.docx)
