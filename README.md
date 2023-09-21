@@ -96,12 +96,14 @@ This repo contains course materials for the Multidimensional Measurement Models 
 * Links to Lecture Materials:
   * Lecture Slides: [https://jonathantemplin.github.io/MultidimensionalMeasurementModels2023/materials/Week05/05_Difficulties.html](https://jonathantemplin.github.io/MultidimensionalMeasurementModels2023/materials/Week05/05_Difficulties.html)
   * Lecture Handout (Same content as slides, but in docx format): [https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/raw/main/materials/Week05/05_Difficulties_Handout.docx](https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/raw/main/materials/Week05/05_Difficulties_Handout.docx)
-  * Lecture Videos: (loaded after class)
+  * Lecture Video: [https://youtu.be/-05XICYqnlo](https://youtu.be/-05XICYqnlo) 
   * Coding Activity: [https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/blob/main/materials/Week05/05_Coding_Activity.md](https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/blob/main/materials/Week05/05_Coding_Activity.md)
 
 ### Week 6: September 27, 2023: Estimation Methods (Marginal Maximum Likelihood; Limited Information; Bayesian Methods)
 
 * Read Prior to Class: Kaplan (2009), Chapters 2 and 3 (Estimation in MVN models)
+
+
 
 ## Tentative Remaining Course Schedule
 

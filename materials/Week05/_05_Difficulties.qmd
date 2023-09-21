@@ -91,7 +91,7 @@ $$ \tilde{\boldsymbol{\mu}} =
 \begin{bmatrix}
   \mu_{1} \\
   \mu_{2} \\
-  \mu_{2} \\
+  \mu_{3} \\
 \end{bmatrix}
 $$
 
@@ -382,7 +382,7 @@ FSQmatrixLE
   * These loadings are constrained--and the number of constraints is equal to the number of zeros in a lower echelon form Q-matrix
 * One common constraint is to estimate the model such that: 
 
-$$\boldsymbol{\Delta} = \boldsymbol{\Lambda}_Q\boldsymbol{\Phi}\boldsymbol{\Lambda}_Q^T  $$
+$$\boldsymbol{\Delta} = \boldsymbol{\Lambda}_Q\boldsymbol{\Psi}\boldsymbol{\Lambda}_Q^T  $$
 
 Where $\boldsymbol{\Delta}$ is a diagonal matrix (see Lawley and Maxwell, 1971)
 
@@ -406,9 +406,7 @@ nFactors = 1
 
 Qmatrix = matrix(data = 0, nrow = nItems, ncol = 2)
 
-Qmatrix[1:5,1] = 1
-Qmatrix[6:10,2] = 1
-
+Qmatrix[1:10,1] = 1
 Qmatrix 
 
 
