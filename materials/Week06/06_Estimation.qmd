@@ -1,0 +1,14 @@
+---
+title: "Estimation of Multidimensional Measurement Models"
+author: "Multidimensional Measurement Models (Fall 2023): Lecture 6" 
+format: 
+  revealjs:
+    multiplex: false
+    footer: "Multidimensional Measurement Models (Fall 2023): Lecture 6"
+    theme: ["pp.scss"]
+    slide-number: c/t
+    incremental: false
+editor: source
+---
+
+{{< include _06_Estimation.qmd >}}

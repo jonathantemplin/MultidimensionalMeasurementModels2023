@@ -1,0 +1,84 @@
+
+---
+title: "Homework #2 (Due September 26, 2023 by 11:59pm)"
+author: "Multidimensional Measurement Models (Fall 2023)" 
+format: "docx"
+---
+
+This homework will help us understand the structure of our data. While not a multidimensional analysis, we will be running multiple unidimensional analyses and assessing model fit using limited information goodness of fit statistics.
+
+All analyses will be conducted using your personal class data set. The location of that data set is on the campus LSS drive, which can be accessed via the following instructions:
+
+* The copy command is "cp"
+* The name of the data file is [Grade]_[Quarter].RData with underscores between the words of grade. For instance, 2nd Grade in Q1 translates into "2nd_Grade_Q1.RData" (you can find your grade and quarter in the class data list on ICON)
+* The location of the data file is /Shared/lss_jtemplin/MMM2023/studentData
+* The data file contains a list object named "temp"
+* temp$responseMatrix contains the raw data file (item responses coded correct/incorrect)
+* temp$Qmatrix contains the item alignment
+
+Additionally, you may need to refer to the coding system for standards to ensure you are estimating the correct models. See this website: [https://commoncore.tcoe.org/Content/Public/doc/tcoe_understanding_standards_codes.pdf](https://commoncore.tcoe.org/Content/Public/doc/tcoe_understanding_standards_codes.pdf)
+
+## Estimation Instructions
+
+* Use the ```mirt``` package in R with the EM algorithm for each model with default settings
+* Obtain EAP estimates of latent variables using the ```fscores()``` function and conditional standard errors of measurement for each using the ```full.scores.SE = TRUE``` option
+* Use the ```M2()``` function to obtain model fit information and add the ```residmat = TRUE``` option to obtain the residual correlation matrix
+
+## Submission Instructions
+
+* Submit your homework via ICON by including:
+
+1. A single R script file that contains all of your code (not an R Markdown or Quarto file as I need to be able to run your code)
+2. A single DOCX (MS Word or equivalent) file that contains the information requested in the code below (Note: you can use R Markdown or Quarto to create the Word document, but only submit the DOCX file)
+
+## Unidimensional Analysis of Mathematics Standards
+
+1. Estimate a unidimensional 2PL model for each of the mathematics standards (refer to the document linked above to determine which standards are for mathematics) (1 point each model). Report the following information for each model:
+
+* The item parameters in slope/intercept parameterization for each item along with their standard errors
+* A histogram of the EAP estimates of the latent variables 
+* A plot of the EAP estimates of the latent variables against the conditional standard errors of measurement
+* All M2-based model fit information (i.e, test statistic, p-value, RMSEA (and 5/95th percentiles), SRMSR, TLI, and CFI)
+* A residual correlation matrix
+
+2. For each model in #1, provide a brief statement using your judgment whether the model has adequate fit to the data (1 point each model).
+
+3. Estimate a single unidimensional model for all math items (this is a change to the Q-matrix) (1 point).  Report the following information for each model:
+
+* The item parameters in slope/intercept parameterization for each item along with their standard errors
+* A histogram of the EAP estimates of the latent variables 
+* A plot of the EAP estimates of the latent variables against the conditional standard errors of measurement
+* All M2-based model fit information (i.e, test statistic, p-value, RMSEA (and 5/95th percentiles), SRMSR, TLI, and CFI)
+* A residual correlation matrix
+
+4. Provide a brief statement using your judgment whether the model has adequate fit to the data (1 point).
+
+5. Estimate a unidimensional 2PL model for the RL and RI domains of reading (this is a change to the Q-matrix; refer to the document linked above to determine which standards are for reading) (1 point each model). Report the following information for each model:
+
+* The item parameters in slope/intercept parameterization for each item along with their standard errors
+* A histogram of the EAP estimates of the latent variables
+* A plot of the EAP estimates of the latent variables against the conditional standard errors of measurement
+* All M2-based model fit information (i.e, test statistic, p-value, RMSEA (and 5/95th percentiles), SRMSR, TLI, and CFI)
+* A residual correlation matrix
+
+6. For each model in #5, provide a brief statement using your judgment whether the model has adequate fit to the data (1 point each model).
+
+7. Estimate a single unidimensional model for all reading items (this is a change to the Q-matrix) (1 point).  Report the following information for each model:
+
+* The item parameters in slope/intercept parameterization for each item along with their standard errors
+* A histogram of the EAP estimates of the latent variables
+* A plot of the EAP estimates of the latent variables against the conditional standard errors of measurement    
+* All M2-based model fit information (i.e, test statistic, p-value, RMSEA (and 5/95th percentiles), SRMSR, TLI, and CFI)
+* A residual correlation matrix
+  
+8. Provide a brief statement using your judgment whether the model has adequate fit to the data (1 point).
+
+9. Find the technical manual for a state accountability assessment for either mathematics or reading. Search the document for any model fit information. If you find any, report:
+
+* Which state and subject area you found
+* What model fit information is included
+* Do you believe their model fits the data? Why or why not?
+
+
+Extra Credit: 10% extra credit given if you use Argon for this assignment. To receive extra credit, compress into a zipped folder all Argon job error files (ending in ```*.e*```), Argon job output files (ending in ```*.o*```), and the Argon job submission script (ending in ```*.job```) and submit the zipped folder via ICON.
+

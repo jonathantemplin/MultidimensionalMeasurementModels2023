@@ -87,7 +87,7 @@ This repo contains course materials for the Multidimensional Measurement Models 
     * Part 2: [https://youtu.be/AwDcNQ31ca8](https://youtu.be/AwDcNQ31ca8)
   * Coding Activity: None this week
 
-* Homework 2 Due 09/27/2023 [ICON](https://icon.uiowa.edu):
+* Homework 2 Due 09/27/2023 [ICON](https://icon.uiowa.edu)
   
 ### Week 5: September 20, 2023: Multidimensional Difficulties (Identifiability, empirical identification, quantifying dimensionality)
 
@@ -102,8 +102,14 @@ This repo contains course materials for the Multidimensional Measurement Models 
 ### Week 6: September 27, 2023: Estimation Methods (Marginal Maximum Likelihood; Limited Information; Bayesian Methods)
 
 * Read Prior to Class: Kaplan (2009), Chapters 2 and 3 (Estimation in MVN models)
-
-
+* Formative Assessment 5 Assigned (Due 10/03/2023)--on [ICON](https://icon.uiowa.edu)
+* Links to Lecture Materials:
+  * Lecture Slides: [https://jonathantemplin.github.io/MultidimensionalMeasurementModels2023/materials/Week06/06_Estimation.html#/title-slide](https://jonathantemplin.github.io/MultidimensionalMeasurementModels2023/materials/Week06/06_Estimation.html#/title-slide)
+  * Lecture Handout (Same content as slides, but in docx format): [https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/raw/main/materials/Week06/06_Estimation.docx](https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/raw/main/materials/Week06/06_Estimation.docx)
+  * Lecture Videos (uploaded after class)
+  * Coding Activity: None
+* Homework 3 Due 10/11/2023 via [ICON](https://icon.uiowa.edu)
+  * Assignment text also available here: [https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/raw/main/homework/HW3/HW3.docx](https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/raw/main/homework/HW3/HW3.docx)
 
 ## Tentative Remaining Course Schedule
 
@@ -111,9 +117,9 @@ Please see the main website for the most up-to-date schedule, required readings,
 
 | Date | Topic | 
 | ---- | ----- |  
+| 10/04/2023 | Estimation of MIRT Models via MML (QN, EM, MHRM, Monte Carlo), Limited Information, and Bayesian Methods |
 | **Section 3** | **Multidimensionality is Bad** |
-| 10/04/2023 | Exploratory Models; Consequences of Multidimensionality; Unwanted Dimensionality  |
-| 10/11/2023 | Multidimensionality by Design (rater effects, testlets)  |
+| 10/11/2023 | Exploratory Models; Consequences of Multidimensionality; Unwanted Dimensionality; Multidimensionality by Design (rater effects, testlets) |
 | 10/18/2023 | Exploratory mixture models/Categorical Latent Variables (What is Dimensionality?) |
 | **Section 4** | **Multidimensionality is Good** |
 | 10/25/2023 | Confirmatory Models; Latent Variable Interactions |

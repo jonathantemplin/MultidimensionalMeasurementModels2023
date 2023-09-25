@@ -1,0 +1,7 @@
+---
+title: "Estimation of Multidimensional Measurement Models"
+author: "Multidimensional Measurement Models (Fall 2023): Lecture 6" 
+format: docx
+---
+
+{{< include _06_Estimation.qmd >}}
