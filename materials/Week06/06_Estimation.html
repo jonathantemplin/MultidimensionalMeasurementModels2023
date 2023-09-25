@@ -1,0 +1,1941 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<script src="06_Estimation_files/libs/clipboard/clipboard.min.js"></script>
+<script src="06_Estimation_files/libs/quarto-html/tabby.min.js"></script>
+<script src="06_Estimation_files/libs/quarto-html/popper.min.js"></script>
+<script src="06_Estimation_files/libs/quarto-html/tippy.umd.min.js"></script>
+<link href="06_Estimation_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="06_Estimation_files/libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="06_Estimation_files/libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
+<link href="06_Estimation_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.3.361">
+
+  <meta name="author" content="Multidimensional Measurement Models (Fall 2023): Lecture 6">
+  <title>Estimation of Multidimensional Measurement Models</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="06_Estimation_files/libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="06_Estimation_files/libs/revealjs/dist/reveal.css">
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+  </style>
+  <link rel="stylesheet" href="06_Estimation_files/libs/revealjs/dist/theme/quarto.css">
+  <link href="06_Estimation_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="06_Estimation_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="06_Estimation_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="06_Estimation_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+
+  .callout {
+    margin-top: 1em;
+    margin-bottom: 1em;  
+    border-radius: .25rem;
+  }
+
+  .callout.callout-style-simple { 
+    padding: 0em 0.5em;
+    border-left: solid #acacac .3rem;
+    border-right: solid 1px silver;
+    border-top: solid 1px silver;
+    border-bottom: solid 1px silver;
+    display: flex;
+  }
+
+  .callout.callout-style-default {
+    border-left: solid #acacac .3rem;
+    border-right: solid 1px silver;
+    border-top: solid 1px silver;
+    border-bottom: solid 1px silver;
+  }
+
+  .callout .callout-body-container {
+    flex-grow: 1;
+  }
+
+  .callout.callout-style-simple .callout-body {
+    font-size: 1rem;
+    font-weight: 400;
+  }
+
+  .callout.callout-style-default .callout-body {
+    font-size: 0.9rem;
+    font-weight: 400;
+  }
+
+  .callout.callout-titled.callout-style-simple .callout-body {
+    margin-top: 0.2em;
+  }
+
+  .callout:not(.callout-titled) .callout-body {
+      display: flex;
+  }
+
+  .callout:not(.no-icon).callout-titled.callout-style-simple .callout-content {
+    padding-left: 1.6em;
+  }
+
+  .callout.callout-titled .callout-header {
+    padding-top: 0.2em;
+    margin-bottom: -0.2em;
+  }
+
+  .callout.callout-titled .callout-title  p {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+  }
+    
+  .callout.callout-titled.callout-style-simple .callout-content  p {
+    margin-top: 0;
+  }
+
+  .callout.callout-titled.callout-style-default .callout-content  p {
+    margin-top: 0.7em;
+  }
+
+  .callout.callout-style-simple div.callout-title {
+    border-bottom: none;
+    font-size: .9rem;
+    font-weight: 600;
+    opacity: 75%;
+  }
+
+  .callout.callout-style-default  div.callout-title {
+    border-bottom: none;
+    font-weight: 600;
+    opacity: 85%;
+    font-size: 0.9rem;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+  }
+
+  .callout.callout-style-default div.callout-content {
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+  }
+
+  .callout.callout-style-simple .callout-icon::before {
+    height: 1rem;
+    width: 1rem;
+    display: inline-block;
+    content: "";
+    background-repeat: no-repeat;
+    background-size: 1rem 1rem;
+  }
+
+  .callout.callout-style-default .callout-icon::before {
+    height: 0.9rem;
+    width: 0.9rem;
+    display: inline-block;
+    content: "";
+    background-repeat: no-repeat;
+    background-size: 0.9rem 0.9rem;
+  }
+
+  .callout-title {
+    display: flex
+  }
+    
+  .callout-icon::before {
+    margin-top: 1rem;
+    padding-right: .5rem;
+  }
+
+  .callout.no-icon::before {
+    display: none !important;
+  }
+
+  .callout.callout-titled .callout-body > .callout-content > :last-child {
+    margin-bottom: 0.5rem;
+  }
+
+  .callout.callout-titled .callout-icon::before {
+    margin-top: .5rem;
+    padding-right: .5rem;
+  }
+
+  .callout:not(.callout-titled) .callout-icon::before {
+    margin-top: 1rem;
+    padding-right: .5rem;
+  }
+
+  /* Callout Types */
+
+  div.callout-note {
+    border-left-color: #4582ec !important;
+  }
+
+  div.callout-note .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAEU0lEQVRYCcVXTWhcVRQ+586kSUMMxkyaElstCto2SIhitS5Ek8xUKV2poatCcVHtUlFQk8mbaaziwpWgglJwVaquitBOfhQXFlqlzSJpFSpIYyXNjBNiTCck7x2/8/LeNDOZxDuEkgOXe++553zfefee+/OYLOXFk3+1LLrRdiO81yNqZ6K9cG0P3MeFaMIQjXssE8Z1JzLO9ls20MBZX7oG8w9GxB0goaPrW5aNMp1yOZIa7Wv6o2ykpLtmAPs/vrG14Z+6d4jpbSKuhdcSyq9wGMPXjonwmESXrriLzFGOdDBLB8Y6MNYBu0dRokSygMA/mrun8MGFN3behm6VVAwg4WR3i6FvYK1T7MHo9BK7ydH+1uurECoouk5MPRyVSBrBHMYwVobG2aOXM07sWrn5qgB60rc6mcwIDJtQrnrEr44kmy+UO9r0u9O5/YbkS9juQckLed3DyW2XV/qWBBB3ptvI8EUY3I9p/67OW+g967TNr3Sotn3IuVlfMLVnsBwH4fsnebJvyGm5GeIUA3jljERmrv49SizPYuq+z7c2H/jlGC+Ghhupn/hcapqmcudB9jwJ/3jvnvu6vu5lVzF1fXyZuZZ7U8nRmVzytvT+H3kilYvH09mLWrQdwFSsFEsxFVs5fK7A0g8gMZjbif4ACpKbjv7gNGaD8bUrlk8x+KRflttr22JEMRUbTUwwDQScyzPgedQHZT0xnx7ujw2jfVfExwYHwOsDTjLdJ2ebmeQIlJ7neo41s/DrsL3kl+W2lWvAga0tR3zueGr6GL78M3ifH0rGXrBC2aAR8uYcIA5gwV8zIE8onoh8u0Fca/ciF7j1uOzEnqcIm59sEXoGc0+z6+H45V1CvAvHcD7THztu669cnp+L0okAeIc6zjbM/24LgGM1gZk7jnRu1aQWoU9sfUOuhrmtaPIO3YY1KLLWZaEO5TKUbMY5zx8W9UJ6elpLwKXbsaZ4EFl7B4bMtDv0iRipKoDQT2sNQI9b1utXFdYisi+wzZ/ri/1m7QfDgEuvgUUEIJPq3DhX/5DWNqIXDOweC2wvIR90Oq3lDpdMIgD2r0dXvGdsEW5H6x6HLRJYU7C69VefO1x8Gde1ZFSJLfWS1jbCnhtOPxmpfv2LXOA2Xk2tvnwKKPFuZ/oRmwBwqRQDcKNeVQkYcOjtWVBuM/JuYw5b6isojIkYxyYAFn5K7ZBF10fea52y8QltAg6jnMqNHFBmGkQ1j+U43HMi2xMar1Nv0zGsf1s8nUsmUtPOOrbFIR8bHFDMB5zL13Gmr/kGlCkUzedTzzmzsaJXhYawnA3UmARpiYj5ooJZiUoxFRtK3X6pgNPv+IZVPcnwbOl6f+aBaO1CNvPW9n9LmCp01nuSaTRF2YxHqZ8DYQT6WsXT+RD6eUztwYLZ8rM+rcPxamv1VQzFUkzFXvkiVrySGQgJNvXHJAxiU3/NwiC03rSf05VBaPtu/Z7/B8Yn/w7eguloAAAAAElFTkSuQmCC');
+  }
+
+  div.callout-note.callout-style-default .callout-title {
+    background-color: #dae6fb
+  }
+
+  div.callout-important {
+    border-left-color: #d9534f !important;
+  }
+
+  div.callout-important .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAEKklEQVRYCcVXTWhcVRS+575MJym48A+hSRFr00ySRQhURRfd2HYjk2SSTokuBCkU2o0LoSKKraKIBTcuFCoidGFD08nkBzdREbpQ1EDNIv8qSGMFUboImMSZd4/f9zJv8ibJMC8xJQfO3HPPPef7zrvvvnvviIkpC9nsw0UttFunbUhpFzFtarSd6WJkStVMw5xyVqYTvkwfzuf/5FgtkVoB0729j1rjXwThS7Vio+Mo6DNnvLfahoZ+i/o32lULuJ3NNiz7q6+pyAUkJaFF6JwaM2lUJlV0MlnQn5aTRbEu0SEqHUa0A4AdiGuB1kFXRfVyg5d87+Dg4DL6m2TLAub60ilj7A1Ec4odSAc8X95sHh7+ZRPCFo6Fnp7HfU/fBng/hi10CjCnWnJjsxvDNxWw0NfV6Rv5GgP3I3jGWXumdTD/3cbEOP2ZbOZp69yniG3FQ9z1jD7bnBu9Fc2tKGC2q+uAJOQHBDRiZX1x36o7fWBs7J9ownbtO+n0/qWkvW7UPIfc37WgT6ZGR++EOJyeQDSb9UB+DZ1G6DdLDzyS+b/kBCYGsYgJbSQHuThGKRcw5xdeQf8YdNHsc6ePXrlSYMBuSIAFTGAtQo+VuALo4BX83N190NWZWbynBjhOHsmNfFWLeL6v+ynsA58zDvvAC8j5PkbOcXCMg2PZFk3q8MjI7WAG/Dp9AwP7jdGBOOQkAvlFUB+irtm16I1Zw9YBcpGTGXYmk3kQIC/Cds55l+iMI3jqhjAuaoe+am2Jw5GT3Nbz3CkE12NavmzN5+erJW7046n/CH1RO/RVa8lBLozXk9uqykkGAyRXLWlLv5jyp4RFsG5vGVzpDLnIjTWgnRy2Rr+tDKvRc7Y8AyZq10jj8DqXdnIRNtFZb+t/ZRtXcDiVnzpqx8mPcDWxgARUqx0W1QB9MeUZiNrV4qP+Ehc+BpNgATsTX8ozYKL2NtFYAHc84fG7ndxUPr+AR/iQSns7uSUufAymwDOb2+NjK27lEFocm/EE2WpyIy/Hi66MWuMKJn8RvxIcj87IM5Vh9663ziW36kR0HNenXuxmfaD8JC7tfKbrhFr7LiZCrMjrzTeGx+PmkosrkNzW94ObzwocJ7A1HokLolY+AvkTiD/q1H0cN48c5EL8Crkttsa/AXQVDmutfyku0E7jShx49XqV3MFK8IryDhYVbj7Sj2P2eBxwcXoe8T8idsKKPRcnZw1b+slFTubwUwhktrfnAt7J++jwQtLZcm3sr9LQrjRzz6cfMv9aLvgmnAGvpoaGLxM4mAEaLV7iAzQ3oU0IvD5x9ix3yF2RAAuYAOO2f7PEFWCXZ4C9Pb2UsgDeVnFSpbFK7/IWu7TPTvBqzbGdCHOJQSxiEjt6IyZmxQyEJHv6xyQsYk//moVFsN2zP6fRImjfq7/n/wFDguUQFNEwugAAAABJRU5ErkJggg==');
+  }
+
+  div.callout-important.callout-style-default .callout-title {
+    background-color: #f7dddc
+  }
+
+  div.callout-warning {
+    border-left-color: #f0ad4e !important;
+  }
+
+  div.callout-warning .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAETklEQVRYCeVWW2gcVRg+58yaTUnizqbipZeX4uWhBEniBaoUX1Ioze52t7sRq6APio9V9MEaoWlVsFasRq0gltaAPuxms8lu0gcviE/FFOstVbSIxgcv6SU7EZqmdc7v9+9mJtNks51NTUH84ed889/PP+cmxP+d5FIbMJmNbpREu4WUkiTtCicKny0l1pIKmBzovF2S+hIJHX8iEu3hZJ5lNZGqyRrGSIQpq15AzF28jgpeY6yk6GVdrfFqdrD6Iw+QlB8g0YS2g7dyQmXM/IDhBhT0UCiRf59lfqmmDvzRt6kByV/m4JjtzuaujMUM2c5Z2d6JdKrRb3K2q6mA+oYVz8JnDdKPmmNthzkAk/lN63sYPgevrguc72aZX/L9C6x09GYyxBgCX4NlvyGUHOKELlm5rXeR1kchuChJt4SSwyddZRXgvwMGvYo4QSlk3/zkHD8UHxwVJA6zjZZqP8v8kK8OWLnIZtLyCAJagYC4rTGW/9Pqj92N/c+LUaAj27movwbi19tk/whRCIE7Q9vyI6yvRpftAKVTdUjOW40X3h5OXsKCdmFcx0xlLJoSuQngnrJe7Kcjm4OMq9FlC7CMmScQANuNvjfP3PjGXDBaUQmbp296S5L4DrpbrHN1T87ZVEZVCzg1FF0Ft+dKrlLukI+/c9ENo+TvlTDbYFvuKPtQ9+l052rXrgKoWkDAFnvh0wTOmYn8R5f4k/jN/fZiCM1tQx9jQQ4ANhqG4hiL0qIFTGViG9DKB7GYzgubnpofgYRwO+DFjh0Zin2m4b/97EDkXkc+f6xYAPX0KK2I/7fUQuwzuwo/L3AkcjugPNixC8cHf0FyPjWlItmLxWw4Ou9YsQCr5fijMGoD/zpdRy95HRysyXA74MWOnscpO4j2y3HAVisw85hX5+AFBRSHt4ShfLFkIMXTqyKFc46xdzQM6XbAi702a7sy04J0+feReMFKp5q9esYLCqAZYw/k14E/xcLLsFElaornTuJB0svMuJINy8xkIYuL+xPAlWRceH6+HX7THJ0djLUom46zREu7tTkxwmf/FdOZ/sh6Q8qvEAiHpm4PJ4a/doJe0gH1t+aHRgCzOvBvJedEK5OFE5jpm4AGP2a8Dxe3gGJ/pAutug9Gp6he92CsSsWBaEcxGx0FHytmIpuqGkOpldqNYQK8cSoXvd+xLxXADw0kf6UkJNFtdo5MOgaLjiQOQHcn+A6h5NuL2s0qsC2LOM75PcF3yr5STuBSAcGG+meA14K/CI21HcS4LBT6tv0QAh8Dr5l93AhZzG5ZJ4VxAqdZUEl9z7WJ4aN+svMvwHHL21UKTd1mqvChH7/Za5xzXBBKrUcB0TQ+Ulgkfbi/H/YT5EptrGzsEK7tR1B7ln9BBwckYfMiuSqklSznIuoIIOM42MQO+QnduCoFCI0bpkzjCjddHPN/F+2Yu+sd9bKNpVwHhbS3LluK/0zgfwD0xYI5dXuzlQAAAABJRU5ErkJggg==');
+  }
+
+  div.callout-warning.callout-style-default .callout-title {
+    background-color: #fcefdc
+  }
+
+  div.callout-tip {
+    border-left-color: #02b875 !important;
+  }
+
+  div.callout-tip .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAADr0lEQVRYCe1XTWgTQRj9ZjZV8a9SPIkKgj8I1bMHsUWrqYLVg4Ue6v9BwZOxSYsIerFao7UiUryIqJcqgtpimhbBXoSCVxUFe9CTiogUrUp2Pt+3aUI2u5vdNh4dmMzOzHvvezuz8xNFM0mjnbXaNu1MvFWRXkXEyE6aYOYJpdW4IXuA4r0fo8qqSMDBU0v1HJUgVieAXxzCsdE/YJTdFcVIZQNMyhruOMJKXYFoLfIfIvVIMWdsrd+Rpd86ZmyzzjJmLStqRn0v8lzkb4rVIXvnpScOJuAn2ACC65FkPzEdEy4TPWRLJ2h7z4cArXzzaOdKlbOvKKX25Wl00jSnrwVxAg3o4dRxhO13RBSdNvH0xSARv3adTXbBdTf64IWO2vH0LT+cv4GR1DJt+DUItaQogeBX/chhbTBxEiZ6gftlDNXTrvT7co4ub5A6gp9HIcHvzTa46OS5fBeP87Qm0fQkr4FsYgVQ7Qg+ZayaDg9jhg1GkWj8RG6lkeSacrrHgDaxdoBiZPg+NXV/KifMuB6//JmYH4CntVEHy/keA6x4h4CU5oFy8GzrBS18cLJMXcljAKB6INjWsRcuZBWVaS3GDrqB7rdapVIeA+isQ57Eev9eCqzqOa81CY05VLd6SamW2wA2H3SiTbnbSxmzfp7WtKZkqy4mdyAlGx7ennghYf8voqp9cLSgKdqNfa6RdRsAAkPwRuJZNbpByn+RrJi1RXTwdi8RQF6ymDwGMAtZ6TVE+4uoKh+MYkcLsT0Hk8eAienbiGdjJHZTpmNjlbFJNKDVAp2fJlYju6IreQxQ08UJDNYdoLSl6AadO+fFuCQqVMB1NJwPm69T04Wv5WhfcWyfXQB+wXRs1pt+nCknRa0LVzSA/2B+a9+zQJadb7IyyV24YAxKp2Jqs3emZTuNnKxsah+uabKbMk7CbTgJx/zIgQYErIeTKRQ9yD9wxVof5YolPHqaWo7TD6tJlh7jQnK5z2n3+fGdggIOx2kaa2YI9QWarc5Ce1ipNWMKeSG4DysFF52KBmTNMmn5HqCFkwy34rDg05gDwgH3bBi+sgFhN/e8QvRn8kbamCOhgrZ9GJhFDgfcMHzFb6BAtjKpFhzTjwv1KCVuxHvCbsSiEz4CANnj84cwHdFXAbAOJ4LTSAawGWFn5tDhLMYz6nWeU2wJfIhmIJBefcd/A5FWQWGgrWzyORZ3Q6HuV+Jf0Bj+BTX69fm1zWgK7By1YTXchFDORywnfQ7GpzOo6S+qECrsx2ifVQAAAABJRU5ErkJggg==');
+  }
+
+  div.callout-tip.callout-style-default .callout-title {
+    background-color: #ccf1e3
+  }
+
+  div.callout-caution {
+    border-left-color: #fd7e14 !important;
+  }
+
+  div.callout-caution .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAACV0lEQVRYCdVWzWoUQRCuqp2ICBLJXgITZL1EfQDBW/bkzUMUD7klD+ATSHBEfAIfQO+iXsWDxJsHL96EHAwhgzlkg8nBg25XWb0zIb0zs9muYYWkoKeru+vn664fBqElyZNuyh167NXJ8Ut8McjbmEraKHkd7uAnAFku+VWdb3reSmRV8PKSLfZ0Gjn3a6Xlcq9YGb6tADjn+lUfTXtVmaZ1KwBIvFI11rRXlWlatwIAAv2asaa9mlB9wwygiDX26qaw1yYPzFXg2N1GgG0FMF8Oj+VIx7E/03lHx8UhvYyNZLN7BwSPgekXXLribw7w5/c8EF+DBK5idvDVYtEEwMeYefjjLAdEyQ3M9nfOkgnPTEkYU+sxMq0BxNR6jExrAI31H1rzvLEfRIdgcv1XEdj6QTQAS2wtstEALLG1yEZ3QhH6oDX7ExBSFEkFINXH98NTrme5IOaaA7kIfiu2L8A3qhH9zRbukdCqdsA98TdElyeMe5BI8Rs2xHRIsoTSSVFfCFCWGPn9XHb4cdobRIWABNf0add9jakDjQJpJ1bTXOJXnnRXHRf+dNL1ZV1MBRCXhMbaHqGI1JkKIL7+i8uffuP6wVQAzO7+qVEbF6NbS0LJureYcWXUUhH66nLR5rYmva+2tjRFtojkM2aD76HEGAD3tPtKM309FJg5j/K682ywcWJ3PASCcycH/22u+Bh7Aa0ehM2Fu4z0SAE81HF9RkB21c5bEn4Dzw+/qNOyXr3DCTQDMBOdhi4nAgiFDGCinIa2owCEChUwD8qzd03PG+qdW/4fDzjUMcE1ZpIAAAAASUVORK5CYII=');
+  }
+
+  div.callout-caution.callout-style-default .callout-title {
+    background-color: #ffe5d0
+  }
+
+  </style>
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+</head>
+<body class="quarto-light">
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide" class="quarto-title-block center">
+  <h1 class="title">Estimation of Multidimensional Measurement Models</h1>
+
+<div class="quarto-title-authors">
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+Multidimensional Measurement Models (Fall 2023): Lecture 6 
+</div>
+</div>
+</div>
+
+</section>
+<section id="todays-lecture" class="slide level2">
+<h2>Today’s Lecture</h2>
+<ul>
+<li>General estimation methods:
+<ul>
+<li>Maximum likelihood estimation</li>
+<li>Marginal maximum likelihood estimation
+<ul>
+<li>Full information methods</li>
+<li>Limited information methods</li>
+</ul></li>
+<li>Optimization</li>
+</ul></li>
+<li>MML Estimation of the CFA model</li>
+<li>Limited information methods in IRT</li>
+<li>Full information methods in IRT
+<ul>
+<li>MML via Quasi Newton methods
+<ul>
+<li>Numeric integration<br>
+</li>
+<li>Monte Carlo integration</li>
+</ul></li>
+<li>MML via EM algorithm
+<ul>
+<li>EM algorithm with hybrid versions for the E-step (Robbins Monro Algorithm)</li>
+</ul></li>
+<li>Bayesian estimation in varying software packages</li>
+</ul></li>
+</ul>
+</section>
+<section id="notes" class="slide level2">
+<h2>Notes</h2>
+<ul>
+<li>JAGS doesn’t estimate standardized factors very easily</li>
+</ul>
+</section>
+<section id="programs" class="title-slide slide level1 center">
+<h1>Programs</h1>
+<ul>
+<li>Mplus</li>
+<li>lavaan</li>
+<li>mirt</li>
+<li>JAGS</li>
+<li>stan</li>
+</ul>
+</section>
+
+<section>
+<section id="methods" class="title-slide slide level1 center">
+<h1>Methods</h1>
+<ul>
+<li>MML CFA</li>
+<li>Bayesian</li>
+<li>Limited information</li>
+<li>MML-EM</li>
+<li>MML-Quasi Newton</li>
+<li>MML-Stochastic</li>
+</ul>
+</section>
+<section id="a-primer-on-maximum-likelihood-estimation" class="slide level2">
+<h2>A Primer on Maximum Likelihood Estimation</h2>
+<ul>
+<li>An introduction to maximum likelihood estimation
+<ul>
+<li>How it works</li>
+<li>Why we use it: properties of MLEs</li>
+</ul></li>
+<li>Robust maximum likelihood for MVN outcomes
+<ul>
+<li>Augmenting likelihood functions for data that aren’t quite MVN</li>
+</ul></li>
+<li>Incorporating missing data using maximum likelihood
+<ul>
+<li>Extending the nice properties of ML</li>
+</ul></li>
+</ul>
+</section>
+<section id="why-estimation-is-important" class="slide level2">
+<h2>Why Estimation is Important</h2>
+<ul>
+<li>In “applied” stat courses estimation not often discussed
+<ul>
+<li>Can be very technical (and very intimidating)</li>
+</ul></li>
+<li>Estimation is of critical importance
+<ul>
+<li>Quality and validity of estimates (and of inferences made from them) depends on how they were obtained</li>
+</ul></li>
+<li>Consider an absurd example:
+<ul>
+<li>I say the mean for IQ should be 20 – just from what I feel</li>
+<li>Do you believe me? Do you feel like reporting this result?
+<ul>
+<li>Estimators need a basis in reality (in statistical theory)</li>
+</ul></li>
+</ul></li>
+</ul>
+</section>
+<section id="how-estimation-works-more-or-less" class="slide level2">
+<h2>How Estimation Works (More or Less)</h2>
+<p>Most estimation routines do one of three things:</p>
+<p><em>Minimize Something:</em> Typically found with names that have “least” in the title. Forms of least squares include “Generalized”, “Ordinary”, “Weighted”, “Diagonally Weighted”, “WLSMV”, and “Iteratively Reweighted.” Typically the estimator of last resort due to less desirable properties than ML estimators.</p>
+<p><em>Maximize Something:</em> Typically found with names that have “maximum” in the title. Forms include “Maximum likelihood”, “Marginal Maximum Likelihood”, “Residual Maximum Likelihood” (REML), “Robust ML”. Typically the gold standard of estimators.</p>
+<p><em>Use Simulation to Sample from Something:</em> more recent advances in estimation use sampling techniques. Names include “Bayesian Markov Chain Monte Carlo”, “Gibbs Sampling”, “Metropolis Hastings”, “Hamiltonian Monte Carlo”, and just “Monte Carlo”. Used for complex models where ML is not available or for methods where prior values are needed.</p>
+</section>
+<section id="properties-of-maximum-likelihood-estimators" class="slide level2">
+<h2>Properties of Maximum Likelihood Estimators</h2>
+<p>Provided several assumptions (also called regularity conditions) are met, maximum likelihood estimators have good statistical properties:</p>
+<p><em>Asymptotic Consistency:</em> as the sample size increases, the estimator converges in probability to its true value</p>
+<p><em>Asymptotic Normality:</em> as the sample size increases, the distribution of the estimator is normal (with variance given by the inverse information matrix)</p>
+<p><em>Efficiency:</em> No other estimator will have a smaller standard error</p>
+<p>Because they have such nice and well understood properties, MLEs are commonly used in statistical estimation</p>
+</section>
+<section id="maximum-likelihood-estimates-based-on-statistical-distributions" class="slide level2">
+<h2>Maximum Likelihood: Estimates Based on Statistical Distributions</h2>
+<ul>
+<li>Maximum likelihood estimates come from statistical distributions – assumed distributions of data
+<ul>
+<li>We will begin today with the univariate normal distribution but quickly move to other distribution</li>
+</ul></li>
+</ul>
+<p>For a single random variable <span class="math inline">\(x \sim N\left( \mu_x, \sigma^2_x \right)\)</span>, the univariate normal probability density function (PDF) is</p>
+<p><span class="math display">\[f(x) = \frac{1}{\sqrt{2\pi\sigma^2_x}} \exp \left(- \frac{\left(x-\mu_x \right)^2}{2\sigma^2_x} \right)\]</span></p>
+<ul>
+<li>This function takes <span class="math inline">\(x\)</span>, <span class="math inline">\(\mu_x\)</span>, and <span class="math inline">\(\sigma^2_x\)</span> as inputs and returns the height of the pdf (the likelihood)</li>
+</ul>
+</section>
+<section id="univariate-normal-distribution" class="slide level2">
+<h2>Univariate Normal Distribution</h2>
+
+<img data-src="uniNormPDFs.png" class="r-stretch"><p>For values of <span class="math inline">\(x\)</span>, <span class="math inline">\(\mu_x\)</span>, and <span class="math inline">\(\sigma^2_x\)</span>, <span class="math inline">\(f(x)\)</span> gives the height of the curve (the likelihood; like a relative frequency)</p>
+</section>
+<section id="example-distribution-values" class="slide level2">
+<h2>Example Distribution Values</h2>
+<ul>
+<li>Let’s examine the distribution values for the a variable with <span class="math inline">\(\mu_x=100\)</span> and <span class="math inline">\(\sigma_x^2=189.6\)</span>
+<ul>
+<li>Later we will not know what these values happen to be</li>
+</ul></li>
+</ul>
+
+<img data-src="twoHeights.png" class="r-stretch"><ul>
+<li>For <span class="math inline">\(x=100\)</span>, <span class="math inline">\(f(100)\)</span> is 0.0290</li>
+<li>For <span class="math inline">\(x=80\)</span>, <span class="math inline">\(f(80)\)</span> is 0.0101</li>
+</ul>
+</section>
+<section id="constructing-a-likelihood-function" class="slide level2">
+<h2>Constructing a Likelihood Function</h2>
+<ul>
+<li>Maximum likelihood estimation begins by building a <strong>likelihood function</strong>
+<ul>
+<li>A likelihood function provides a value of a likelihood (think height of a curve) for a set of statistical parameters</li>
+</ul></li>
+<li>Likelihood functions start with probability density functions (PDFs) for each variable being modeled
+<ul>
+<li>Density functions are provided for each observation individually (marginal)</li>
+</ul></li>
+<li>The likelihood function for the entire sample is the function that gets used in the estimation process
+<ul>
+<li>The sample likelihood can be thought of as a joint distribution of all the observations, simultaneously</li>
+<li>Observations are often considered independent, so the joint likelihood for the sample is constructed through a product</li>
+</ul></li>
+<li>To demonstrate, let’s consider the likelihood function for one observation</li>
+</ul>
+</section>
+<section id="a-one-observation-likelihood-function" class="slide level2">
+<h2>A One-Observation Likelihood Function</h2>
+<ul>
+<li>Let’s assume the following:
+<ul>
+<li>We have observed IQ (for the person where <span class="math inline">\(x=112\)</span>)</li>
+<li>That IQ comes from a normal distribution</li>
+<li>That the variance of 𝑥 is known to be 189.6 (<span class="math inline">\(\sigma_x^2=189.6\)</span>)
+<ul>
+<li>This is to simplify the likelihood function so that we only don’t know one value</li>
+<li>This is an example of empirical under-identification</li>
+</ul></li>
+</ul></li>
+<li>For this one observation, the likelihood function takes its assumed distribution and uses its PDF:</li>
+</ul>
+<p><span class="math display">\[f(x) = \frac{1}{\sqrt{2\pi\sigma^2_x}} \exp \left(- \frac{\left(x-\mu_x \right)^2}{2\sigma^2_x} \right)\]</span></p>
+<ul>
+<li>The PDF above now is expressed in terms of the three unknowns that go into it: <span class="math inline">\(x\)</span>, <span class="math inline">\(\mu_x\)</span>, and <span class="math inline">\(\sigma^2_x\)</span></li>
+</ul>
+</section>
+<section id="a-one-observation-likelihood-function-1" class="slide level2">
+<h2>A One-Observation Likelihood Function</h2>
+<ul>
+<li>Because we know two of these terms (<span class="math inline">\(x=112\)</span>; <span class="math inline">\(\sigma_x^2=189.6\)</span>), we can create the likelihood function for the mean:</li>
+</ul>
+<p><span class="math display">\[L \left(\mu_x \mid x = 112, \sigma_x^2  = 189.6 \right) =  \frac{1}{\sqrt{2\pi * 189.6}} \exp \left(- \frac{\left(112-\mu_x \right)^2}{2*189.6} \right) \]</span></p>
+<ul>
+<li>For every value of <span class="math inline">\(\mu_𝑥\)</span> could be, the likelihood function now returns a number that is called the likelihood
+<ul>
+<li>The actual value of the likelihood is not relevant (yet)</li>
+</ul></li>
+<li>The value of <span class="math inline">\(\mu_x\)</span> with the highest likelihood is called the maximum likelihood estimate (MLE)
+<ul>
+<li>For this one observation, what do you think the MLE would be?</li>
+<li>This is asking: what is the most likely mean that produced these data?</li>
+</ul></li>
+</ul>
+</section>
+<section id="the-mle-is" class="slide level2">
+<h2>The MLE is…</h2>
+<ul>
+<li>The value of <span class="math inline">\(\mu_x\)</span> that maximizes <span class="math inline">\(L\left(\mu_x \mid x, \sigma_x^2 \right)\)</span> is <span class="math inline">\(\hat{\mu}_x = 112\)</span>
+<ul>
+<li>The value of the likelihood function at that point is <span class="math inline">\(L\left(112 \mid x, \sigma_x^2 \right) = .029\)</span></li>
+</ul></li>
+</ul>
+
+<img data-src="singlePointMLE.png" class="r-stretch"></section>
+<section id="from-one-observationto-the-sample" class="slide level2">
+<h2>From One Observation…To The Sample</h2>
+<ul>
+<li>The likelihood function shown previously was for one observation, but we will be working with a sample
+<ul>
+<li>Assuming the sample observations are independent and identically distributed, we can form the joint distribution of the sample<br>
+</li>
+<li>For normal distributions, this means the observations have the same mean and variance</li>
+</ul></li>
+</ul>
+<p><span class="math display">\[L \left( \mu_x, \sigma^2_x \mid x_1, \ldots, x_N \right) = L \left( \mu_x, \sigma^2_x \mid x_1\right) \times L \left( \mu_x, \sigma^2_x \mid x_2\right) \times \ldots  L \left( \mu_x, \sigma^2_x \mid x_N\right)\]</span></p>
+<p><span class="math display">\[ = \prod_{p=1}^N f\left(x_p\right) = \prod_{p=1}^N = \frac{1}{\sqrt{2\pi\sigma^2_x}} \exp \left(- \frac{\left(x-\mu_x \right)^2}{2\sigma^2_x} \right) = \]</span></p>
+<p><span class="math display">\[\left( 2\pi \sigma_x^2 \right)^{\left(- \frac{N}{2} \right)} \exp \left( - \sum_{p=1}^N \frac{\left(x_p - \mu_p \right)^2}{2\sigma_x^2} \right) \]</span></p>
+<ul>
+<li>Multiplication comes from independence assumption:
+<ul>
+<li>Here, <span class="math inline">\(L \left( \mu_x, \sigma^2_x \mid x_p\right)\)</span> is the univariate normal PDF</li>
+</ul></li>
+</ul>
+</section>
+<section id="maximizing-the-log-likelihood-function" class="slide level2">
+<h2>Maximizing the Log Likelihood Function</h2>
+<ul>
+<li>The process of finding the values of <span class="math inline">\(\mu_x\)</span> and <span class="math inline">\(\sigma_x^2\)</span> that maximize the likelihood function is complicated
+<ul>
+<li>What was shown was a grid search: trial-and-error process</li>
+</ul></li>
+<li>For relatively “simple” functions, we can use calculus to find the maximum of a function mathematically
+<ul>
+<li>Problem: not all functions can give closed-form solutions (i.e., one solvable equation) for location of the maximum</li>
+<li>Solution: use efficient methods of searching for optimal parameter values (i.e., Newton-Raphson)
+<ul>
+<li>Here, “optimal” means the value that maximizes the likelihood function</li>
+</ul></li>
+</ul></li>
+</ul>
+</section>
+<section id="newton-raphson-methods" class="slide level2">
+<h2>Newton Raphson Methods</h2>
+<ul>
+<li>A root-finding algorithm
+<ul>
+<li>We need the root of the first derivative of the likelihood function</li>
+</ul></li>
+<li>The algorithm begins with an initial guess of the root <span class="math inline">\(x_n\)</span>, then:</li>
+</ul>
+<p><span class="math inline">\(x_{n+1} = x_n - \frac{f\left(x_n\right)}{f'\left(x_n\right)}\)</span></p>
+<ul>
+<li>If matrix of derivatives is provided, then the algorithm will find the root numerically
+<ul>
+<li>Called Quasi-Newton methods</li>
+<li>See R’s <code>optim</code> function</li>
+</ul></li>
+</ul>
+
+<img data-src="newtonRaphson.png" class="r-stretch"></section>
+<section id="standard-errors-using-the-second-derivative" class="slide level2">
+<h2>Standard Errors: Using the Second Derivative</h2>
+<ul>
+<li>Although the estimated values of the sample mean and variance are needed, we also need the standard errors</li>
+<li>For MLEs, the standard errors come from the <strong>information matrix</strong>, which is found from the square root of -1 times the inverse matrix of second derivatives (only one value for one parameter)
+<ul>
+<li>Second derivative gives curvature of log-likelihood function</li>
+<li>This matrix comes from asymptotic theory (i.e., as sample size increases)</li>
+</ul></li>
+</ul>
+<p>$# ML with the Multivariate Normal Distribution</p>
+<ul>
+<li>The example from the first part of class focused on a single variable from a univariate normal distribution
+<ul>
+<li>We typically have multiple variables (<span class="math inline">\(V\)</span>) from a multivariate normal distribution</li>
+</ul></li>
+</ul>
+<p><span class="math display">\[f \left( \boldsymbol{x}_p \right) = \frac{1}{\left(2 \pi \right)^{\frac{V}{2}} \mid \boldsymbol{\Sigma} \mid^{\frac{1}{2}}}
+\exp \left[ - \frac{\left( \boldsymbol{x}_p^T - \boldsymbol{\mu }\right)^T \boldsymbol{\Sigma}^{-1}\left( \boldsymbol{x}_p^T - \boldsymbol{\mu }\right)}{2} \right]
+\]</span></p>
+</section>
+<section id="the-multivariate-normal-distribution" class="slide level2">
+<h2>The Multivariate Normal Distribution</h2>
+<p><span class="math display">\[f \left( \boldsymbol{x}_p \right)  = \frac{1}{\left(2 \pi \right)^{\frac{V}{2}} \mid \boldsymbol{\Sigma} \mid^{\frac{1}{2}}}
+\exp \left[ - \frac{\left( \boldsymbol{x}_p^T - \boldsymbol{\mu }\right)^T \boldsymbol{\Sigma}^{-1}\left( \boldsymbol{x}_p^T - \boldsymbol{\mu }\right)}{2} \right]
+\]</span></p>
+<ul>
+<li>The mean vector is <span class="math inline">\(\boldsymbol{\mu} = \left[ \mu_{x_1}, \mu_{x_2}, \ldots, \mu_{x_V} \right]^T\)</span></li>
+<li>The covariance matrix is</li>
+</ul>
+<p><span class="math display">\[\boldsymbol{\Sigma} =
+\begin{bmatrix}
+\sigma_{x_1}^2 &amp; \sigma_{x_1x_2} &amp; \ldots &amp; \sigma_{x_1x_V} \\
+\sigma_{x_2x_1} &amp; \sigma_{x_2}^2 &amp; \ldots&amp;  \sigma_{x_2x_V} \\
+\vdots &amp;  \ddots &amp;  \ddots &amp; \vdots   \\
+\sigma_{x_Vx_1} &amp; \sigma_{x_Vx_2} &amp; \ldots&amp;  \sigma_{x_V}^2 \\
+\end{bmatrix}
+\]</span></p>
+<ul>
+<li>The covariance matrix must be non-singular (invertible)
+<ul>
+<li>Positive semi-definite (all eigenvalues are positive)</li>
+</ul></li>
+</ul>
+</section>
+<section id="multivariate-normal-density-plot" class="slide level2">
+<h2>Multivariate Normal Density Plot</h2>
+<p><span class="math display">\[
+\boldsymbol{\mu} = \begin{bmatrix}
+\mu_{x_1} \\
+\mu_{x_2} \\
+\end{bmatrix} = \begin{bmatrix}
+0 \\
+0 \\
+\end{bmatrix} ;
+\boldsymbol{\Sigma} =\begin{bmatrix}
+\sigma_{x_1}^2 &amp; \sigma_{x_1, x_2} \\
+\sigma_{x_1, x_2} &amp; \sigma_{x_2}^2 \\
+\end{bmatrix} = \begin{bmatrix}
+1 &amp; 0.5 \\
+0.5 &amp; 1 \\
+\end{bmatrix}
+\]</span></p>
+
+<img data-src="mvnDensity.png" class="r-stretch"></section>
+<section id="multivariate-normal-contour-plot" class="slide level2">
+<h2>Multivariate Normal Contour Plot</h2>
+<p><span class="math display">\[
+\boldsymbol{\mu} = \begin{bmatrix}
+\mu_{x_1} \\
+\mu_{x_2} \\
+\end{bmatrix} = \begin{bmatrix}
+0 \\
+0 \\
+\end{bmatrix} ;
+\boldsymbol{\Sigma} =\begin{bmatrix}
+\sigma_{x_1}^2 &amp; \sigma_{x_1, x_2} \\
+\sigma_{x_1, x_2} &amp; \sigma_{x_2}^2 \\
+\end{bmatrix} = \begin{bmatrix}
+1 &amp; 0.5 \\
+0.5 &amp; 1 \\
+\end{bmatrix}
+\]</span></p>
+
+<img data-src="mvnContour.png" class="r-stretch"></section>
+<section id="example-distribution-values-1" class="slide level2">
+<h2>Example Distribution Values</h2>
+<ul>
+<li>Let’s examine the distribution values for the both variables
+<ul>
+<li>We assume that we know <span class="math inline">\(\mu = \begin{bmatrix} 100 \\ 10.35 \end{bmatrix}\)</span> and <span class="math inline">\(\boldsymbol{\Sigma} = \begin{bmatrix} 189.6 &amp; 19.5 \\ 19.5 &amp; 6.8 \end{bmatrix}\)</span></li>
+<li>We will not know what these values happen to be in practice</li>
+</ul></li>
+<li>The MVN distribution function gives the height of the curve for values of both variables
+<ul>
+<li><span class="math inline">\(f\left(\boldsymbol{x}_p = \begin{bmatrix} 100 &amp; 10.35 \\ \end{bmatrix} \right)=0.0052\)</span>
+<ul>
+<li>This is an observation exactly at the mean vector – highest likelihood</li>
+</ul></li>
+<li><span class="math inline">\(f\left(\boldsymbol{x}_p = \begin{bmatrix} 130 &amp; 13 \\ \end{bmatrix} \right)=0.0004\)</span>
+<ul>
+<li>This observation is distant from the mean vector – lower likelihood</li>
+</ul></li>
+</ul></li>
+</ul>
+</section>
+<section id="from-one-observationto-the-sample-1" class="slide level2">
+<h2>From One Observation…To The Sample</h2>
+<ul>
+<li>The distribution function shown on the last slide was for one observation, but we will be working with a sample
+<ul>
+<li>Assuming the sample observations are independent and identically distributed, we can form the joint distribution of the sample</li>
+</ul></li>
+</ul>
+<p><span class="math display">\[ f \left( \boldsymbol{x}_1, \boldsymbol{x}_2, \ldots, \boldsymbol{x}_N \right) = f \left( \boldsymbol{x}_1\right) \times f \left( \boldsymbol{x}_2\right) \times \ldots \times f \left( \boldsymbol{x}_N\right)  = \prod_{p=1}^N f \left( \boldsymbol{x}_p\right) = \]</span></p>
+<p><span class="math display">\[ \prod_{p=1}^N \frac{1}{\left(2 \pi \right)^{\frac{V}{2}} \mid \boldsymbol{\Sigma} \mid^{\frac{1}{2}}}
+\exp \left[ - \frac{\left( \boldsymbol{x}_p^T - \boldsymbol{\mu }\right)^T \boldsymbol{\Sigma}^{-1}\left( \boldsymbol{x}_p^T - \boldsymbol{\mu }\right)}{2} \right] =  \]</span></p>
+<p><span class="math display">\[
+\left(2\pi \right)^{-\frac{NV}{2}} \mid \boldsymbol{\Sigma} \mid^{-\frac{-N}{2}} \exp \left[ \sum_{p=1}^{N} - \frac{\left( \boldsymbol{x}_p^T - \boldsymbol{\mu }\right)^T \boldsymbol{\Sigma}^{-1}\left( \boldsymbol{x}_p^T - \boldsymbol{\mu }\right)}{2} \right]
+\]</span></p>
+</section>
+<section id="the-sample-mvn-likelihood-function" class="slide level2">
+<h2>The Sample MVN Likelihood Function</h2>
+<p>From the previous slide:</p>
+<p><span class="math display">\[
+L\left( \boldsymbol{X} \mid \boldsymbol{\mu}, \boldsymbol{\Sigma} \right) = \left(2\pi \right)^{-\frac{NV}{2}} \mid \boldsymbol{\Sigma} \mid^{-\frac{-N}{2}} \exp \left[ \sum_{p=1}^{N} - \frac{\left( \boldsymbol{x}_p^T - \boldsymbol{\mu }\right)^T \boldsymbol{\Sigma}^{-1}\left( \boldsymbol{x}_p^T - \boldsymbol{\mu }\right)}{2} \right]
+\]</span></p>
+<ul>
+<li><p>For this function, there is one mean vector (<span class="math inline">\(\boldsymbol{\mu}\)</span>), one covariance matrix (<span class="math inline">\(\boldsymbol{\Sigma}\)</span>), and one data matrix (<span class="math inline">\(\boldsymbol{X}\)</span>)</p></li>
+<li><p>If we <strong>observe the data</strong> but do not know the mean vector and/or covariance matrix, then we call this the sample likelihood function</p></li>
+<li><p>Rather than provide the height of the curve of any value of <span class="math inline">\(x\)</span>, the sample likelihood function provides the <em>likelihood</em> for any values of <em><span class="math inline">\(\boldsymbol{\mu}\)</span> and <span class="math inline">\(\boldsymbol{\Sigma}\)</span></em></p>
+<ul>
+<li>Goal of Maximum Likelihood is to find values of <span class="math inline">\(\boldsymbol{\mu}\)</span> and <span class="math inline">\(\boldsymbol{\Sigma}\)</span> that maximize this function</li>
+</ul></li>
+</ul>
+</section>
+<section id="the-log-likelihood-function" class="slide level2">
+<h2>The Log-Likelihood Function</h2>
+<ul>
+<li>The likelihood function is more commonly reexpressed as the log-likelihood: <span class="math inline">\(log\left(L\right) = ln\left(L\right)\)</span></li>
+</ul>
+<p><span class="math display">\[ \log \left( L \right) = \log \left[ \right] \left(2\pi \right)^{-\frac{NV}{2}} \mid \boldsymbol{\Sigma} \mid^{-\frac{-N}{2}} \exp \left[ \sum_{p=1}^{N} - \frac{\left( \boldsymbol{x}_p^T - \boldsymbol{\mu }\right)^T \boldsymbol{\Sigma}^{-1}\left( \boldsymbol{x}_p^T - \boldsymbol{\mu }\right)}{2} \right] = \]</span></p>
+<p><span class="math display">\[-\frac{NV}{2} \log \left( 2\pi \right) - \frac{N}{2} \log \left( \left| \boldsymbol{\Sigma} \right| \right) - \sum_{p=1}^N - \frac{\left( \boldsymbol{x}_p^T - \boldsymbol{\mu }\right)^T \boldsymbol{\Sigma}^{-1}\left( \boldsymbol{x}_p^T - \boldsymbol{\mu }\right)}{2} \]</span></p>
+</section>
+<section id="log-likelihood-function-in-use" class="slide level2">
+<h2>Log Likelihood Function in Use</h2>
+<ul>
+<li>Imagine that we know <span class="math inline">\(\boldsymbol{\Sigma} = \begin{bmatrix} 189.6 &amp; 19.5 \\ 19.5 &amp; 6.8 \\ \end{bmatrix}\)</span></li>
+<li>The log-likelihood function will give us the likelihood for a range of values of <span class="math inline">\(\boldsymbol{\mu}\)</span></li>
+<li>The value of <span class="math inline">\(\boldsymbol{\mu}\)</span> where <span class="math inline">\(\log\left( L\right)\)</span> is the maximum is the MLE for <span class="math inline">\(\boldsymbol{\mu}\)</span></li>
+</ul>
+<p><span class="math display">\[\hat{\mu} = \begin{bmatrix} 100 \\ 10.35 \end{bmatrix}\]</span></p>
+<p><span class="math display">\[ \log \left( L \right) = \log \left( 5.494e^{-55} \right) = -124.9385\]</span></p>
+
+<img data-src="mvnLogLikelihood.png" class="r-stretch"></section>
+<section id="finding-mles-in-practice" class="slide level2">
+<h2>Finding MLEs in Practice</h2>
+<ul>
+<li>Most likelihood functions do not have closed form estimates
+<ul>
+<li>Iterative algorithms must be used to find estimates</li>
+</ul></li>
+<li>Iterative algorithms begin at a location of the log-likelihood surface and then work to find the peak
+<ul>
+<li>Each iteration brings estimates closer to the maximum</li>
+<li>Change in log-likelihood from one iteration to the next should be small</li>
+</ul></li>
+<li>If models have latent (random) components, then these components are “marginalized” – removed from the likelihood equation
+<ul>
+<li>Called Marginal Maximum Likelihood</li>
+</ul></li>
+<li>Once the algorithm finds the peak, then the estimates used to find the peak are called the MLEs
+<ul>
+<li>And the information matrix is obtained providing standard errors for each</li>
+</ul></li>
+</ul>
+</section></section>
+<section>
+<section id="useful-properties-of-maximum-likelihood-estimators" class="title-slide slide level1 center">
+<h1>Useful Properties of Maximum Likelihood Estimators</h1>
+
+</section>
+<section id="likelihood-ratio-tests-a.k.a.-deviance-tests" class="slide level2">
+<h2>Likelihood Ratio Tests (A.K.A. Deviance Tests)</h2>
+<ul>
+<li>The (log) likelihood value from MLEs can help to statistically test competing models
+<ul>
+<li>Assuming none of the parameters are on the boundary of their parameter space</li>
+<li>Boundary issues hapeen when testing some covariance parameters as a variance cannot be less than zero (and a correlation cannot be greater than 1 or less than -1)</li>
+</ul></li>
+<li>Likelihood ratio tests take the ratio of the likelihood for two competing models and use it as a test statistic</li>
+<li>Using log-likelihoods, the ratio becomes a difference
+<ul>
+<li>The test is sometimes called a deviance test</li>
+</ul></li>
+</ul>
+<p><span class="math display">\[D = \Delta -2 \log \left( L \right) = -2 \times \left( \log \left( L_{H_0}\right) - \log \left( L_{H_A}\right) \right) \]</span></p>
+<ul>
+<li><span class="math inline">\(D\)</span> is tested against a Chi-Square distribution with degrees of freedom equal to the difference in the number of parameters between the two models</li>
+</ul>
+</section>
+<section id="wald-tests" class="slide level2">
+<h2>Wald Tests</h2>
+<ul>
+<li>Wald tests are used to test the significance of individual parameters
+<ul>
+<li>The test is based on the ratio of the parameter estimate to its standard error</li>
+</ul></li>
+</ul>
+<p><span class="math display">\[W = \frac{\hat{\theta} - \theta_0}{SE\left(\hat{\theta}\right)}\]</span></p>
+<ul>
+<li><span class="math inline">\(W\)</span> is tested against a standard normal distribution</li>
+<li>Wald tests are asymptotically equivalent to likelihood ratio tests
+<ul>
+<li>Wald tests are easier to compute as only the alternative model needs estimated</li>
+</ul></li>
+</ul>
+</section>
+<section id="score-tests" class="slide level2">
+<h2>Score Tests</h2>
+<ul>
+<li>Score tests are used to test whether or note parameters that were not included in the null model would be significantly different from zero</li>
+<li>Score tests are asymptotically equivalent to likelihood ratio tests
+<ul>
+<li>Score tests are easier to compute as only the alternative model needs estimated</li>
+</ul></li>
+<li>In SEM (mainly CFA), score tests are used to test whether or not a covariance parameter is significantly different from zero
+<ul>
+<li>They are often called modification indices</li>
+<li>All likelihood-based models, however, can use score tests (including IRT)</li>
+</ul></li>
+</ul>
+</section>
+<section id="information-criteria" class="slide level2">
+<h2>Information Criteria</h2>
+<ul>
+<li><p>Information criteria are used to compare models</p>
+<ul>
+<li>They are based on the likelihood value and the number of parameters in the model</li>
+</ul></li>
+<li><p>As an example, the Akaike Information Criterion (AIC) is defined as:</p>
+<p><span class="math display">\[AIC = -2 \log \left( L \right) + 2p\]</span></p>
+<ul>
+<li>where <span class="math inline">\(p\)</span> is the number of parameters in the model</li>
+</ul></li>
+<li><p>The model with the lowest value is preferred</p>
+<ul>
+<li>There are a number of different information criteria–so the preferred model is the one with the lowest value for a given criterion (i.e., AIC, BIC, etc…)</li>
+</ul></li>
+</ul>
+</section></section>
+<section>
+<section id="robust-maximum-likelihood" class="title-slide slide level1 center">
+<h1>Robust Maximum Likelihood</h1>
+
+</section>
+<section id="robust-estimation-the-basics" class="slide level2">
+<h2>Robust Estimation: The Basics</h2>
+<ul>
+<li>Robust estimation for MVN-based models is used to adjust the likelihood function for the amount of Kurtosis in the data
+<ul>
+<li>Robust estimation still assumes multivariate normality of the data, but that there is more (or less) kurtosis than expected in an MVN distribution</li>
+</ul></li>
+<li>Kurtosis: measure of the shape of the distribution
+<ul>
+<li>From the Greek word for bulging</li>
+<li>Can be estimated from the data (either marginally for each observed variable or jointly across all observed variables)</li>
+</ul></li>
+<li>The degree of kurtosis in a data set is related to how incorrect the log-likelihood value will be
+<ul>
+<li>Leptokurtic data (too-fat tails): <span class="math inline">\(\chi^2\)</span> inflated, SEs too small</li>
+<li>Platykurtic data (too-thin tails): <span class="math inline">\(\chi^2\)</span> deflated, SEs too large</li>
+</ul></li>
+</ul>
+</section>
+<section id="kurtosis" class="slide level2">
+<h2>Kurtosis</h2>
+
+<img data-src="kurtosis.png" class="r-stretch"></section>
+<section id="adjusted-model-fit-statistics" class="slide level2">
+<h2>Adjusted Model Fit Statistics</h2>
+<ul>
+<li>Under robust ML (sometimes called MLR), model fit statistics are adjusted based on an estimated scaling factor:
+<ul>
+<li>Scaling factor == 1.000
+<ul>
+<li>Kurtosis equal to expected value under MVN</li>
+</ul></li>
+<li>Scaling factor &gt; 1.000
+<ul>
+<li>Leptokurtosis (too-fat tails; fixes too big <span class="math inline">\(\chi^2\)</span>)</li>
+</ul></li>
+<li>Scaling factor &lt; 1.000
+<ul>
+<li>Platykurtosis (too-thin tails; fixes too small <span class="math inline">\(\chi^2\)</span>)</li>
+</ul></li>
+</ul></li>
+<li>The scaling factor will now be a part of all likelihood ratio tests
+<ul>
+<li>And will also be a part of all model fit statistics involving functions of the likelihood value (i.e., RMSEA)</li>
+</ul></li>
+</ul>
+</section>
+<section id="adjusted-standard-errors" class="slide level2">
+<h2>Adjusted Standard Errors</h2>
+<ul>
+<li>The standard errors for all parameter estimates will be different under MLR
+<ul>
+<li>Remember, these are used in Wald tests</li>
+</ul></li>
+<li>If the data show leptokurtosis (too-fat tails):
+<ul>
+<li>Increases information matrix</li>
+<li>Fixes too small SEs</li>
+</ul></li>
+<li>If the data show platykurtosis (too-thin tails):
+<ul>
+<li>Lowers values in information matrix</li>
+<li>Fixes too big SEs</li>
+</ul></li>
+</ul>
+</section>
+<section id="adding-scaling-factors-to-the-analysis" class="slide level2">
+<h2>Adding Scaling Factors to the Analysis</h2>
+<ul>
+<li>The MLR-estimated scaling factors are used to rescale the log-likelihoods under likelihood ratio test model comparisons
+<ul>
+<li>Extra calculations are needed</li>
+</ul></li>
+<li>The rescaled LRT is given by:</li>
+</ul>
+<p><span class="math display">\[ LR_{RS} = \frac{-2 \left( \log \left( L \right)_{restricted} - \log \left( L \right)_{full} \right)}{c_{LR}}\]</span></p>
+<ul>
+<li>The denominator is found by the scaling factors (<span class="math inline">\(c\)</span>) and number of parameters (<span class="math inline">\(q\)</span>) in each model:</li>
+</ul>
+<p><span class="math display">\[c_{LR} = \| \frac{\left(q_{restricted} \right) \left(c_{restricted} \right)-\left(q_{full} \right) \left(c_{full} \right)}{\left(q_{restricted} - q_{full} \right)} \| \]</span></p>
+</section>
+<section id="mlr-summary" class="slide level2">
+<h2>MLR: Summary</h2>
+<ul>
+<li>If you feel you have continuous data that are (tenuously) normally distributed, use MLR
+<ul>
+<li>Any time you use SEM/CFA/Path Analysis with Likert-type</li>
+<li>In general, Likert-type items with 5 or more categories are treated this way</li>
+<li>If data aren’t or cannot be considered normal we should still use different distributional assumptions</li>
+</ul></li>
+<li>If data truly are MVN, then MLR doesn’t adjust anything</li>
+<li>If data are not MVN (but are still continuous), then MLR adjusts the important inferential portions of the results</li>
+</ul>
+</section></section>
+<section>
+<section id="missing-data-in-maximum-likelihood" class="title-slide slide level1 center">
+<h1>Missing Data in Maximum Likelihood</h1>
+
+</section>
+<section id="types-of-missing-data" class="slide level2">
+<h2>Types of Missing Data</h2>
+<ul>
+<li>A very rough typology of missing data puts missing observations into three categories:</li>
+</ul>
+<ol type="1">
+<li>Missing Completely At Random (MCAR)</li>
+<li>Missing At Random (MAR)</li>
+<li>Missing Not At Random (MNAR)</li>
+</ol>
+</section>
+<section id="implications-of-mar" class="slide level2">
+<h2>Implications of MAR</h2>
+<ul>
+<li>If data are missing at random, biased results could occur</li>
+<li>Inferences based on <strong>listwise deletion</strong> will be biased
+<ul>
+<li>Fewer data points = more error in analysis</li>
+</ul></li>
+<li>Inferences based on <strong>maximum likelihood</strong> will be unbiased but inefficient
+<ul>
+<li>Larger standard errors than complete data will give</li>
+</ul></li>
+<li>Therefore, using MLEs makes it easy to incorporate missing data with a more lenient set of assumptions of missingness</li>
+</ul>
+</section>
+<section id="missing-data-with-maximum-likelihood" class="slide level2">
+<h2>Missing Data with Maximum Likelihood</h2>
+<ul>
+<li>Incorporating missing data in full information maximum likelihood is straightforward due to the calculation of the log-likelihood function
+<ul>
+<li>Each subject contributes a portion due to their observations</li>
+</ul></li>
+<li>If some data are missing, the log-likelihood function uses a reduced dimensional size of the MVN (or whichever) distribution
+<ul>
+<li>Capitalizing on the property of the MVN that subsets of variables from an MVN distribution are also MVN</li>
+</ul></li>
+<li>The total log-likelihood is then maximized
+<ul>
+<li>Missing data are skipped – they do not contribute to the joint likelihood</li>
+</ul></li>
+</ul>
+</section>
+<section id="additional-issues-with-missing-data-and-maximum-likelihood" class="slide level2">
+<h2>Additional Issues with Missing Data and Maximum Likelihood</h2>
+<ul>
+<li>The standard errors of the estimated parameters may be computed differently
+<ul>
+<li>Standard errors come from -1*inverse information matrix
+<ul>
+<li>Information matrix = matrix of second derivatives = hessian</li>
+</ul></li>
+</ul></li>
+<li>Several versions of this matrix exist
+<ul>
+<li>Some based on what is expected under the model
+<ul>
+<li>Good only for MCAR data</li>
+</ul></li>
+<li>Some based on what is observed from the data
+<ul>
+<li>Empirical – works for MAR data</li>
+</ul></li>
+</ul></li>
+<li>Implication: some SEs may be biased if data are MAR
+<ul>
+<li>May lead to incorrect hypothesis test results</li>
+<li>Correction needed for likelihood ratio/deviance test statistics</li>
+</ul></li>
+</ul>
+</section>
+<section id="when-ml-goes-bad" class="slide level2">
+<h2>When ML Goes Bad…</h2>
+<ul>
+<li>For linear models with missing <strong>dependent variable(s)</strong> maximum likelihood in lavaan, Mplus, mirt, and almost every other stat package works great
+<ul>
+<li>ML omits the missing DVs in the likelihood function, using only the data you have observed</li>
+</ul></li>
+<li>For linear models with missing <strong>independent variable(s)</strong>, almost every package uses list-wise deletion
+<ul>
+<li>Gives biased parameter estimates under MAR</li>
+</ul></li>
+<li>The key distinction is whether a variable is part of the likelihood function
+<ul>
+<li>For path models with exogenous variables, some programs incorporate them into the likelihood function (meaning MAR assumptions)</li>
+</ul></li>
+</ul>
+</section></section>
+<section>
+<section id="introduction-to-bayesian-statistics-and-markov-chain-monte-carlo-estimation" class="title-slide slide level1 center">
+<h1>Introduction to Bayesian Statistics and Markov Chain Monte Carlo Estimation</h1>
+
+</section>
+<section id="bayesian-statistics-the-basics" class="slide level2">
+<h2>Bayesian Statistics: The Basics</h2>
+<ul>
+<li>Bayesian statistical analysis refers to the use of models where some or all of the parameters are treated as <strong>random components</strong>
+<ul>
+<li>Each parameter comes from some type of distribution</li>
+</ul></li>
+<li>The likelihood function of the data is then augmented with an additional term that represents the likelihood of the <strong>prior distribution</strong> for each parameter
+<ul>
+<li>Think of this as saying each parameter has a certain likelihood – the height of the prior distribution</li>
+</ul></li>
+<li>The final estimates are then considered summaries of the <strong>posterior</strong> <strong>distribution</strong> of the parameter, conditional on the data
+<ul>
+<li>In practice, we use these estimates to make inferences</li>
+</ul></li>
+</ul>
+</section>
+<section id="bayesian-statistics-why-it-is-used" class="slide level2">
+<h2>Bayesian Statistics: Why It Is Used</h2>
+<ul>
+<li>Bayesian methods get used because the <em>relative</em> accessibility of one method of estimation (MCMC – to be discussed shortly)</li>
+<li>There are three main reasons why people use MCMC:</li>
+</ul>
+<ol type="1">
+<li>Missing data</li>
+</ol>
+<ul>
+<li>Multiple imputation: MCMC is used to estimate model parameters then “impute” data</li>
+<li>More complicated models for certain types of missing data</li>
+</ul>
+<ol start="2" type="1">
+<li>Lack of software capable of handling large sized analyses</li>
+</ol>
+<ul>
+<li>Have a zero-inflated negative binomial with 21 multivariate outcomes per 18 time points?</li>
+</ul>
+<ol start="3" type="1">
+<li>New models/generalizations of models not available in software</li>
+</ol>
+<ul>
+<li>Have a new model?</li>
+<li>Need a certain link function not in software?</li>
+</ul>
+</section>
+<section id="bayesian-statistics-perceptions-and-issues" class="slide level2">
+<h2>Bayesian Statistics: Perceptions and Issues</h2>
+<ul>
+<li>Historically, the use of Bayesian statistics has been controversial
+<ul>
+<li>The use of certain prior distributions can produce results that are biased or reflect subjective judgment rather than objective science</li>
+</ul></li>
+<li>Most MCMC estimation methods are <strong>computationally intensive</strong>
+<ul>
+<li>Until recently, very few methods available for those who aren’t into programming in Fortran or C++</li>
+</ul></li>
+<li>Understanding of what Bayesian methods are and how they work is limited outside the field of mathematical statistics
+<ul>
+<li>Especially the case in the social sciences</li>
+</ul></li>
+<li>Over the past 15 years, Bayesian methods have become widespread – making new models estimable and becoming standard in some social science fields (quantitative psychology and educational measurement)</li>
+</ul>
+</section>
+<section id="bayesian-vs.-maximum-likelihood" class="slide level2">
+<h2>Bayesian vs.&nbsp;Maximum Likelihood</h2>
+<p>At the core of both Bayesian and ML-based methods is the likelihood function</p>
+<ul>
+<li>In ML, the likelihood function is said to give the likelihood of the parameters given the data</li>
+<li>In Bayesian, the likelihood function is said to give the likelihood of the data given the parameters
+<ul>
+<li>This is sometimes called the “Bayesian flip”–these two terms are the same</li>
+</ul></li>
+<li>With the likelihoods being the same, Bayesian methods to derive the optimal parameter estimates (sometimes called Maximum A Posteriori) give the same properties as ML-based methods
+<ul>
+<li>Asymptotically consistent</li>
+<li>Asymptotically normal</li>
+<li>Asymptotically efficient</li>
+</ul></li>
+<li>But, most Bayesian implementations derive the shape of the posterior distribution using MCMC methods
+<ul>
+<li>So the optimal values are not used in favor of summaries of the posterior distribution</li>
+</ul></li>
+</ul>
+</section>
+<section id="mcmc-estimation" class="slide level2">
+<h2>MCMC Estimation</h2>
+<ul>
+<li>MCMC estimation works by taking samples from the posterior distribution of the data given the parameters (here, for a simple empty linear model):</li>
+</ul>
+<p><span class="math display">\[f\left(\beta_0, \sigma^2_e \mid \boldsymbol{y}_p \right) = \frac{f\left( \boldsymbol{y}_p  \mid \beta_0, \sigma^2_e \right) f \left(\beta_0 \right)f \left(\sigma^2_e  \right)}{f \left(\boldsymbol{y}_p \right)} \]</span></p>
+<ul>
+<li>After enough values are drawn, a rough shape of the distribution can be formed
+<ul>
+<li>From that shape we can take summaries and make them our parameters (i.e., mean)</li>
+</ul></li>
+</ul>
+</section>
+<section id="mcmc-estimation-1" class="slide level2">
+<h2>MCMC Estimation</h2>
+<ul>
+<li>How the sampling mechanism happens comes from several different algorithms that you will hear about, the most popular being:
+<ul>
+<li>Gibbs Sampling: used when <span class="math inline">\(f\left(\beta_0, \sigma^2_e \mid \boldsymbol{y}_p \right)\)</span> is known (e.g.&nbsp;conjugate priors)
+<ul>
+<li>Parameter values are drawn and kept throughout the chain</li>
+</ul></li>
+<li>Metropolis-Hastings (within Gibbs): used when <span class="math inline">\(f\left(\beta_0, \sigma^2_e \mid \boldsymbol{y}_p \right)\)</span> is unknown
+<ul>
+<li>Parameter values are proposed, then either kept or rejected</li>
+<li>Newer methods (i.e., Hamiltonian Monte Carlo) are more efficient (but are still versions of Metropolis-Hastings)</li>
+<li>TRIVIA NOTE: The Metropolis algorithm comes from Chemistry (in 1950)</li>
+</ul></li>
+</ul></li>
+</ul>
+</section>
+<section id="mcmc-estimation-with-metropolis-hastings" class="slide level2">
+<h2>MCMC Estimation with Metropolis-Hastings</h2>
+<ol type="1">
+<li>Each parameter (here <span class="math inline">\(\beta_0\)</span> and <span class="math inline">\(\sigma_e^2\)</span>) is given an initial value</li>
+<li>In order, a new value is proposed for each model parameter from some distribution:</li>
+</ol>
+<p><span class="math display">\[\beta_0^* \sim Q \left( \beta_0^* \mid \beta_0 \right); \sigma_e^{2^*} \sim Q \left( \sigma_e^{2^*}  \mid \sigma_e^{2}  \right)\]</span></p>
+<ol start="3" type="1">
+<li>The proposed value is then accepted as the current value with probability <span class="math inline">\(\max\left(r_{MH}, 1 \right)\)</span></li>
+</ol>
+<p><span class="math display">\[r_{MHG} = \frac{f\left( \boldsymbol{y}_p  \mid \beta_0^*, \sigma^{2^*}_e \right) f \left(\beta_0^* \right)f \left(\sigma^{2^*}_e  \right)Q \left( \beta_0 \mid \beta_0^* \right)Q \left( \sigma_e^{2}  \mid \sigma_e^{2^*}  \right)}{f\left( \boldsymbol{y}_p  \mid \beta_0, \sigma^2_e \right) f \left(\beta_0 \right)f \left(\sigma^2_e  \right)Q \left( \beta_0^* \mid \beta_0 \right)Q \left( \sigma_e^{2^*}  \mid \sigma_e^{2}  \right)} \]</span></p>
+<ol start="4" type="1">
+<li>The process continues for a pre-specified number of iterations (more is better)</li>
+</ol>
+</section>
+<section id="notes-about-metropolis-hastings" class="slide level2">
+<h2>Notes About Metropolis-Hastings</h2>
+<ul>
+<li>The constant in the denominator of the posterior distribution cancels with the ratio is formed:</li>
+</ul>
+<p><span class="math display">\[f\left(\beta_0, \sigma^2_e \mid \boldsymbol{y}_p \right) = \frac{f\left( \boldsymbol{y}_p  \mid \beta_0, \sigma^2_e \right) f \left(\beta_0 \right)f \left(\sigma^2_e  \right)}{f \left(\boldsymbol{y}_p \right)} \]</span></p>
+<ul>
+<li>The proposal distributions can literally be any statistical distribution
+<ul>
+<li>The trick is picking ones that are efficient</li>
+<li>Also, symmetric proposal distributions lead to having the <span class="math inline">\(Q\left(\cdot\right)\)</span> functions cancel</li>
+</ul></li>
+<li>Given a long enough chain, the final values of the chain will come from the posterior distribution
+<ul>
+<li>From that you can get your parameter estimates</li>
+</ul></li>
+</ul>
+</section>
+<section id="example-chain" class="slide level2">
+<h2>Example Chain</h2>
+
+<img data-src="chain.png" class="r-stretch"></section>
+<section id="practical-specifics-in-mcmc-estimation" class="slide level2">
+<h2>Practical Specifics in MCMC Estimation</h2>
+<ul>
+<li>A <strong>burn-in</strong> period is used where a chain is run for a set number of iterations before the sampled parameter values are used in the posterior distribution</li>
+<li>Because of the rejection/acceptance process, any two iterations are likely to have a high correlation (called <strong>autocorrelation</strong>) posterior chains use a <strong>thinning interval</strong> to take every Xth sample to reduce the autocorrelation
+<ul>
+<li>A high autocorrelation may indicate the standard error of the posterior distribution will be smaller than it should be</li>
+</ul></li>
+<li>The <strong>chain length</strong> (and sometimes number of chains) must also be long enough so the rejection/acceptance process can reasonably approximate the posterior distribution</li>
+<li>How does one what values to pick for these? Output diagnostics
+<ul>
+<li>Trial. And. Error.</li>
+</ul></li>
+</ul>
+</section>
+<section id="estimation-of-multidimensional-measurement-models" class="slide level2">
+<h2>Estimation of Multidimensional Measurement Models</h2>
+<p>With the basics of estimation methods covered, we now turn our focus to the estimation of multidimensional measurement models</p>
+<ul>
+<li>Complicating the estimation process is the need to use marginal maximum likelihood estimation</li>
+<li>The issue is sometimes called the Neyman and Scott problem after the paper by Neyman and Scott (1948)
+<ul>
+<li>As <span class="math inline">\(N \rightarrow \infty\)</span>, the number of parameters in models where each observation has latent variables also goes to infinity</li>
+<li>Therefore, ML estimates will not have asymptotic consistency
+<ul>
+<li>Asymptotic consistency is the property that the estimates converge to the true value as the sample size increases</li>
+</ul></li>
+</ul></li>
+</ul>
+<blockquote>
+<p>Neyman, J. &amp; Scott, E. L. (1948). Consistent estimation from partially consistent observations. <em>Econometrica</em>, <em>16</em>, 1-32.</p>
+</blockquote>
+</section>
+<section id="marginal-maximum-likelihood-estimation" class="slide level2">
+<h2>Marginal Maximum Likelihood Estimation</h2>
+<ul>
+<li>Marginal maximum likelihood estimation is used to estimate models where each observation has latent variables
+<ul>
+<li>This includes all multidimensional measurement models</li>
+<li>The likelihood function is formed by integrating out the latent variables</li>
+<li>The likelihood function is then maximized with respect to the parameters</li>
+</ul></li>
+<li>Some exceptions (based on a statistical property called detailed balance):
+<ul>
+<li>E-M Algorithms (which substitute estimates for the latent variables)</li>
+<li>Bayesian estimation using conditional likelihoods (which also substitute estimates for the latent variables)</li>
+</ul></li>
+</ul>
+</section>
+<section id="mml-estimation-of-cfa-models" class="slide level2">
+<h2>MML Estimation of CFA Models</h2>
+<p>Perhaps the most classic example of estimation via MML is that for CFA models.</p>
+<ul>
+<li>As we showed in the model fit class, the model-implied distribution of the observed variables does not contain the latent variables
+<ul>
+<li>This is a marginalized likelihood function</li>
+</ul></li>
+</ul>
+<p><span class="math display">\[\boldsymbol{Y}_p \sim N \left(\boldsymbol{\mu} , \boldsymbol{\Lambda}_{\boldsymbol{Q}} \boldsymbol{\Phi} \boldsymbol{\Lambda}_{\boldsymbol{Q}}^T + \boldsymbol{\Psi} \right)\]</span></p>
+<blockquote>
+<p>Joreskog, K. G. (1969). A general approach to confirmatory maximum likelihood factor analysis. <em>Psychometrika</em>, <em>34</em>, 183-202.</p>
+</blockquote>
+</section>
+<section id="cfa-full-information-likelihood-function" class="slide level2">
+<h2>CFA Full-Information Likelihood Function</h2>
+<p>More specifically, for a single observation, the likelihood of the parameters given the data is given by:</p>
+<p><span class="math display">\[L\left(\boldsymbol{\mu}, \boldsymbol{\Sigma} \right) = -\frac{NV}{2} \log \left( 2\pi \right) - \frac{N}{2} \log \left( \left| \boldsymbol{\Sigma} \right| \right) - \sum_{p=1}^N - \frac{\left( \boldsymbol{Y}_p^T - \boldsymbol{\mu }\right)^T \boldsymbol{\Sigma}^{-1}\left( \boldsymbol{Y}_p^T - \boldsymbol{\mu }\right)}{2} \]</span></p>
+<p>For the CFA model, this becomes:</p>
+<p><span class="math display">\[L\left(\boldsymbol{\mu}, \boldsymbol{\Lambda}_{\boldsymbol{Q}}, \boldsymbol{\Phi}, \boldsymbol{\Psi} \right) = -\frac{NV}{2} \log \left( 2\pi \right) - \frac{N}{2} \log \left( \left| \boldsymbol{\Lambda}_{\boldsymbol{Q}} \boldsymbol{\Phi} \boldsymbol{\Lambda}_{\boldsymbol{Q}}^T + \boldsymbol{\Psi} \right| \right) - \sum_{p=1}^N - \frac{\left( \boldsymbol{Y}_p^T - \boldsymbol{\mu }\right)^T \left(\boldsymbol{\Lambda}_{\boldsymbol{Q}} \boldsymbol{\Phi} \boldsymbol{\Lambda}_{\boldsymbol{Q}}^T + \boldsymbol{\Psi}  \right)^{-1}\left( \boldsymbol{Y}_p^T - \boldsymbol{\mu }\right)}{2} \]</span></p>
+<p>We must then build full sample likelihood by taking the sum of the log likelihoods for each observation</p>
+</section>
+<section id="cfa-limited-information-likelihood-function" class="slide level2">
+<h2>CFA Limited Information Likelihood Function</h2>
+<p>As shown in Kaplan (2009; Chapter 2), the CFA model likelihood function can be written as:</p>
+<p><span class="math display">\[L\left(\boldsymbol{\mu}, \boldsymbol{\Lambda}_{\boldsymbol{Q}}, \boldsymbol{\Phi}, \boldsymbol{\Psi} \right) = -\frac{N}{2} \left[ \log \left| \boldsymbol{\Lambda}_{\boldsymbol{Q}} \boldsymbol{\Phi} \boldsymbol{\Lambda}_{\boldsymbol{Q}}^T + \boldsymbol{\Psi} \right| + \text{tr}\left(S^{-1}\left( \boldsymbol{\Lambda}_{\boldsymbol{Q}} \boldsymbol{\Phi} \boldsymbol{\Lambda}_{\boldsymbol{Q}}^T + \boldsymbol{\Psi}\right) \right)\right] \]</span></p>
+<p>Often, this gets rephrased from a likelihood function to a loss function (which is minimized):</p>
+<p><span class="math display">\[F_{ML} = \log \left| \boldsymbol{\Lambda}_{\boldsymbol{Q}} \boldsymbol{\Phi} \boldsymbol{\Lambda}_{\boldsymbol{Q}}^T + \boldsymbol{\Psi} \right| + \text{tr} \left[S^{-1} \left( \boldsymbol{\Lambda}_{\boldsymbol{Q}} \boldsymbol{\Phi} \boldsymbol{\Lambda}_{\boldsymbol{Q}}^T + \boldsymbol{\Psi}\right) \right] - \log \left| S \right| - V\]</span></p>
+</section>
+<section id="limited-vs.-full-information" class="slide level2">
+<h2>Limited vs.&nbsp;Full Information</h2>
+<p>Under MVN data, the limited information likelihood function is equivalent to the full information likelihood function when there is no missing data</p>
+<ul>
+<li>But, if data are missing, the sample covariance matrix may be biased under listwise deletion</li>
+<li>So, the full information likelihood function can play a role</li>
+<li>The details, however, are provided by each program’s manual (each one works differently)</li>
+</ul>
+</section>
+<section id="marginal-maximum-likelihood-estimation-in-irt-models" class="slide level2">
+<h2>Marginal Maximum Likelihood Estimation in IRT Models</h2>
+<p>Estimation of IRT models with MML is more difficult than CFA</p>
+<ul>
+<li>The marginalized likelihood function contains integrals that cannot be solved analytically
+<ul>
+<li>So, numerical integration must be used</li>
+</ul></li>
+<li>For a single observation, this likelihood function is given by:</li>
+</ul>
+<p><span class="math display">\[ P \left( \boldsymbol{Y}_{pi} = \boldsymbol{y}_{pi} \right) = \int_{\boldsymbol{\theta}_p} P \left( \boldsymbol{Y}_{pi} = \boldsymbol{y}_{pi} \mid \boldsymbol{\theta}_p \right) P \left( \boldsymbol{\theta}_p \right) d \boldsymbol{\theta}_p \]</span></p>
+<ul>
+<li>The sample likelihood is then:</li>
+</ul>
+<p><span class="math display">\[ L\left( \boldsymbol{\theta}, \boldsymbol{\Lambda}_{\boldsymbol{Q}}, \boldsymbol{\Phi}, \boldsymbol{\Psi} \right) = \prod_{p=1}^N \int_{\boldsymbol{\theta}_p} P \left( \boldsymbol{Y}_{pi} = \boldsymbol{y}_{pi} \mid \boldsymbol{\theta}_p \right) P \left( \boldsymbol{\theta}_p \right) d \boldsymbol{\theta}_p \]</span></p>
+</section>
+<section id="numeric-integraion" class="slide level2">
+<h2>Numeric Integraion</h2>
+<p>Integrals are evaluated numerically (i.e., by computer) by an approximation, here using the midpoint quadrature rule:</p>
+<p><span class="math display">\[\int_A^B f(x)dx \approx \sum_{r=1}^R f(m_r) \left(\frac{b_r-a_r}{R} \right) \]</span></p>
+<p>Where:</p>
+<ul>
+<li><span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are the limits of integration</li>
+<li><span class="math inline">\(R\)</span> is the number of rectangles used to approximate the integral (quadrature points)</li>
+<li><span class="math inline">\(m_r\)</span> is the midpoint of the interval <span class="math inline">\(a_r\)</span> to <span class="math inline">\(b_r\)</span></li>
+<li><span class="math inline">\(\left[A, B \right]\)</span> is divided into <span class="math inline">\(R\)</span> intervals of equal length</li>
+</ul>
+<p>It can be shown that</p>
+<p><span class="math display">\[\lim_{r\rightarrow \infty} \sum_{r=1}^R f(m_r) \left(\frac{b_r-a_r}{R} \right) =\int_a^b f(x)dx  \]</span></p>
+</section>
+<section id="mml-via-numeric-integration" class="slide level2">
+<h2>MML via Numeric Integration</h2>
+<p>In IRT (or, when any observed variable is not normally distributued), we must use this marginalized likelihood for full information ML estimation</p>
+<ul>
+<li>Can use numeric integration with MML using Quasi-Newton methods</li>
+<li>But, for models with more than 2-3 dimensions, this is computationally intensive (and nearly impossible)</li>
+<li>So, some shortcuts have been implemented</li>
+<li>But first, we will discuss the E-M Algorithm</li>
+</ul>
+</section>
+<section id="mml-via-em-algorithm" class="slide level2">
+<h2>MML via EM Algorithm</h2>
+<p>First shown in IRT by Bock and Aitken (1981), the Expectation-Maximization algorithm was built to reduce the computational burden of MML estimation</p>
+<ul>
+<li><p>Still requires integration</p></li>
+<li><p>The E-M algorithm is an iterative algorithm that uses the observed data to estimate the latent variables</p></li>
+<li><p>The algorithm begins with an initial guess of the latent variables</p></li>
+<li><p>The algorithm then iterates between two steps until convergence is reached:</p>
+<ul>
+<li>E-Step: The expected value of the latent variables is estimated given the observed data and the current parameter estimates</li>
+<li>M-Step: The parameter estimates are updated given the expected values of the latent variables and the observed data</li>
+</ul></li>
+<li><p>The algorithm is guaranteed to converge to a local maximum of the likelihood function</p></li>
+</ul>
+<blockquote>
+<p>Bock, R. D., &amp; Aitken, M. (1981). Marginal maximum likelihood estimation of item parameters: Application of an EM Algorithm. <em>Psychometrika</em>, <em>46</em>, 443-459.</p>
+</blockquote>
+</section>
+<section id="more-em-details" class="slide level2">
+<h2>More EM Details</h2>
+<p>In the E-Step, the expected values of latent variables.</p>
+<ul>
+<li>Here, we need the posterior distribution of the latent variables conditional on the data (from Bayes’ Theorem):</li>
+</ul>
+<p><span class="math display">\[ f \left( \boldsymbol{\theta}_p \mid \boldsymbol{Y}_p \right) = \frac{f \left(\boldsymbol{Y}_p \mid \boldsymbol{\theta}_p \right)f\left( \boldsymbol{\theta}_p \right)}{f \left(\boldsymbol{\theta}_p \right)}\]</span></p>
+<ul>
+<li>The expectation is found via the algebra of expectations (which requires integration):</li>
+</ul>
+<p><span class="math display">\[E\left(\boldsymbol{\theta}_p \mid \boldsymbol{Y}_p)  \right) = \int_{\boldsymbol{\theta}_p} \boldsymbol{\theta}_p \left(\frac{f \left(\boldsymbol{Y}_p \mid \boldsymbol{\theta}_p \right)f\left( \boldsymbol{\theta}_p \right)}{f \left(\boldsymbol{\theta}_p \right)} \right) \partial\boldsymbol{\theta}_p\]</span></p>
+<ul>
+<li>The expectation is then used in the M-Step
+<ul>
+<li>The M-Step then uses Quasi-Newton methods to determine the most likely values of the item parameters</li>
+</ul></li>
+</ul>
+</section>
+<section id="shortcuts-to-integration-in-high-dimensional-models" class="slide level2">
+<h2>Shortcuts to Integration in High-Dimensional Models</h2>
+<p>The E-M algorithm is also computationally intensive for models with more than just a few latent variables, so some shortcuts have been developed:</p>
+<ul>
+<li>Integration by sampling (Monte Carlo Integration)</li>
+<li>Substitution of the E-step values by MCMC estimates (Metropolis-Hastings Robbins-Monro algorithm; hybrid EM)</li>
+</ul>
+</section>
+<section id="monte-carlo-integration" class="slide level2">
+<h2>Monte Carlo Integration</h2>
+<p>Monte Carlo integration is a method of numerical integration that uses random sampling to approximate the integral</p>
+<p><span class="math display">\[\int_\Omega f\left(\boldsymbol{x}\right)d\boldsymbol{x} \approx V \frac{1}{N} \sum_{i=1}^N f(\boldsymbol{x}) \]</span></p>
+<p>Where:</p>
+<ul>
+<li><span class="math inline">\(V\)</span> is the volume of the region <span class="math inline">\(\Omega\)</span></li>
+<li><span class="math inline">\(N\)</span> is the number of random samples</li>
+<li><span class="math inline">\(f(\boldsymbol{x})\)</span> is the function to be integrated</li>
+<li><span class="math inline">\(\boldsymbol{x}\)</span> is a random sample from the region <span class="math inline">\(\Omega\)</span></li>
+</ul>
+<p>Monte Carlo integration does not give exact results (and needs the same random number seed to be replicable) * Implications for model comparisons with likelihoods (i.e., likelihood ratio tests)</p>
+</section>
+<section id="metropolis-hastings-robbins-monro-algorithm" class="slide level2">
+<h2>Metropolis-Hastings Robbins-Monro Algorithm</h2>
+<p>The Metropolis-Hastings Robbins-Monro algorithm is a hybrid of the E-M algorithm and MCMC estimation</p>
+<ul>
+<li>The algorithm begins with an initial guess of the latent variables</li>
+<li>The algorithm then iterates between two steps until convergence is reached:
+<ul>
+<li>E-Step: The expected value of the latent variables is estimated given the observed data and the current parameter estimates is derived via Metropolis-Hastings (these are EAP values)</li>
+<li>M-Step: The parameter estimates are updated given the expected values of the latent variables and the observed data</li>
+</ul></li>
+<li>Like Monte Carlo integration, MHRM does not give exact results (and needs the same random number seed to be replicable)
+<ul>
+<li>Implications for model comparisons with likelihoods (i.e., likelihood ratio tests)</li>
+</ul></li>
+</ul>
+</section>
+<section id="limited-information-estimation" class="slide level2">
+<h2>Limited Information Estimation</h2>
+<p>In cases where observed variables are categorical (either binary or polytomous), limited information estimation can be used</p>
+<ul>
+<li>Broad idea:
+<ul>
+<li>Categorical data is derived from underlying continuous processes:</li>
+</ul></li>
+</ul>
+<p><span class="math display">\[Y_{pi} = 1 \text{ if } \tilde{Y}_{pi} &gt; \tau_i\]</span></p>
+</section>
+<section id="limted-information-estimation-basics" class="slide level2">
+<h2>Limted Information Estimation Basics</h2>
+<ul>
+<li>If we assume <span class="math inline">\(\tilde{Y}_{pi}\)</span> is normally distributed, then
+<ul>
+<li><span class="math inline">\(\tau_i\)</span> is the threshold parameter</li>
+<li><span class="math inline">\(\tilde{Y}_{pi}\)</span> is a continuous underlying (latent) variable</li>
+<li>We can use a probit link function to connect <span class="math inline">\(\tilde{Y}_{pi}\)</span> to the observed <span class="math inline">\(Y_{pi}\)</span></li>
+</ul></li>
+<li>What this means is we can then use CFA model-like assumptions to describe the distribution of <span class="math inline">\(\tilde{\boldsymbol{Y}}_p\)</span>
+<ul>
+<li>Uses the polychoric correlation (tetrachoric correlation for binary variables) of observed variables</li>
+<li>The model-implied correlation matrix can come from CFA-model assumptions (with some rescaling)</li>
+</ul></li>
+</ul>
+</section>
+<section id="tetrachoric-correlation" class="slide level2">
+<h2>Tetrachoric Correlation</h2>
+<ul>
+<li><p>The tetrachoric correlation is a measure of the association between two binary variables (say <span class="math inline">\(Y_1\)</span> and <span class="math inline">\(Y_2\)</span>).</p></li>
+<li><p>The correlation comes from mapping the binary variables <span class="math inline">\((Y_1 , Y_2)\)</span> onto two “underlying” continuous variables <span class="math inline">\((\tilde{Y}_1, \tilde{Y}_2)\)</span>.</p></li>
+<li><p>Each of the continuous variables is bisected by a threshold (<span class="math inline">\(\tau_1\)</span> and <span class="math inline">\(\tau_2\)</span>) which transforms the continuous response into a categorical outcome.</p></li>
+<li><p>The distribution of the <span class="math inline">\((\tilde{Y}_1,\tilde{Y}_2)\)</span> is <span class="math inline">\(N\left(\boldsymbol{\mu}= \mathbf{0}, \boldsymbol{\Xi}=\left[ \begin{array}{cc} 1 &amp; \rho\\ \rho &amp; 1 \end{array}\right]  \right)\)</span></p>
+<ul>
+<li><span class="math inline">\(\rho\)</span> is the tetrachoric correlation</li>
+</ul></li>
+<li><p>The polychoric correlation is a similar statistic when <span class="math inline">\(Y\)</span> has more than two categories</p></li>
+</ul>
+</section>
+<section id="mvn-to-categorical-data" class="slide level2">
+<h2>MVN to Categorical Data</h2>
+
+<img data-src="tetrachoricFull.png" class="r-stretch"></section>
+<section id="mvn-to-categorical-data-1" class="slide level2">
+<h2>MVN to Categorical Data</h2>
+<p>For the margins:</p>
+
+<img data-src="bivarContTable.png" class="r-stretch"><p><span class="math inline">\(P(Y_1=0) = P(\tilde{Y}_1&lt;\tau_1)=\)</span></p>
+<p><span class="math display">\[ \int_{-\infty}^{\tau_1} \int_{-\infty}^{\infty}
+\frac{1}{2\pi \sqrt{1-\rho^2}} \exp\left(\tilde{Y}_1^2 - 2 \rho
+\tilde{Y}_1 \tilde{Y}_2 + \tilde{Y}_2^2 \right)
+d\tilde{Y}_2 d\tilde{Y}_1\]</span></p>
+</section>
+<section id="mvn-to-categorical-data-2" class="slide level2">
+<h2>MVN to Categorical Data</h2>
+
+<img data-src="bivarContTable2.png" class="r-stretch"><p><span class="math inline">\(P(Y_1=0, Y_2=0) = P(\tilde{Y}_1&lt;\tau_1, \tilde{Y}_2&lt;\tau_2)=\)</span></p>
+<p><span class="math display">\[ \int_{-\infty}^{\tau_1} \int_{-\infty}^{\tau_2}
+\frac{1}{2\pi \sqrt{1-\rho^2}} \exp\left(\tilde{Y}_1^2 - 2 \rho
+\tilde{Y}_1 \tilde{Y}_2 + \tilde{Y}_2^2 \right)
+d\tilde{Y}_2 d\tilde{Y}_1\]</span></p>
+</section>
+<section id="model-implied-polychoric-correlation-matrix" class="slide level2">
+<h2>Model Implied Polychoric Correlation Matrix</h2>
+<p>In limited information, the model-implied correlation matrix is derived from the polychoric correlation matrix</p>
+<p><span class="math display">\[\boldsymbol{\rho} = f\left(\boldsymbol{\Lambda}_{\boldsymbol{Q}} \boldsymbol{\Phi} \boldsymbol{\Lambda}_{\boldsymbol{Q}}^T + \boldsymbol{\Psi} \right)\]</span></p>
+<ul>
+<li><span class="math inline">\(f\left( \cdot \right)\)</span> needed to ensure diagonal of model-implied matrix have all ones
+<ul>
+<li>Two common functions (Delta vs Theta)</li>
+</ul></li>
+<li>Two different model variants are available via the PARAMETERIZATION IS option on the ANALYSIS command
+<ul>
+<li>“Delta” (default): variance (Y*) = factor + error = 1 = “marginal parameterization”</li>
+<li>“Theta”: error variance = 1 instead = “conditional parameterization”
+<ul>
+<li>THIS MAPS ONTO IRT WITH FULL INFORMATION</li>
+</ul></li>
+</ul></li>
+</ul>
+</section>
+<section id="more-on-limited-information" class="slide level2">
+<h2>More on Limited Information</h2>
+<p>In lavaan and Mplus, this method goes by the name WLSMV (weighted least squares mean and variance adjustment)</p>
+<ul>
+<li>WLSMV: “Weighted Least Square parameter estimates use a diagonal weight matrix and a Mean- and Variance-adjusted χ2 test”
+<ul>
+<li>Called “diagonally-weighted least squares” by non-Mplus people</li>
+</ul></li>
+<li>Translation: WLSMV is a limited-information estimator that uses a different summary of responses instead a “linked” covariance matrix</li>
+<li>Fit can then be assessed in regular CFA ways, because what is trying to be reproduced is again a type of covariance matrix
+<ul>
+<li>Instead of the full item response pattern (as in ML)</li>
+<li>We can then get the typical measures of absolute fit as in CFA</li>
+</ul></li>
+</ul>
+</section>
+<section id="the-basics-of-limited-information" class="slide level2">
+<h2>The Basics of Limited Information</h2>
+<ul>
+<li>WLSMV first estimates correlation matrix for probit of item responses
+<ul>
+<li>The model then tries to find item parameters to predict this new correlation matrix</li>
+</ul></li>
+<li>The diagonal W “weight” part then tries to emphasize reproducing latent variable correlations that are relatively well-determined more than those that aren’t</li>
+<li>The full weight matrix is of order z*z, where z is number of elements to estimate</li>
+<li>The “diagonal” part means it only uses the preciseness of the estimates themselves, not the covariances among the “preciseness-es” (much easier, and not a whole lot of info lost)</li>
+<li>The “MV” corrects the <span class="math inline">\(\chi^2\)</span> test for bias arising from this weighting process</li>
+</ul>
+</section>
+<section id="more-about-limited-information" class="slide level2">
+<h2>More About Limited Information</h2>
+<ul>
+<li><p>Works much faster than ML when you have small samples or many factors to estimate (because no numeric integration is required)</p></li>
+<li><p>Does assume missing data are missing completely at random, whereas full information assumes only missing at random (conditionally random)</p></li>
+<li><p>Model coefficients will be on the probit scale instead of logit scale</p></li>
+<li><p>Model comparisons use rescaled <span class="math inline">\(\chi^2\)</span> values (instead of likelihood ratio tests)</p>
+<ul>
+<li>Mplus and lavaan have built-in functions to help</li>
+</ul></li>
+<li><p>Estimation of factor scores becomes an issue</p>
+<ul>
+<li>Most programs use full information methods with limited information parameter estimates</li>
+</ul></li>
+</ul>
+</section>
+<section id="bayesian-estimation" class="slide level2">
+<h2>Bayesian Estimation</h2>
+<p>Instead of MML, we can also use Bayesian estimation methods</p>
+<ul>
+<li>MCMC is most popular</li>
+<li>Proposal values for latent variables do not require integration
+<ul>
+<li>Therefore, number of calculations does not increase exponentially as number of latent variables increases</li>
+</ul></li>
+<li>But, MCMC is computationally intensive
+<ul>
+<li>Especially for models with many latent variables</li>
+</ul></li>
+<li>Despite all that, MCMC is my preferred method
+<ul>
+<li>Can almost always make a model converge</li>
+<li>Can use priors to help with model identification</li>
+<li>Full information estimation</li>
+</ul></li>
+</ul>
+<p>See my course on the topic <a href="https://jonathantemplin.com/bayesian-psychometric-modeling-fall-2022/">https://jonathantemplin.com/bayesian-psychometric-modeling-fall-2022/</a></p>
+</section>
+<section id="summary" class="slide level2">
+<h2>Summary</h2>
+<p>Today’s lecture was all about estimation</p>
+<ul>
+<li>When all observed variables are continuous and MVN assumptions are used–estimation is fairly quick</li>
+<li>When one or more observed variable is not continuous or assumed normally distributed, estimation becomes more difficult
+<ul>
+<li>MML estimation is used</li>
+<li>MML estimation requires integration</li>
+<li>Integration is computationally intensive</li>
+</ul></li>
+<li>Limited information estimation exists for categorical data
+<ul>
+<li>It is computationally less intensive</li>
+<li>It is not full information estimation</li>
+</ul></li>
+<li>Up next:
+<ul>
+<li>Implementing estimation across varying programs</li>
+</ul></li>
+</ul>
+<div class="footer footer-default">
+<p>Multidimensional Measurement Models (Fall 2023): Lecture 6</p>
+</div>
+</section></section>
+    </div>
+  </div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="06_Estimation_files/libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="06_Estimation_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="06_Estimation_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="06_Estimation_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="06_Estimation_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="06_Estimation_files/libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="06_Estimation_files/libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="06_Estimation_files/libs/revealjs/plugin/search/search.js"></script>
+  <script src="06_Estimation_files/libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="06_Estimation_files/libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': true,
+'previewLinksAuto': false,
+'smaller': false,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: false,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'none',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'none',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1050,
+
+        height: 700,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 0.1,
+
+        math: {
+          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    <script id="quarto-html-after-body" type="application/javascript">
+    window.document.addEventListener("DOMContentLoaded", function (event) {
+      const toggleBodyColorMode = (bsSheetEl) => {
+        const mode = bsSheetEl.getAttribute("data-mode");
+        const bodyEl = window.document.querySelector("body");
+        if (mode === "dark") {
+          bodyEl.classList.add("quarto-dark");
+          bodyEl.classList.remove("quarto-light");
+        } else {
+          bodyEl.classList.add("quarto-light");
+          bodyEl.classList.remove("quarto-dark");
+        }
+      }
+      const toggleBodyColorPrimary = () => {
+        const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+        if (bsSheetEl) {
+          toggleBodyColorMode(bsSheetEl);
+        }
+      }
+      toggleBodyColorPrimary();  
+      const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+      tabsets.forEach(function(tabset) {
+        const tabby = new Tabby('#' + tabset.id);
+      });
+      const isCodeAnnotation = (el) => {
+        for (const clz of el.classList) {
+          if (clz.startsWith('code-annotation-')) {                     
+            return true;
+          }
+        }
+        return false;
+      }
+      const clipboard = new window.ClipboardJS('.code-copy-button', {
+        text: function(trigger) {
+          const codeEl = trigger.previousElementSibling.cloneNode(true);
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+        }
+      });
+      clipboard.on('success', function(e) {
+        // button target
+        const button = e.trigger;
+        // don't keep focus
+        button.blur();
+        // flash "checked"
+        button.classList.add('code-copy-button-checked');
+        var currentTitle = button.getAttribute("title");
+        button.setAttribute("title", "Copied!");
+        let tooltip;
+        if (window.bootstrap) {
+          button.setAttribute("data-bs-toggle", "tooltip");
+          button.setAttribute("data-bs-placement", "left");
+          button.setAttribute("data-bs-title", "Copied!");
+          tooltip = new bootstrap.Tooltip(button, 
+            { trigger: "manual", 
+              customClass: "code-copy-button-tooltip",
+              offset: [0, -8]});
+          tooltip.show();    
+        }
+        setTimeout(function() {
+          if (tooltip) {
+            tooltip.hide();
+            button.removeAttribute("data-bs-title");
+            button.removeAttribute("data-bs-toggle");
+            button.removeAttribute("data-bs-placement");
+          }
+          button.setAttribute("title", currentTitle);
+          button.classList.remove('code-copy-button-checked');
+        }, 1000);
+        // clear code selection
+        e.clearSelection();
+      });
+      function tippyHover(el, contentFn) {
+        const config = {
+          allowHTML: true,
+          content: contentFn,
+          maxWidth: 500,
+          delay: 100,
+          arrow: false,
+          appendTo: function(el) {
+              return el.closest('section.slide') || el.parentElement;
+          },
+          interactive: true,
+          interactiveBorder: 10,
+          theme: 'light-border',
+          placement: 'bottom-start'
+        };
+          config['offset'] = [0,0];
+          config['maxWidth'] = 700;
+        window.tippy(el, config); 
+      }
+      const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+      for (var i=0; i<noterefs.length; i++) {
+        const ref = noterefs[i];
+        tippyHover(ref, function() {
+          // use id or data attribute instead here
+          let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+          try { href = new URL(href).hash; } catch {}
+          const id = href.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          return note.innerHTML;
+        });
+      }
+      const findCites = (el) => {
+        const parentEl = el.parentElement;
+        if (parentEl) {
+          const cites = parentEl.dataset.cites;
+          if (cites) {
+            return {
+              el,
+              cites: cites.split(' ')
+            };
+          } else {
+            return findCites(el.parentElement)
+          }
+        } else {
+          return undefined;
+        }
+      };
+      var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+      for (var i=0; i<bibliorefs.length; i++) {
+        const ref = bibliorefs[i];
+        const citeInfo = findCites(ref);
+        if (citeInfo) {
+          tippyHover(citeInfo.el, function() {
+            var popup = window.document.createElement('div');
+            citeInfo.cites.forEach(function(cite) {
+              var citeDiv = window.document.createElement('div');
+              citeDiv.classList.add('hanging-indent');
+              citeDiv.classList.add('csl-entry');
+              var biblioDiv = window.document.getElementById('ref-' + cite);
+              if (biblioDiv) {
+                citeDiv.innerHTML = biblioDiv.innerHTML;
+              }
+              popup.appendChild(citeDiv);
+            });
+            return popup.innerHTML;
+          });
+        }
+      }
+    });
+    </script>
+    
+
+</body></html>
