@@ -105,7 +105,7 @@ This repo contains course materials for the Multidimensional Measurement Models 
 * Formative Assessment 5 Assigned (Due 10/03/2023)--on [ICON](https://icon.uiowa.edu)
 * Links to Lecture Materials:
   * Lecture Slides: [https://jonathantemplin.github.io/MultidimensionalMeasurementModels2023/materials/Week06/06_Estimation.html#/title-slide](https://jonathantemplin.github.io/MultidimensionalMeasurementModels2023/materials/Week06/06_Estimation.html#/title-slide)
-  * Lecture Handout (Same content as slides, but in docx format): [https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/raw/main/materials/Week06/06_Estimation.docx](https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/raw/main/materials/Week06/06_Estimation.docx)
+  * Lecture Handout (Same content as slides, but in docx format): [https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/raw/main/materials/Week06/06_Estimation_Handout.docx](https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/raw/main/materials/Week06/06_Estimation_Handout.docx)
   * Lecture Videos (uploaded after class)
   * Coding Activity: None
 * Homework 3 Due 10/11/2023 via [ICON](https://icon.uiowa.edu)
