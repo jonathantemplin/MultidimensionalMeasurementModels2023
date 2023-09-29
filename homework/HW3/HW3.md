@@ -13,7 +13,8 @@ The objective of this homework is to give you hands-on practice on some of the t
    1. Takes as input the tetrachoric correlation parameter (a single parameter) and a pair of observed binary variables
    2. Returns the log-likelihood value
 
-> HINT/CONSTRAINT: You may not use any built-in functions in R that compute tetrachoric correlations nor may you use any other packages where tetrachoric correlations are estimated. Moreover, do not use any packages but one:  The one package you may use is the `pmvnorm()` function that computes integrals across a multivariate normal distribution from the `mvtnorm` package.
+> HINT/CONSTRAINT #1: You may not use any built-in functions in R that compute tetrachoric correlations nor may you use any other packages where tetrachoric correlations are estimated. Moreover, do not use any packages but one: The one package you may use is the `pmvnorm()` function that computes integrals across a multivariate normal distribution from the `mvtnorm` package.
+> HINT #2: To determine the limits of integration for each variable and each quadrant of the bivariate normal that underlies the discrete responses (given by the threshold parameters $\tau$ from lecture), determine these by taking the inverse normal CDF of the marginal probability of a one for each item. Use the `qnorm()` function to do this.
 
 3. Using the result from (2), create a second function that uses the `optim()` function with default options to find the MLE for a tetrachoric correlation
 
