@@ -121,8 +121,10 @@ This repo contains course materials for the Multidimensional Measurement Models 
 
 ### Week 8: October 11, 2023: Bayesian Estimation Methods (MCMC)
 
-* Read Prior to Class: Reckase (2009), Chapter 4 (not for Bayesian, but for MIRT for future weeks)
-
+* Watch prior to class (in case you are not familiar with Stan):
+  * [https://youtu.be/kMH4ifVjyLQ](https://youtu.be/kMH4ifVjyLQ)
+  * [https://youtu.be/YKyPRNLbupI](https://youtu.be/YKyPRNLbupI)
+  * [https://youtu.be/pDupeE6W5eI](https://youtu.be/pDupeE6W5eI)
 
 
 
