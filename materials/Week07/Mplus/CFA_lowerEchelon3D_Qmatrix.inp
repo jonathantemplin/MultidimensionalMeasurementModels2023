@@ -1,0 +1,36 @@
+TITLE: CFA with three dimensional exploratory (lower echelon) Q-matrix
+
+DATA: 
+    FILE = cfaData.dat;
+
+VARIABLE:
+    NAMES = y1-y10;
+
+ANALYSIS:
+    TYPE = GENERAL;
+    ESTIMATOR = MLR;
+
+OUTPUT:
+    STDYX;
+    RESIDUAL;
+
+MODEL:
+
+    ! measurement model specification:
+    theta1 by y1* y2-y10; ! * override mplus' default of first item being marker for variance
+    theta2 by y2* y3-y10; 
+    theta3 by y3* y4-y10;
+
+    ! structural model specification:
+    [theta1@0]; ! fix the mean of theta1 to zero
+    [theta2@0]; ! fix the mean of theta2 to zero
+    [theta3@0]; ! fix the mean of theta3 to zero
+
+    theta1@1; !fix variance of theta1 
+    theta2@1; !fix variance of theta2 
+    theta3@1; !fix variance of theta3
+
+    theta1 with theta2 @0; !fix covariance of theta1 and theta2 to zero
+    theta1 with theta3 @0; !fix covariance of theta1 and theta3 to zero
+    theta2 with theta3 @0; !fix covariance of theta2 and theta3 to zero
+

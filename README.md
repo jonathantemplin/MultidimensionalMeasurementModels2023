@@ -111,6 +111,22 @@ This repo contains course materials for the Multidimensional Measurement Models 
 * Homework 3 Due 10/11/2023 via [ICON](https://icon.uiowa.edu)
   * Assignment text also available here: [https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/raw/main/homework/HW3/HW3.docx](https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/raw/main/homework/HW3/HW3.docx)
 
+### Week 7: October 4, 2023: Full and Limited Estimation Methods (Monte Carlo, EM, MHRM, QN)
+
+* Read Prior to Class: Nothing
+* Formative Assessment 6 Assigned (Due 10/10/2023)--on [ICON](https://icon.uiowa.edu)
+* Links to Lecture Matrials:
+  * Lecture Notes:
+  * Lecture Files on Github:
+* Coding Activity: Work on Homework #3
+
+### Week 8: October 11, 2023: Bayesian Estimation Methods (MCMC)
+
+* Read Prior to Class: Reckase (2009), Chapter 4 (not for Bayesian, but for MIRT for future weeks)
+
+
+
+
 ## Tentative Remaining Course Schedule
 
 Please see the main website for the most up-to-date schedule, required readings, and assignment information.
@@ -118,13 +134,13 @@ Please see the main website for the most up-to-date schedule, required readings,
 | Date | Topic | 
 | ---- | ----- |  
 | 10/04/2023 | Estimation of MIRT Models via MML (QN, EM, MHRM, Monte Carlo), Limited Information, and Bayesian Methods |
+| 10/11/2023 | Estimation of MIRT Models via Bayesian MCMC
 | **Section 3** | **Multidimensionality is Bad** |
-| 10/11/2023 | Exploratory Models; Consequences of Multidimensionality; Unwanted Dimensionality; Multidimensionality by Design (rater effects, testlets) |
-| 10/18/2023 | Exploratory mixture models/Categorical Latent Variables (What is Dimensionality?) |
+| 10/18/2023 | Exploratory Models; Consequences of Multidimensionality; Unwanted Dimensionality; Multidimensionality by Design (rater effects, testlets) |
+| 10/25/2023 | Exploratory mixture models/Categorical Latent Variables (What is Dimensionality?) |
 | **Section 4** | **Multidimensionality is Good** |
-| 10/25/2023 | Confirmatory Models; Latent Variable Interactions |
-| 11/01/2023 | Diagnostic Classification Models/Bayesian Networks |
-| 11/08/2023 | Models with Specific Purposes (Higher order, bifactor, method factors, extreme response models, scoring approaches) |
+| 11/01/2023 | Confirmatory Models; Latent Variable Interactions; Models with Specific Purposes (Higher order, bifactor, method factors, extreme response models, scoring approaches) |
+| 11/08/2023 | Diagnostic Classification Models/Bayesian Networks |
 | 11/15/2023 | Explanatory (Crossed Random Effect) models/G-Theory |
 | 11/22/2023 | No Class (Thanksgiving Break) |
 | 11/29/2023 | Multilevel Measurement Models |

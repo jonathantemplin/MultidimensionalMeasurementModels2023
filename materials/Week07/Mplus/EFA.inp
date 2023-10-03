@@ -1,0 +1,13 @@
+TITLE: EFA on continuous data
+
+DATA: 
+    FILE = cfaData.dat;
+
+VARIABLE:
+    NAMES = y1-y10;
+
+ANALYSIS:
+    TYPE = efa 1 5;
+    ESTIMATOR = MLR;
+    ROTATION = GEOMIN;
+

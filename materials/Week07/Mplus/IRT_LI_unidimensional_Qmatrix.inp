@@ -1,0 +1,28 @@
+TITLE: IRT with unidimensional Q-matrix
+
+DATA: 
+    FILE = irtData.dat;
+
+VARIABLE:
+    NAMES = y1-y10;
+    CATEGORICAL = y1-y10;
+
+ANALYSIS:
+    TYPE = GENERAL;
+    ESTIMATOR = WLSMV;
+    STARTS = 100;
+    DIFFTEST = difftest_IRT_LI_correctQ.dat;
+
+OUTPUT:
+    STDYX;
+    RESIDUAL;
+    TECH10;
+    
+MODEL:
+
+    ! measurement model specification:
+    theta1 by y1* y2-y10; ! * override mplus' default of first item being marker for variance
+
+    ! structural model specification:
+    [theta1@0]; ! fix the mean of theta1 to zero
+    theta1@1; !fix variance of theta1 
