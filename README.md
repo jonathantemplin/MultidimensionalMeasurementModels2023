@@ -116,7 +116,7 @@ This repo contains course materials for the Multidimensional Measurement Models 
 * Read Prior to Class: Nothing
 * Formative Assessment 6 Assigned (Due 10/10/2023)--on [ICON](https://icon.uiowa.edu)
 * Links to Lecture Materials: [https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/tree/main/materials/Week07](https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/tree/main/materials/Week07)
-  * Lecture Video: Posted after class
+  * Lecture Video: [https://youtu.be/lCEt5LR3XPM](https://youtu.be/lCEt5LR3XPM)
 * Coding Activity: Work on Homework #3
 
 ### Week 8: October 11, 2023: Bayesian Estimation Methods (MCMC)
