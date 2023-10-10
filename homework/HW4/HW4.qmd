@@ -1,0 +1,58 @@
+---
+title: "Homework #4 (Due October 24, 2023 by 11:59pm)"
+author: "Multidimensional Measurement Models (Fall 2023)" 
+format: docx
+---
+
+We will now estimate multidimensional models to using mathematics standards in our personal class data sets. The goal of this homework is to give you practice in estimating models and attempting to determine the number of dimensions in the data.
+
+All analyses will be conducted using your personal class data set. The location of that data set is on the campus LSS drive, which can be accessed via the following instructions:
+
+* The copy command is "cp"
+* The name of the data file is [Grade]_[Quarter].RData with underscores between the words of grade. For instance, 2nd Grade in Q1 translates into "2nd_Grade_Q1.RData" (you can find your grade and quarter in the class data list on ICON)
+* The location of the data file is /Shared/lss_jtemplin/MMM2023/studentData
+* The data file contains a list object named "temp"
+* temp$responseMatrix contains the raw data file (item responses coded correct/incorrect)
+* temp$Qmatrix contains the item alignment
+
+Additionally, you may need to refer to the coding system for standards to ensure you are estimating the correct models. See this website: [https://commoncore.tcoe.org/Content/Public/doc/tcoe_understanding_standards_codes.pdf](https://commoncore.tcoe.org/Content/Public/doc/tcoe_understanding_standards_codes.pdf)
+
+## Estimation Instructions for Model-Based Analyses
+
+* For model-based analyses, use the ```mirt``` package in R with the MHRM algorithm for each model with default settings
+  * If you do not achieve convergence for any model, change the model technical specifics following mirt help files (and report your changes)
+* Use the ```M2()``` function to obtain model fit information and add the ```residmat = TRUE``` option to obtain the residual correlation matrix
+* Use the ```anova()``` function to conduct likelihood ratio tests and comparisons using information criteria
+
+## Submission Instructions
+
+* Submit your homework via ICON by including:
+
+1. A single R script file that contains all of your code (not an R Markdown or Quarto file as I need to be able to run your code)
+2. A single DOCX (MS Word or equivalent) file that contains the information requested in the code below (Note: you can use R Markdown or Quarto to create the Word document, but only submit the DOCX file)
+
+## Unidimensional Analysis of Mathematics Standards
+
+1. Estimate a multidimensional 2PL model where each of the mathematics standards is a latent variable (refer to the document linked above to determine which standards are for mathematics) (1 point each model). Report the following information:
+
+* The item parameters in slope/intercept parameterization for each item along with their standard errors
+* All M2-based model fit information (i.e, test statistic, p-value, RMSEA (and 5/95th percentiles), SRMSR, TLI, and CFI)
+* A residual correlation matrix
+
+2. Using lower-echelon Q-matrices, estimate five models: 1 dimension, 2 dimensions, 3 dimensions, 4 dimensions, 5 dimensions. For each model, report the following information:
+
+* The item parameters in slope/intercept parameterization for each item along with their standard errors
+* A residual correlation matrix
+
+3. Conduct a likelihood ratio test comparing the all six models from questions (1) and (2). Which model is preferred by the likelihood ratio test?
+
+4. Using AIC and BIC (separately), compare all six models from questions (1) and (2). Which model is preferred by AIC? Which model is preferred by BIC?
+
+5. Using the ```cor()``` function, calculate the person correlation matrix of all math items. Then, using the Pearson correlation matrix, use the ```eigen()``` function to conduct a principal components analysis. Report the eigenvalues of a principal components analysis in order of largest to smallest. Also, report the percent of variance accounted for by each eigenvalue.
+
+6. Using the ```tetrachoric()``` function of the ```psych``` package, calculate the person correlation matrix of all math items. Then, using the tetrachoric correlation matrix, use the ```eigen()``` function to conduct a principal components analysis. Report the eigenvalues of a principal components analysis in order of largest to smallest. Also, report the percent of variance accounted for by each eigenvalue.
+
+7. Based on all analyses conducted in the homework, create an argument as how many dimensions may be present in your data based on which model seems to fit the best to your data. If there are any conflicting reports, be sure to explain how those fit into your arguement.
+
+Extra Credit: 10% extra credit given if you use Argon for this assignment. To receive extra credit, compress into a zipped folder all Argon job error files (ending in ```*.e*```), Argon job output files (ending in ```*.o*```), and the Argon job submission script (ending in ```*.job```) and submit the zipped folder via ICON. Note: Please use either the zip or tarball format for compression (no *.rar formatting).
+

@@ -1,0 +1,210 @@
+---
+title: "Bayesian Estimation of Multidimensional Latent Variable Models"
+author: "Lecture 8" 
+format: html
+---
+
+
+```{r, include=FALSE}
+
+nItems = 10
+nExaminees = 1000
+nFactors = 2
+
+Qmatrix = matrix(data = 0, nrow = nItems, ncol = 2)
+colnames(Qmatrix) = paste0("theta", 1:nFactors)
+rownames(Qmatrix) = paste0("item", 1:nItems)
+
+Qmatrix[1:5,1] = 1
+Qmatrix[6:10,2] = 1
+
+Qmatrix 
+
+# generate item intercepts
+mu = rnorm(n = nItems, mean = 0, sd = 1)
+
+# generate item slopes
+lambda = rlnorm(n = nItems, mean = 0, sd = 1)
+
+# generate item residual variances (for CFA)
+psi2 = rlnorm(n = nItems, mean = 0, sd = 1) 
+
+# generate thetas
+thetaCorr = diag(nFactors)
+thetaCorr[1,2] = thetaCorr[2,1] = .75
+
+thetaCorrU = chol(thetaCorr)
+t(thetaCorrU) %*% thetaCorrU
+
+# uncorrelated univariate normal
+thetaZ = matrix(data = 0, nrow = nExaminees, ncol = nFactors)
+for (factor in 1:nFactors){
+    thetaZ[,factor] = rnorm(n = nExaminees, mean=0, sd = 1)
+}
+cor(thetaZ)
+
+theta = thetaZ %*% thetaCorrU
+cor(theta)
+
+# generate data 
+dataMatBinary = as.data.frame(matrix(data = NA, nrow = nExaminees, ncol = nItems))
+dataMatContinuous = as.data.frame(matrix(data = NA, nrow = nExaminees, ncol = nItems))
+names(dataMatBinary) = paste0("item", 1:nItems)
+names(dataMatContinuous) = paste0("item", 1:nItems)
+for (item in 1:nItems){
+    logit = mu[item] + Qmatrix[item,1] * lambda[item] * theta[,1] + Qmatrix[item,2] * lambda[item] * theta[,2]
+    prob = exp(logit) / (1 + exp(logit))
+    dataMatBinary[,item] = rbinom(n = nExaminees, size = 1, prob = prob)
+    dataMatContinuous[,item] = rnorm(n = nExaminees, mean = logit, sd = sqrt(psi2[item]))
+}
+
+```
+
+
+## Today's Lecture Objectives
+
+1. Show how to estimate multidimensional latent variable models using MCMC (Stan)
+2. Describe why Stan needs to use the Cholesky decomposition for covariance matrices of latent variables
+
+## Example Data: Simulated Two Dimensions
+
+Today we will be using the simulated data we started class with and used in Lecture 7
+
+* 10 items
+* 1000 examinees
+* 2 dimensions
+* Both continuous(for CFA) and categorical data (for IRT)
+* Q-matrix:
+
+```{r}  
+
+Qmatrix
+
+```
+
+
+
+## Our Example: Multivariate Normal Distribution
+
+For our example, we will assume the set of traits follows a multivariate normal distribution
+
+$$
+f\left(\boldsymbol{\theta}_p \right) = \left(2 \pi \right)^{-\frac{D}{2}} \det\left(\boldsymbol{\Sigma}_\theta \right)^{-\frac{1}{2}}\exp\left[-\frac{1}{2}\left(\boldsymbol{\theta}_p - \boldsymbol{\mu}_\theta \right)^T\boldsymbol{\Sigma}_\theta^{-1}\left(\boldsymbol{\theta}_p - \boldsymbol{\mu}_\theta \right) \right]
+$$
+Where:
+
+* $\pi \approx 3.14$
+* $D$ is the number of latent variables (dimensions)
+* $\boldsymbol{\Sigma}_\theta$ is the covariance matrix of the latent variables
+  * $\boldsymbol{\Sigma}_\theta^{-1}$ is the inverse of the covariance matrix
+* $\boldsymbol{\mu}_\theta$ is the mean vector of the latent variables
+* $\det\left( \cdot\right)$ is the matrix determinant function
+* $\left(\cdot \right)^T$ is the matrix transpose operator
+
+Alternatively, we would specify $\boldsymbol{\theta}_p \sim N_D\left( \boldsymbol{\mu}_\theta, \boldsymbol{\Sigma}_\theta \right)$; but, we cannot always estimate $\boldsymbol{\mu}_\theta$ and $\boldsymbol{\Sigma}_\theta$
+
+## Observed Item Model
+
+For the IRT analyses, we will use a two parameter logistic item response model where:
+
+$$ P\left(Y_{pi} = 1 \mid \theta \right) = \frac{\exp(\mu_{i}+ \sum_{d=1}^D q_{id}\lambda_{id}\theta_{pd})}{1+\exp(\mu_{i}+ \sum_{d=1}^D q_{id}\lambda_{id}\theta_{pd})}$$
+
+For the CFA analyses, we will use a CFA model where:
+
+$$ Y_{pi} = \mu_{i}+ \sum_{d=1}^D q_{id}\lambda_{id}\theta_{pd} + \epsilon_{pi}$$
+
+Where:
+
+* $Y_{pi}$ is the response of person $p$ to item $i$
+* $\theta_{pd}$ is the score of person $p$ on dimension $d$
+* $\mu_{i}$ is the intercept of item $i$
+* $\lambda_{id}$ is the factor loading of item $i$ on dimension $d$
+* $q_{id}$ is the Q-matrix value for item $i$ on dimension $d$
+* $\epsilon_{pi}$ is the residual error of person $p$ on item $i$
+* $D$ is the number of dimensions
+* $I$ is the number of items
+ 
+
+## Stan versus JAGS
+
+Bayesian analyses can be implemented in many different software packages
+
+* I focus today on Stan (but I will leave JAGS code in the folder)
+* Stan:
+  * Hamiltonian Monte Carlo (a more efficient type of Metropolis algorithm)
+  * Can directly model continuous parameters only (no discrete parameters--DCMs/mixture models are harder)
+  * Has two R interfaces 
+    * rstan -- older and not developed as much, if at all, any longer
+    * cmdstanr
+  * Compiles the model to C++ code (so it is fast)
+  * Has built-in LKJ prior for correlation matrices
+* JAGS
+  * Uses a number of different sampling methods (Gibbs and Metropolis-Hastings based)
+  * Slower than Stan (standalone executable)
+  * Can model continuous and discrete parameters
+  * Difficult to estimate models with standardized factors and correlations
+
+
+## LKJ Priors for Correlation Matrices
+
+From [Stan's Functions Reference](https://mc-stan.org/docs/functions-reference/lkj-correlation.html), for a correlation matrix $\textbf{R}_\theta$
+
+Correlation Matrix Properties:
+
+* Positive definite (determinant greater than zero; $\det\left(R_\theta \right) >0$
+* Symmetric
+* Diagonal values are all one
+    
+LKJ Prior, with hyperparameter $\eta$, is proportional to the determinant of the correlation matrix
+
+$$\text{LKJ}\left(\textbf{R}_\theta \mid \eta \right) \propto \det\left(\textbf{R}_\theta \right)^{(\eta-1)} $$
+Where:
+
+* Density is uniform over correlation matrices with $\eta=1$
+* With $\eta>1$, identity matrix is modal (moves correlations toward zero)
+* With $0<\eta<1$, density has a trough at the identity (moves correlations away from zero)
+
+For this example, we set $\eta=1$, noting a uniform prior over all correlation matrices
+
+## Cholesky Decomposition
+
+The functions we are using do not use the correlation matrix directly
+
+#### The problem: 
+
+* The issue: We need the inverse and determinant to calculate the density of a multivariate normal distribution
+  * Inverses and determinants are numerically unstable (computationally) in general form
+  
+#### The solution:
+
+* Convert $R_\theta$ to a triangular form using the Cholesky decomposition
+
+$$\textbf{R}_\theta = \textbf{L}_\theta \textbf{L}_\theta^T$$
+
+## Cholesky Decomposition Math 
+
+* $\det\left(\textbf{R}_\theta \right) = \det\left(\textbf{L}_\theta \textbf{L}_\theta^T\right) = \det\left(\textbf{L}_\theta\right) \det\left(\textbf{L}_\theta^T\right) = 
+ \det\left(\textbf{L}_\theta\right)^2 = \left(\prod_{d=1}^D l_{d,d}\right)^2$ (note: product becomes sum for log-likelihood)
+* For the inverse, we work with the term in the exponent of the MVN pdf: 
+
+$$-\frac{1}{2}\left(\boldsymbol{\theta}_p - \boldsymbol{\mu}_\theta \right)^T\textbf{R}_\theta^{-1}\left(\boldsymbol{\theta}_p - \boldsymbol{\mu}_\theta \right) = 
+-\frac{1}{2}\left(\boldsymbol{\theta}_p - \boldsymbol{\mu}_\theta \right)^T\left(\textbf{L}_\theta \textbf{L}_\theta^T\right)^{-1}\left(\boldsymbol{\theta}_p - \boldsymbol{\mu}_\theta \right) $$
+
+$$ -\frac{1}{2}\left(\boldsymbol{\theta}_p - \boldsymbol{\mu}_\theta \right)^T\textbf{L}_\theta^{-T} \textbf{L}_\theta^{-1}\left(\boldsymbol{\theta}_p - \boldsymbol{\mu}_\theta \right)$$
+Then, we solve by back substitution: $\left(\boldsymbol{\theta}_p - \boldsymbol{\mu}_\theta \right)^T\textbf{L}_\theta^{-T}$
+
+* We can then multiply this result by itself to form the term in the exponent (times $-\frac{1}{2}$)
+* Back substitution involves far fewer steps, minimizing the amount of rounding error in the process of forming the inverse
+
+Most algorithms using MVN distributions use some variant of this process (perhaps with a different factorization method such as QR)
+
+## Estimation Notes and Links
+
+I teach a Bayesian Psychometric Models course on occasion:
+
+* JAGS Version: [https://jonathantemplin.com/bayesian-psychometric-modeling-spring-2019/](https://jonathantemplin.com/bayesian-psychometric-modeling-spring-2019/)
+* Stan Version: [https://jonathantemplin.com/bayesian-psychometric-modeling-fall-2022/](https://jonathantemplin.com/bayesian-psychometric-modeling-fall-2022/)
+
+Much more detail in both courses about how Bayesian estimation works
+
+

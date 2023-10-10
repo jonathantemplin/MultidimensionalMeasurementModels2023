@@ -125,7 +125,10 @@ This repo contains course materials for the Multidimensional Measurement Models 
   * [https://youtu.be/kMH4ifVjyLQ](https://youtu.be/kMH4ifVjyLQ)
   * [https://youtu.be/YKyPRNLbupI](https://youtu.be/YKyPRNLbupI)
   * [https://youtu.be/pDupeE6W5eI](https://youtu.be/pDupeE6W5eI)
-
+* Formative Assessment 7 Assigned (Due 10/17/2023)--on [ICON](https://icon.uiowa.edu)
+* Links to Lecture Materials: 
+  * Lecture Video: Available after class
+* Coding Activity: None
 
 
 ## Tentative Remaining Course Schedule
@@ -134,8 +137,6 @@ Please see the main website for the most up-to-date schedule, required readings,
 
 | Date | Topic | 
 | ---- | ----- |  
-| 10/04/2023 | Estimation of MIRT Models via MML (QN, EM, MHRM, Monte Carlo), Limited Information, and Bayesian Methods |
-| 10/11/2023 | Estimation of MIRT Models via Bayesian MCMC
 | **Section 3** | **Multidimensionality is Bad** |
 | 10/18/2023 | Exploratory Models; Consequences of Multidimensionality; Unwanted Dimensionality; Multidimensionality by Design (rater effects, testlets) |
 | 10/25/2023 | Exploratory mixture models/Categorical Latent Variables (What is Dimensionality?) |
