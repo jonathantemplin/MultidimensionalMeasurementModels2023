@@ -130,6 +130,13 @@ This repo contains course materials for the Multidimensional Measurement Models 
   * Lecture Video: Available after class
 * Coding Activity: None
 
+### Week 9: October 18, 2023: When Multidimensionality is Considered A Bad Thing
+
+* Read prior to class:
+  * Reckase (2009), Chapters 3 and 4
+
+
+
 
 ## Tentative Remaining Course Schedule
 
