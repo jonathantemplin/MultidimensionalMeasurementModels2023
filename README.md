@@ -126,7 +126,7 @@ This repo contains course materials for the Multidimensional Measurement Models 
   * [https://youtu.be/YKyPRNLbupI](https://youtu.be/YKyPRNLbupI)
   * [https://youtu.be/pDupeE6W5eI](https://youtu.be/pDupeE6W5eI)
 * Formative Assessment 7 Assigned (Due 10/17/2023)--on [ICON](https://icon.uiowa.edu)
-* Links to Lecture Materials: 
+* Links to Lecture Materials: [https://jonathantemplin.github.io/MultidimensionalMeasurementModels2023/materials/Week08/08_Bayesian_Estimation.html](https://jonathantemplin.github.io/MultidimensionalMeasurementModels2023/materials/Week08/08_Bayesian_Estimation.html)
   * Lecture Video: Available after class
 * Coding Activity: None
 
