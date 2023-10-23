@@ -1,0 +1,766 @@
+---
+title: "Unwanted Multdimensionality"
+author: "Multidimensional Measurement Models (Fall 2023): Lecture 9" 
+---
+
+
+## Today's Lecture
+
+* Types of MIRT Models
+  * Compensatory
+  * Partially Compensatory
+* Descriptions of MIRT Models
+  * Multidimensional Discrimination Index
+  * Multidimensional Difficulty Index
+  * Vector Item Plots
+* How to detect multidimensionality
+  * PCA/Exploratory Factor Analysis (not helpful)
+  * Relative model fit (depending on specific model comparions)
+* How to deal with multidimensionality
+  * Removing misfitting items
+  * Controlling for unwanted effects using auxiliary dimensions
+  * Hoping dimensionality doesn't matter (it does)
+
+## Lecture Overview
+
+* To describe what to do when multidimensionality is unwanted, we must first examine the types of MIRT models
+  * Why: The nature of multidimensionality is important for determining what to do about it
+* When multidimensionality is unwanted, one remedy is ignoring it
+  * Why: One type of multidimensionality is proportional to what a composite of unidimensional latent variables would look like
+* But, to get there, we must first dive into the models
+* Of note, the first section focuses largely on items that measure more than one dimension
+  * This is where confusion often arises: 
+    * Most of the time, such cases are exploratory (although not always)
+    * In such cases, these descriptive measures are seldom used, but they are used to help understand if a multidimensional model can be approximated well by a unidimensional model
+
+## Types of MIRT Models
+
+A common classification of MIRT models is one of compensatory vs. non-compensatory models
+
+* Compensatory models allow for the effects of one dimension to be compensated for by the effects of another dimension
+  * Example: A student who is low in math ability but high in reading ability may still be able to answer a math word problem correctly
+* Non-compensatory models do not allow for the effects of one dimension to be compensated for by the effects of another dimension
+  * Example: A student who is low in math ability but high in reading ability may not be able to answer a math word problem correctly
+
+## Mathematical Distinctions of Compensatory vs. Non-Compensatory Models
+
+Compensatory models are almost always the same form: additive within the space of the link function
+
+For a binary item $i$, measuring two dimensions $\theta_1$ and $\theta_2$, the probability of a correct response is:
+$$
+P(Y_{pi} = 1 | \boldsymbol{\theta}_p) = \frac{\exp \left(\mu_i + \lambda_{i1} \theta_{p1} + \lambda_{i2} \theta_{p2} \right)}
+{1+\exp \left(\mu_i + \lambda_{i1} \theta_{p1} + \lambda_{i2} \theta_{p2} \right)}
+$$
+
+What makes this model compensatory is due to the additive nature of the traits
+
+## Visualizing Compensatory Models
+
+To show what a compensatory model looks like graphically, we can plot the item response function for a single item where:
+
+* $\mu_i$ = -0.7$, $\lambda_{i1}$ = 0.75$, $\lambda_{i2}$ = 1.5$, and
+* $E(\boldsymbol{\theta}) = \boldsymbol{0}$; $\text{diag}\left(Var(\boldsymbol{\theta})\right) = \text{diag}\left( \boldsymbol{I}\right)$
+
+```{r, echo=FALSE, cache=TRUE}
+if (!require("plotly")) install.packages("plotly")
+library("plotly")
+
+mu = -.7
+lambda1 = .75
+lambda2 = 1.5
+
+theta1 = seq(-4, 4, by = .1)
+theta2 = seq(-4, 4, by = .1)
+plotMat = matrix(data = NA, nrow = length(theta1), ncol = length(theta2))
+for (i in 1:length(theta1)) {
+  for (j in 1:length(theta2)) {
+    z = mu + lambda1*theta1[i] + lambda2*theta2[j]
+    p = exp(z)/(1+exp(z))
+    plotMat[i,j] = p
+  }
+}
+
+
+fig  = plot_ly(x = theta1, y = theta2, z = plotMat)
+fig  = fig %>% add_surface(
+                contours = list(
+                    z = list(
+                      show=TRUE,
+                      usecolormap=TRUE,
+                      highlightcolor="#ff0000",
+                      project=list(z=TRUE)
+                      )
+                    )
+                )
+fig = fig %>% layout("Compensatory Model",
+                     scene = list(
+                       xaxis = list(title = "\u03B8<sub>1</sub>"),
+                       yaxis = list(title = "\u03B8<sub>2</sub>"),
+                       zaxis = list(title = "Probability of Correct Response")
+                     ))
+fig
+```
+
+## Compensatory: Same Probability of Correct Response for Different Profiles
+
+The contour lines on the previous slide show a line of equal probability for varying values of $\theta_1$ and $\theta_2$
+
+* This means that the probability of a correct response is the same for different profiles
+  * A person with $\theta_1=0$ and $\theta_2=.5$ has a 0.5 probability of a correct response
+  * A person with $\theta_1=4$ and $\theta_2=-1.5$ has a 0.5 probability of a correct response
+    * A high value of $\theta_1$ is compensating for a low value of $\theta_2$
+
+## Non-Compensatory Models
+
+Non-Compensatory models (called partially compensatory models in Reckase (2009) are more complicated, mathematically
+
+One model from from Sympson (1979):
+
+$$
+P(Y_{pi} = 1 | \boldsymbol{\theta}_p) = c_i + (1-c_i) \prod_{d=1}^2 \frac{\exp \left(a_{id} \left(\theta_{pd} - b_{id} \right) \right)}
+{1+\exp \left(a_{id} \left(\theta_{pd} - b_{id} \right) \right)}
+$$
+
+Notice how the product takes the place of the sum in the compensatory model
+
+## Non-Compensatory Models
+
+* Many non-compensatory psychometric models started with similar parameterizations
+  * Later, we will see Diagnostic Classification Models (DCMs) that are non-compensatory
+  * However, with such models, we can show that the non-compensatory mechanism is equivalent to having a latent variable interaction in an additive model
+
+
+$$
+P(Y_{pi} = 1 | \boldsymbol{\theta}_p) = c_i + (1-c_i) \frac{\exp \left(\mu_i + \lambda_{i1} \theta_{p1} + \lambda_{i2} \theta_{p2} + \lambda_{i12} \theta_{p1} \theta_{p2} \right)}
+{1+\exp \left(\mu_i + \lambda_{i1} \theta_{p1} + \lambda_{i2} \theta_{p2} + \lambda_{i12} \theta_{p1} \theta_{p2} \right)}
+$$
+
+
+* Is this also true for non-compensatory MIRT models? (Question for future research) 
+
+## Visualizing Non-Compensatory Models
+
+To show what the Sympson (1979) non-compensatory model looks like graphically, we can plot the item response function for a single item where:
+
+* $b_1$ = -0.5$, $b_2 = .5$, $c=0.2$, $a_1 = 0.75$, $a_2 = 1.1$, and
+* $E(\boldsymbol{\theta}) = \boldsymbol{0}$; $\text{diag}\left(Var(\boldsymbol{\theta})\right) = \text{diag}\left( \boldsymbol{I}\right)$
+
+```{r sympson1979, echo=FALSE, cache=TRUE}
+
+c = .2
+b1 = -.5
+b2 = .5
+a1 = .75
+a2 = 1.1
+
+theta1 = seq(-4, 4, by = .1)
+theta2 = seq(-4, 4, by = .1)
+plotMat = matrix(data = NA, nrow = length(theta1), ncol = length(theta2))
+for (i in 1:length(theta1)) {
+  for (j in 1:length(theta2)) {
+    p1 = exp(a1*(theta1[i]-b1))/(1+exp(a1*(theta1[i]-b1)))
+    p2 = exp(a2*(theta2[j]-b2))/(1+exp(a2*(theta2[j]-b2)))  
+    p = c + (1-c)*p1*p2
+    plotMat[i,j] = p
+  }
+}
+
+
+fig  = plot_ly(x = theta1, y = theta2, z = plotMat)
+fig  = fig %>% add_surface(
+                contours = list(
+                    z = list(
+                      show=TRUE,
+                      usecolormap=TRUE,
+                      highlightcolor="#ff0000",
+                      project=list(z=TRUE)
+                      )
+                    )
+                )
+fig = fig %>% layout("Non-Compensatory Model",
+                     scene = list(
+                       xaxis = list(title = "\u03B8<sub>1</sub>"),
+                       yaxis = list(title = "\u03B8<sub>2</sub>"),
+                       zaxis = list(title = "Probability of Correct Response")
+                     ))
+fig
+```
+
+## More on Non-Compensatory
+
+The term non-compensatory is used because a person cannot compensate for a deficiency in one dimension with a strength in another dimension
+
+* Here is a plot of the same model, but with $\theta_1$ fixed at -4
+  * Notice the range of the Y-axis--the maximum probability is ```r max(plotMat[,1])```
+  * This occurs at $\theta_2$ = ```r theta2[which.max(plotMat[,1])]```
+
+```{r sympson1979-2, echo=FALSE, cache=TRUE}
+plot(y = plotMat[,1], x = theta1, type = "l", ylab = "Probability of Correct Response", xlab = expression(theta[2]))
+```
+
+## Another Way: Non-Compensatory Via Latent Variable Interactions
+
+* Here is the same contour plot, but with a latent variable interaction parameter
+
+
+```{r , echo=FALSE, cache=TRUE}
+mu = -.7
+lambda1 = .75
+lambda2 = 1.5
+lambda12 = -.3
+
+theta1 = seq(-4, 4, by = .1)
+theta2 = seq(-4, 4, by = .1)
+plotMat = matrix(data = NA, nrow = length(theta1), ncol = length(theta2))
+for (i in 1:length(theta1)) {
+  for (j in 1:length(theta2)) {
+    z = mu + lambda1*theta1[i] + lambda2*theta2[j] + lambda12*theta1[i]*theta2[j]
+    p = exp(z)/(1+exp(z))
+    plotMat[i,j] = p
+  }
+}
+
+
+fig  = plot_ly(x = theta1, y = theta2, z = plotMat)
+fig  = fig %>% add_surface(
+                contours = list(
+                    z = list(
+                      show=TRUE,
+                      usecolormap=TRUE,
+                      highlightcolor="#ff0000",
+                      project=list(z=TRUE)
+                      )
+                    )
+                )
+fig = fig %>% layout("Compensatory Model",
+                     scene = list(
+                       xaxis = list(title = "\u03B8<sub>1</sub>"),
+                       yaxis = list(title = "\u03B8<sub>2</sub>"),
+                       zaxis = list(title = "Probability of Correct Response")
+                     ))
+fig
+
+
+```
+
+## Descriptive Statistics of MIRT Models
+
+For compensatory MIRT models, we can define some descriptive statistics that will help to show how a model functions
+
+* To do this, we must first define the $\boldsymbol{\theta}$ space--the space of the latent variables
+  * For simplicity, we will assume that $E(\boldsymbol{\theta}) = \boldsymbol{0}$ and $\text{diag}\left(Var(\boldsymbol{\theta})\right) = \text{diag}\left( \boldsymbol{I}\right)$
+* For two dimensions, the $\boldsymbol{\theta}$ space is:
+
+```{r thetaspace, echo=FALSE, cache=TRUE}
+plot(NULL, xlim = c(-3,3), ylim=c(-3,3), ylab = expression(theta[2]), xlab=expression(theta[1]))
+lines(x = c(-4,4), y = c(0,0))
+lines(x = c(0,0), y = c(-4,4))
+```
+
+## Theta Space: Contour Plot of MIRT ICC
+
+Next, envision we have an item that measures two dimensions, $\theta_1$ and $\theta_2$
+
+* We can then overlay the $\boldsymbol{\theta}$ space with the equi-probablity contours of the item response function
+  * This is called the Item Characteristic Curve (ICC)
+  * The ICC is the probability of a correct response as a function of the latent variables
+
+```{r icc, echo=FALSE, cache=TRUE}  
+mu = -.7
+lambda1 = .75
+lambda2 = 1.5
+
+theta1 = seq(-4, 4, by = .1)
+theta2 = seq(-4, 4, by = .1)
+contours = seq(.1, .9, by = .1)
+logits = log(contours/(1-contours))
+
+plot(NULL, xlim = c(-3,3), ylim=c(-3,3), ylab = expression(theta[2]), xlab=expression(theta[1]))
+lines(x = c(-4,4), y = c(0,0), lwd = 2)
+lines(x = c(0,0), y = c(-4,4), lwd = 2)
+
+for (c in 1:length(contours)){
+  int = (logits[c] - mu)/lambda1
+  slope = -lambda2/lambda1
+  if (logits[c] != 0){
+    abline(a = int, b = slope, col = "red", lwd = 2)
+  } else {
+    abline(a = int, b = slope, col = "red", lwd = 5)
+  }
+  
+}
+
+```
+
+## Direction of Steepest Slope: Direction of Measurement
+
+A number of researchers (e.g., Muraki and Carlson, 1995, Reckase, 2009) define the direction of measurement as the direction of steepest slope of the ICC
+
+* We can show this direction with a dashed line in the plot
+
+```{r iccdm, echo=FALSE, cache=TRUE}  
+mu = 0
+lambda1 = 1
+lambda2 = 2
+
+theta1 = seq(-4, 4, by = .1)
+theta2 = seq(-4, 4, by = .1)
+contours = seq(.1, .9, by = .1)
+logits = log(contours/(1-contours))
+
+MDISC = sqrt(lambda1^2 + lambda2^2)
+
+plot(NULL, xlim = c(-3,3), ylim=c(-3,3), ylab = expression(theta[2]), xlab=expression(theta[1]))
+lines(x = c(-4,4), y = c(0,0), lwd = 2)
+lines(x = c(0,0), y = c(-4,4), lwd = 2)
+
+for (c in 1:length(contours)){
+  int = (logits[c] - mu)/lambda2
+  slope = -lambda1/lambda2
+  if (logits[c] != 0){
+    abline(a = int, b = slope, col = "red", lwd = 2)
+  } else {
+    abline(a = int, b = slope, col = "red", lwd = 5)
+  }
+  abline(a=0, b = tan(acos(lambda1/MDISC)), lty = 2)
+  arrows(x0 = 0, x1= 1, y0 = 0, y1 = tan(acos(lambda1/MDISC)), col=1, lwd=10)
+
+  
+}
+
+```
+
+The slope of the dashed line comes from trigonometry and considers a triangle with sides $\theta_1$ and $\theta_2$
+
+* Here, for a one unit change from the origin in $\theta_1$ (or , $\theta_1=1$), we need the hypotenuse of the triangle formed by the line
+  * But first, we need to describe the angle of the contours and the location of the 50% probability contour
+
+## Multidimensional Discrimination Index
+
+The vector on the previous plot is oriented in the direction of measurement and has length proportional to the slope of the item in each direction (a "multidimensional slope")
+
+* We can determine the length of the vector by using the Pythagorean Theorem
+  * The length of the vector is the square root of the sum of the squares of the slopes in each direction
+  * This is called the Multidimensional Discrimination Index (MDISC)
+
+$$
+\text{MDISC}_i = \sqrt{\sum_{d=1}^D \lambda_{id}^2}
+$$
+
+## "Direction of Measurement"
+
+The "Direction of Measurement" (quotes used to denote a term that may not mean what it describes) is
+then the angle of the vector eminating from the origin in the direction of the steepest slope, relative to one dimension (here $\theta_1$)
+
+In radians:
+$$
+\text{DOM}_i = \arccos \left( \frac{\lambda_{i1}}{MDISC_i} \right)
+$$
+
+In degrees:
+
+$$
+\text{DOM}_i = \arccos \left( \frac{\lambda_{i1}}{MDISC_i} \right) \left(\frac{180}{\pi}\right)
+$$
+
+## Multidimensional Difficulty Index
+
+Similar to MDISC (multidimensional discrimination), we can also define multidiemnsional difficulty:
+
+$$
+\text{MDIFF}_i = \frac{\mu_i}{\text{MDISC}_i}
+$$
+
+This is the distance between the origin of the $\boldsymbol{\theta}$-space and the point where the direction of measurment intersects the 50% probability contour
+
+## Multidimensional Difficulty Displayed
+
+
+```{r, echo=FALSE, cache=TRUE}  
+mu = -.5
+lambda1 = 1
+lambda2 = 2
+
+theta1 = seq(-4, 4, by = .1)
+theta2 = seq(-4, 4, by = .1)
+contours = seq(.1, .9, by = .1)
+logits = log(contours/(1-contours))
+
+MDISC = sqrt(lambda1^2 + lambda2^2)
+MDIFF = -mu/MDISC
+
+plot(NULL, xlim = c(-3,3), ylim=c(-3,3), ylab = expression(theta[2]), xlab=expression(theta[1]), 
+  main = paste0("MDISC = ", round(MDISC,2), ", MDIFF = ", round(MDIFF,2)))
+lines(x = c(-4,4), y = c(0,0), lwd = 2)
+lines(x = c(0,0), y = c(-4,4), lwd = 2)
+
+for (c in 1:length(contours)){
+  int = (logits[c] - mu)/lambda2
+  slope = -lambda1/lambda2
+  if (logits[c] != 0){
+    abline(a = int, b = slope, col = "red", lwd = 2)
+  } else {
+    abline(a = int, b = slope, col = "red", lwd = 5)
+  }
+  abline(a=0, b = tan(acos(lambda1/MDISC)), lty = 2)
+  arrows(x0 = MDIFF, x1= MDIFF+1, y0 = MDIFF*tan(acos(lambda1/MDISC)), y1 = (MDIFF+1)*tan(acos(lambda1/MDISC)), col=1, lwd=10)
+
+  
+}
+
+```
+
+## Vector Item Plots
+
+We can use MDIFF and MDISC to plot items as vectors in two dimensions:
+
+```{r preplot, echo=FALSE, cache=TRUE, include=FALSE}
+library(mirt)
+
+mathData = read.csv("mathData.csv")
+mathQmatrix = read.csv("mathQmatrix.csv")
+# step 1: estimate a 2-dimensional Exploratory MIRT (w/mirt; im)
+e2PL = mirt(data = mathData, model = 2)
+```
+
+```{r plot22, echo=FALSE, cache=TRUE}
+
+
+itemMDIFF = MDIFF(e2PL)
+itemMDISC = MDISC(e2PL)
+
+plot(NULL, xlim = c(-5,5), ylim=c(-5,5), ylab = expression(theta[2]), xlab=expression(theta[1]))
+lines(x = c(-6,6), y = c(0,0), lwd = 2)
+lines(x = c(0,0), y = c(-6,6), lwd = 2)
+
+for (item in 1:length(itemMDIFF)){
+
+  MDIFF = itemMDIFF[item]
+  MDISC = itemMDISC[item]
+  lambda1 = coef(e2PL)[[item]][1,1]
+  
+  arrows(x0 = MDIFF, x1= MDIFF+1, y0 = MDIFF*tan(acos(lambda1/MDISC)), y1 = (MDIFF+1)*tan(acos(lambda1/MDISC)), col=1, lwd=3)
+
+}
+
+```
+
+Later, we will see that this plot contributes to the "hope" solution of multidimensionality
+
+## Additional Information on MDISC and MDIFF
+
+Wes Bonifay's (2020) Sage book has a nice picture of a visual interpretation of MDISC and MDIFF
+
+![](img/img.png)
+
+
+## How to Detect Multidimensionality
+
+As you are experiencing in HW4, there have been a number of methods developed to determine if an assessment is multidimensional
+
+* Principal components-based methods
+  * PCA
+  * Exploratory Factor Analysis Using Matrix Decompositions
+* ML-based Exploratory Factor Analysis 
+  * As we've seen, there is no such thing--only differing constraints
+* Model-based methods (comparing lower-echelon Q-matrices)
+  * Relative model fit 
+    * Note: no absolute model fit as all models will fit perfectly with full information model fit indices
+
+## Principal Components-Based Methods
+
+* PCA is a matrix decomposition method that finds the linear combination of variables that maximizes the variance
+* From matrix algebra, consider a square and symmetric matrix $\boldsymbol{\Sigma}$ (e.g., a correlation or covariance matrix)
+  * There exist a vector of eigenvalues $\boldsymbol{\lambda}$ and a matrix of corresponding eigenvectors $\boldsymbol{E}$ such that we can show that Sigma can be decomposed as:
+
+$$
+\boldsymbol{\Sigma}\boldsymbol{E} = \boldsymbol{\lambda} \boldsymbol{E}
+$$
+
+$$
+\boldsymbol{\Sigma} = \boldsymbol{E} \boldsymbol{\lambda} \boldsymbol{E}^T = \sum_{i=1}^p \lambda_i \boldsymbol{e}_i \boldsymbol{e}_i^T
+$$
+
+* We use the matrix of eigenvalues to help determine if a matrix is multidimensional
+
+## More PCA
+
+The eigendecomposition (the factorization of a covariance or correlation matrix) of estimates the eigenvalues and eigenvectors using a closed form solution (called the characteristic polynomial)
+
+* The eigenvalues are the roots of the characteristic polynomial
+* The eigenvectors are the vectors that are unchanged by the transformation of the matrix
+  * The eigenvectors are the directions of the principal components
+
+## The Components of PCA
+
+The "components" are linear combinations of the variables that are uncorrelated and are ordered by the amount of variance they explain
+
+* The first component is the linear combination of variables that explains the most variance
+* The second component is the linear combination of variables that explains the second most variance, and so on
+
+$$
+\begin{align}
+C_{p1} &= \boldsymbol{e}_1^T \boldsymbol{Y} \\
+C_{p2} &= \boldsymbol{e}_2^T \boldsymbol{Y} \\
+&\vdots \\
+C_{pI} &= \boldsymbol{e}_p^T \boldsymbol{Y} \\
+\end{align}
+$$
+
+## PCA vs. Latent Variable Modeling
+
+So, PCA is the process of developing hypothetical, uncorrelated, linear combinations of the data
+
+* One can almost envision why PCA gets used--sum scores
+  * But, the components are not latent variables
+  * And, the latent variables in latent variabel models don't purport a sum
+* But, in the 1930s (and slightly before), this was the technology that was available
+  * And, it is still used today
+* Factor analytic versions of PCA replace the diagonal of the covariance/correlation matrix with factor-analytic friendly terms (uniqueness)
+  * Then does PCA
+
+## Many Issues with PCA
+
+* Solutions are widely unstable (sampling distributions of eigenvalues/eigenvectors are quite diffuse)
+* Not a good match to latent variable models directly
+* When data are not continuous (or plausibly continuous), Pearson correlation/covariance matrix is not appropriate
+* Missing data are an issue (assumed MCAR) as correlations pairwise delete missing data 
+  * Can you envision a method to fix some of these issues?
+
+## Conducting a PCA
+
+A PCA yields eigenvalues, which get used to describe how many "factors" are in the data
+
+* We then use the eigenvalues to determine how many factors to extract
+  * A plot of the raw eigenvalues is given by the scree plot:
+
+```{r pca, echo=TRUE, cache=TRUE}
+library(psych)
+pearsonCovEigen = eigen(cov(mathData, use = "pairwise.complete.obs"))
+pearsonCorEigen = eigen(cor(mathData, use = "pairwise.complete.obs"))
+tetrachoricCorEigen = eigen(tetrachoric(mathData)$rho)
+
+eigens = cbind(pearsonCovEigen$values, pearsonCorEigen$values, tetrachoricCorEigen$values)
+number = cbind(1:nrow(eigens), 1:nrow(eigens), 1:nrow(eigens))
+
+matplot(x = number, y = eigens, type="l", lwd=3)
+legend("topright", legend = c("Covariance", "Correlation", "Tetrachoric"), lwd = 3, col = 1:3)
+```
+
+## Variance Accounted For Scree Plot
+
+Because the sum of the eigenvalues equals the trace of the matrix, these values are often normalized to sum to 1
+
+* Indicating amount of variance explained by each component
+  * Look for the "bend" in the plot
+
+```{r pca2, echo=TRUE, cache=TRUE}
+
+pearsonCovEigenRel = eigen(cov(mathData, use = "pairwise.complete.obs"))
+pearsonCovEigenRel$values = pearsonCovEigenRel$values/sum(pearsonCovEigenRel$values)
+
+pearsonCorEigenRel = eigen(cor(mathData, use = "pairwise.complete.obs"))
+pearsonCorEigenRel$values = pearsonCorEigenRel$values/sum(pearsonCorEigenRel$values)
+
+tetrachoricCorEigenRel = eigen(tetrachoric(mathData)$rho)
+tetrachoricCorEigenRel$values = tetrachoricCorEigenRel$values/sum(tetrachoricCorEigenRel$values)
+
+eigens = cbind(pearsonCovEigenRel$values, pearsonCorEigenRel$values, tetrachoricCorEigenRel$values)
+number = cbind(1:nrow(eigens), 1:nrow(eigens), 1:nrow(eigens))
+
+matplot(x = number, y = eigens, type="l", lwd=3)
+legend("topright", legend = c("Covariance", "Correlation", "Tetrachoric"), lwd = 3, col = 1:3)
+```
+
+
+## What Do Factors Mean?
+
+After determining the number of factors, the next step is to determine what the factors mean
+
+* Often, the eigenvectors are used...but first, they are often rotated
+* Rotation is a process of rotating the axes of the factors to make them more interpretable
+* There are many methods of rotation
+  * Orthogonal rotation methods (e.g., varimax, quartimax)
+  * Oblique rotation methods (e.g., promax, oblimin)
+
+```{r, echo=TRUE}
+tetrachoricCorEigenRel$vectors[,1:4]
+```
+
+## PCA Questions:
+
+1. Are our data unidimensional based on this PCA?
+2. If no: how many factors do we have?
+3. What do our factors mean?
+
+None of these questions have a clear answer in this framework
+
+* Additionally, the PCA-to-latent variable mapping only assumes linearity
+  * Or compensatory processes...
+
+## Exploratory Factor Analysis by Model Comparisons
+
+An alternate approach is to conduct an EFA using model comparisons
+
+* Here, we compare the relative model fit of lower-echelon Q-matrices with differing dimensions
+
+```{r, echo=TRUE, cache=TRUE, include=FALSE}
+library(mirt)
+Q_lowerE_2D = matrix(data = 1, nrow = ncol(mathData), ncol = 2)
+Q_lowerE_2D[1,2] = 0 # for identification
+
+COV_lowerE_2D = matrix(data = FALSE, nrow = 2, ncol = 2)
+
+model1D = mirt(data = mathData, model = 1)
+model2D = mirt(data = mathData, model = mirt.model(Q_lowerE_2D, COV=COV_lowerE_2D))
+
+Q_lowerE_3D = matrix(data = 1, nrow = ncol(mathData), ncol = 3)
+Q_lowerE_3D[1,2:3] = 0 
+Q_lowerE_3D[2,3] = 0
+
+COV_lowerE_3D = matrix(data = FALSE, nrow = 3, ncol = 3)
+model3D = mirt(data = mathData, model = mirt.model(Q_lowerE_3D, COV=COV_lowerE_3D))
+
+```
+
+```{r, echo=TRUE}
+library(mirt)
+anova(model1D, model2D, model3D)
+```
+
+Are these data unidimensional?
+
+## Flaws in EFA by Model Comparisons
+
+* Identification is build based on compensatory models 
+  * May not map onto non-compensatory models well
+* Unknown behavior if item(s) where zeroes are put are multidimensional
+
+## A Better Solution: Confirming One Dimension/Exploring Model Misfit
+
+* Given the problems with the just-identified models approach to EFA, we can use a better approach
+* Investigate model fit to a unidimensional model using limited information fit statistics
+  * If the model fits: Unidimensionality seems plausible
+  * If the model does not fit: Investigate sources of local misfit
+
+
+```{r, echo=TRUE, cache=TRUE, include=FALSE}
+
+# grab matrix of residual correlations
+residmat = M2(model1D, residmat = TRUE)
+nItems = ncol(mathData)
+absResidvec = NULL
+absResidMat = NULL
+for (var1 in 1:(nItems-1)){
+  for (var2 in (var1+1):nItems){
+    absResidvec = c(absResidvec, abs(residmat[var2,var1]))
+    absResidMat = rbind(absResidMat, 
+      data.frame(var1 = rownames(residmat)[var2], var2=colnames(residmat)[var1], absResid = abs(residmat[var2,var1]))
+    )
+    names(absResidvec)[length(absResidvec)] = paste0(rownames(residmat)[var2], ".", colnames(residmat)[var1])
+  }
+}
+
+absResidvec = absResidvec[order(absResidvec, decreasing = TRUE)]
+absResidvec[1:10]
+
+```
+
+## Investigating Residual Covariances
+
+With the residual covariances, we can investigate the sources of local misfit
+
+* We can look to see if items indicate that additional latent variables should be added
+  
+
+```{r, echo=FALSE, cache=TRUE, include=FALSE}
+absResidvec[1:10]
+```
+
+## What to do when multidimensionality is unwanted
+
+* How to deal with multidimensionality
+  * Remove misfitting items (or item pairs)
+  * Controlling for unwanted effects using auxiliary dimensions
+  * Marginalizing over unwanted dimensions
+  * Hoping dimensionality doesn't matter 
+
+## Removing Misfitting Items
+
+We can look to see of an item is involved in a lot of misfitting item pairs and can remove that item:
+
+Here, items 23, 24, and 25 are part of the top 5 misfitting item pairs
+
+```{r, echo=FALSE, cache=TRUE, include=FALSE}
+
+absResidMat = absResidMat[order(absResidMat$absResid, decreasing=TRUE),]
+
+absResidMat[which(absResidMat$absResid> .1),]
+```
+
+## New Model
+
+Results removing item 24:
+
+```{r, echo=TRUE, include=FALSE, cache=TRUE}
+newModel = mirt(data = mathData[,which(names(mathData) != "item24")], model=1)
+```
+
+New Model Fit:
+```{r, echo=TRUE, cache=TRUE}
+M2(newModel)
+```
+
+Old Model Fit:
+```{r, echo=TRUE, cache=TRUE}
+M2(model1D)
+```
+
+## Problems With Removing Items
+
+* Removing misfitting items changes the meaning of the test (validity)
+  * But, leaving them in changes makes the validity of the test questionable
+* To calculate model fit, item pairs need at least some observations on each
+  * Linking designs may not permit model fit tests
+
+## Controlling for unwanted effects using auxiliary dimensions
+
+* Sometimes, multidimensionality may be caused by dimensions beyond ability
+* For example
+  * If raters are providing data, there may be rater data
+  * Items with a common stem may need a testlet effect
+* In such cases, adding non-reported dimensions to the psychometric model will control for the unwanted effects
+  * But, estimation may be difficult
+
+## Marginalizing Over Unwanted Dimensions
+
+A more recent method is to marginalize over unwanted dimensions:
+
+* A two-dimensional model is estimated
+* A single score is reported (integrate over the other score)
+
+Reference: Ip, E. H., & Chen, S. H. (2014). Using projected locally dependent unidimensional models to measure multidimensional response data. In Handbook of Item Response Theory Modeling (pp. 226-251). Routledge.
+
+## Hoping Dimensionality Doesn't Matter
+
+Finally, what appears most common is to "hope" multidimensionality won't greatly impact a unidimensional model
+
+* A unidimensional model fit to multidimensional data can have approximately good scores* if the vector plot has items in approximately the same direction
+  * *Here, a score is a composite of scores across all dimensions
+* Reckase & Stout (1995) note a proof for "essential" unidimensionality
+  * In such cases single scores may be a good reflection of multiple abilities
+* It appears we can now test this hypothesis via model comparisons with latent variable interaction models
+
+
+Reckase MD, Stout W (1995) Conditions under which items that assess multiple abilities will be fit
+by unidimensional IRT models. Paper presented at the European meeting of the Psychometric
+Society, Leiden, The Netherlands
+
+## Wrapping Up
+
+Today's lecture was a lot! Here is a big-picture summary
+
+* Methods for detecting multidimensionality are numerous
+  * Many aren't very stable
+* My preferred method is still confirmatory
+

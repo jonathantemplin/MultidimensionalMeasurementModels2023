@@ -134,7 +134,10 @@ This repo contains course materials for the Multidimensional Measurement Models 
 
 * Read prior to class:
   * Reckase (2009), Chapters 3 and 4
-
+* Formative Assessment 8 Assigned (Due 11/01/2023)--on [ICON](https://icon.uiowa.edu)
+* Links to Lecture Materials: 
+  * Lecture Video: Available after class
+* Coding Activity: HW4 Work
 
 
 
@@ -144,15 +147,12 @@ Please see the main website for the most up-to-date schedule, required readings,
 
 | Date | Topic | 
 | ---- | ----- |  
-| **Section 3** | **Multidimensionality is Bad** |
-| 10/18/2023 | Exploratory Models; Consequences of Multidimensionality; Unwanted Dimensionality; Multidimensionality by Design (rater effects, testlets) |
-| 10/25/2023 | Exploratory mixture models/Categorical Latent Variables (What is Dimensionality?) |
+| 11/01/2023 | Exploratory mixture models/Categorical Latent Variables (What is Dimensionality?) |
 | **Section 4** | **Multidimensionality is Good** |
-| 11/01/2023 | Confirmatory Models; Latent Variable Interactions; Models with Specific Purposes (Higher order, bifactor, method factors, extreme response models, scoring approaches) |
-| 11/08/2023 | Diagnostic Classification Models/Bayesian Networks |
-| 11/15/2023 | Explanatory (Crossed Random Effect) models/G-Theory |
+| 11/08/2023 | Confirmatory Models; Latent Variable Interactions; Models with Specific Purposes (Higher order, bifactor, method factors, extreme response models, scoring approaches) |
+| 11/15/2023 | Diagnostic Classification Models/Bayesian Networks |
 | 11/22/2023 | No Class (Thanksgiving Break) |
-| 11/29/2023 | Multilevel Measurement Models |
+| 11/29/2023 | Explanatory (Crossed Random Effect) models/G-Theory |
 | **Section 5** | **Multidimensionality is Desired** |
 | 12/06/2023 | Construct Definitions and the Challenge of Subscores |
 | 12/13/2023 | Final Exam |
