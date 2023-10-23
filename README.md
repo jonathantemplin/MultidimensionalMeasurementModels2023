@@ -130,12 +130,14 @@ This repo contains course materials for the Multidimensional Measurement Models 
   * Lecture Video: [https://youtu.be/hT-bFyvW33o](https://youtu.be/hT-bFyvW33o)
 * Coding Activity: None
 
-### Week 9: October 18, 2023: When Multidimensionality is Considered A Bad Thing
+## October 18, 2023: No Class
+
+### Week 9: October 25, 2023: When Multidimensionality is Considered A Bad Thing
 
 * Read prior to class:
   * Reckase (2009), Chapters 3 and 4
 * Formative Assessment 8 Assigned (Due 11/01/2023)--on [ICON](https://icon.uiowa.edu)
-* Links to Lecture Materials: 
+* Links to Lecture Materials: [https://jonathantemplin.github.io/MultidimensionalMeasurementModels2023/materials/Week09/09_Unwanted_Multidimensionality.html](https://jonathantemplin.github.io/MultidimensionalMeasurementModels2023/materials/Week09/09_Unwanted_Multidimensionality.html)
   * Lecture Video: Available after class
 * Coding Activity: HW4 Work
 
