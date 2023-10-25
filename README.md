@@ -138,8 +138,14 @@ This repo contains course materials for the Multidimensional Measurement Models 
   * Reckase (2009), Chapters 3 and 4
 * Formative Assessment 8 Assigned (Due 11/01/2023)--on [ICON](https://icon.uiowa.edu)
 * Links to Lecture Materials: [https://jonathantemplin.github.io/MultidimensionalMeasurementModels2023/materials/Week09/09_Unwanted_Multidimensionality.html](https://jonathantemplin.github.io/MultidimensionalMeasurementModels2023/materials/Week09/09_Unwanted_Multidimensionality.html)
-  * Lecture Video: Available after class
+  * Lecture Video: [https://youtu.be/hT-bFyvW33o](https://youtu.be/hT-bFyvW33o)
 * Coding Activity: HW4 Work
+
+### Week 10: November 1, 2023: Exploratory Mixture Models for Detecting Groups
+
+* Read prior to class:
+  * Bartholomew, Knott, and Moustaki (2011), Chapter 6 (via ICON)
+
 
 
 
