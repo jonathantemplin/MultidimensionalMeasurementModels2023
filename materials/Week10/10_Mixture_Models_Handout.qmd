@@ -1,0 +1,7 @@
+---
+title: "Mixture Models"
+author: "Multidimensional Measurement Models (Fall 2023): Lecture 10" 
+format: docx
+---
+
+{{< include _10_Mixture_Models.qmd >}}

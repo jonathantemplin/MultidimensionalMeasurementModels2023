@@ -1,0 +1,14 @@
+TITLE:	   LCA of Macready and Dayton's data (1977).  Two classes.
+DATA:	    FILE IS mddata.dat;
+VARIABLE:	NAMES ARE u1-u4;
+	CLASSES = c(2);
+	CATEGORICAL = u1-u4;
+ANALYSIS:	TYPE = MIXTURE;
+            Starts=100 100;
+OUTPUT:	TECH1 TECH10;
+PLOT: TYPE=PLOT3;
+      SERIES IS u1(1) u2(2) u3(3) u4(4);
+SAVEDATA:
+  FORMAT IS f10.5;
+  FILE IS examinee_ests.dat;
+  SAVE = CPROBABILITIES;

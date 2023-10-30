@@ -1,0 +1,14 @@
+---
+title: "Mixture Models"
+author: "Multidimensional Measurement Models (Fall 2023): Lecture 10" 
+format: 
+  revealjs:
+    multiplex: false
+    footer: "Multidimensional Measurement Models (Fall 2023): Lecture 10"
+    theme: ["pp.scss"]
+    slide-number: c/t
+    incremental: false
+editor: source
+---
+
+{{< include _10_Mixture_Models.qmd >}}

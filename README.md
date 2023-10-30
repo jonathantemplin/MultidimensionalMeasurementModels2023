@@ -136,7 +136,7 @@ This repo contains course materials for the Multidimensional Measurement Models 
 
 * Read prior to class:
   * Reckase (2009), Chapters 3 and 4
-* Formative Assessment 8 Assigned (Due 11/01/2023)--on [ICON](https://icon.uiowa.edu)
+* Formative Assessment 8 Assigned (Due 10/31/2023)--on [ICON](https://icon.uiowa.edu)
 * Links to Lecture Materials: [https://jonathantemplin.github.io/MultidimensionalMeasurementModels2023/materials/Week09/09_Unwanted_Multidimensionality.html](https://jonathantemplin.github.io/MultidimensionalMeasurementModels2023/materials/Week09/09_Unwanted_Multidimensionality.html)
   * Lecture Video: [https://youtu.be/4jJF66XdOi0](https://youtu.be/4jJF66XdOi0)
 * Coding Activity: HW4 Work
@@ -145,6 +145,18 @@ This repo contains course materials for the Multidimensional Measurement Models 
 
 * Read prior to class:
   * Bartholomew, Knott, and Moustaki (2011), Chapter 6 (via ICON)
+* Formative Assessment 9 Assigned (Due 11/07/2023)--on [ICON](https://icon.uiowa.edu)
+* Links to Lecture Materials:
+  * Slides:
+  * Handout: 
+  * Lecture Video: (available after class)
+* Homework 5 Assigned: Due 11/14/2023 via [ICON](https://icon.uiowa.edu)
+
+### Week 11: November 8, 2023: Diagnostic Classification Models/Bayesian Networks 
+
+* Read prior to class:
+  * Rupp, Templin, and Henson (2009): Chapter 3
+
 
 
 
@@ -155,10 +167,8 @@ Please see the main website for the most up-to-date schedule, required readings,
 
 | Date | Topic | 
 | ---- | ----- |  
-| 11/01/2023 | Exploratory mixture models/Categorical Latent Variables (What is Dimensionality?) |
-| **Section 4** | **Multidimensionality is Good** |
-| 11/08/2023 | Confirmatory Models; Latent Variable Interactions; Models with Specific Purposes (Higher order, bifactor, method factors, extreme response models, scoring approaches) |
-| 11/15/2023 | Diagnostic Classification Models/Bayesian Networks |
+| 11/15/2023 | Confirmatory Models; Latent Variable Interactions; Models with Specific Purposes (Higher order, bifactor, method factors, extreme response models, scoring approaches) |
+
 | 11/22/2023 | No Class (Thanksgiving Break) |
 | 11/29/2023 | Explanatory (Crossed Random Effect) models/G-Theory |
 | **Section 5** | **Multidimensionality is Desired** |
