@@ -1,0 +1,82 @@
+---
+title: "Homework #5 (Due November 14, 2023 by 11:59pm)"
+author: "Multidimensional Measurement Models (Fall 2023)" 
+format: docx
+---
+
+We will now estimate mixture models to using mathematics standards in our personal class data sets. The goal of this homework is to give you practice in estimating models and attempting to determine the number of groups in your data.
+
+All analyses will be conducted using your personal class data set. The location of that data set is on the campus LSS drive, which can be accessed via the following instructions:
+
+* The copy command is "cp"
+* The name of the data file is [Grade]_[Quarter].RData with underscores between the words of grade. For instance, 2nd Grade in Q1 translates into "2nd_Grade_Q1.RData" (you can find your grade and quarter in the class data list on ICON)
+* The location of the data file is /Shared/lss_jtemplin/MMM2023/studentData
+* The data file contains a list object named "temp"
+* temp$responseMatrix contains the raw data file (item responses coded correct/incorrect)
+* temp$Qmatrix contains the item alignment
+
+Additionally, you may need to refer to the coding system for standards to ensure you are estimating the correct models. See this website: [https://commoncore.tcoe.org/Content/Public/doc/tcoe_understanding_standards_codes.pdf](https://commoncore.tcoe.org/Content/Public/doc/tcoe_understanding_standards_codes.pdf)
+
+## Estimation Instructions All Analyses
+
+* For all analyses, use Mplus (which is provided to you via the Apptainer image for class)
+  * Use STARTS = 100 100 (100 random starts with 100 running through completion)
+  * Use the TECH10 output option (for limited information model fit)
+
+
+## Submission Instructions
+
+* Submit your homework via ICON by including:
+
+1. A zipped folder of all Mplus input files (or a single R script file that contains all of your code and uses the MplusAutomation R package). Please do not submit an R Markdown or Quarto file as I need to be able to run your code
+2. A single DOCX (MS Word or equivalent) file that contains the information requested in the code below (Note: you can use R Markdown or Quarto to create the Word document, but only submit the DOCX file)
+
+## Model Estimation
+
+1. Determine the number of classes in your data using a latent class model
+   
+* Estimate five models, varying only the number of classes (i.e. a one-class model, a two-class model, a three-class model, a four-class model, and a five-class model)
+* Use AIC and BIC to determine which model fits the best
+  * If the 5-class model does, then be sure to note that no models with more classes were run
+* Attempt to interpret what the classes mean
+
+2. Determine the number of classes in your data using a mixture 2PL model
+   
+* Estimate five models, varying only the number of classes (i.e. a one-class model, a two-class model, a three-class model, a four-class model, and a five-class model)
+* Use AIC and BIC to determine which model fits the best
+  * If the 5-class model does, then be sure to note that no models with more classes were run
+* Attempt to interpret what the classes mean
+
+3. Compare the absolute model fit of the solution from #1 to the solution from #2
+
+* Find the total bivariate Pearson Chi-Square for each model -- report each
+  * Which fits better in an absolute sense?
+
+## Mplus Code Investigation
+
+4. For the Mplus code that follows, provide the name and notation for the model being estimated:
+
+```
+VARIABLE:	NAMES = u1-u8;
+	CATEGORICAL = u1-u8;
+	CLASSES = c (2);
+ANALYSIS:	TYPE = MIXTURE;
+	ALGORITHM = INTEGRATION;
+	STARTS = 50 5;
+MODEL:	%OVERALL%
+	f BY u1-u8;
+	[f@0];	
+	%c#1%
+	f BY u1@1 u2-u8;
+	f;
+	[u1$1-u8$1];
+	%c#2%
+	f BY u1@1 u2-u8;
+	f;
+	[u1$1-u8$1];
+OUTPUT:	TECH1 TECH8;
+```
+
+
+Extra Credit: 10% extra credit given if you use Argon for this assignment. To receive extra credit, compress into a zipped folder all Argon job error files (ending in ```*.e*```), Argon job output files (ending in ```*.o*```), and the Argon job submission script (ending in ```*.job```) and submit the zipped folder via ICON. Note: Please use either the zip or tarball format for compression (no *.rar formatting).
+
