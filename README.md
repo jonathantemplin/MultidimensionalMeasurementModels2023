@@ -149,7 +149,7 @@ This repo contains course materials for the Multidimensional Measurement Models 
 * Links to Lecture Materials:
   * Slides: [https://jonathantemplin.github.io/MultidimensionalMeasurementModels2023/materials/Week10/10_Mixture_Models.html#/title-slide](https://jonathantemplin.github.io/MultidimensionalMeasurementModels2023/materials/Week10/10_Mixture_Models.html#/title-slide)
   * Handout: [https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/raw/main/materials/Week10/10_Mixture_Models_Handout.docx](https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/raw/main/materials/Week10/10_Mixture_Models_Handout.docx)
-  * Lecture Video: (available after class)
+  * Lecture Video: [https://youtu.be/lD8ujxcwlx4](https://youtu.be/lD8ujxcwlx4)
 * Homework 5 Assigned: Due 11/14/2023 via [ICON](https://icon.uiowa.edu)
   * Homework text also available here: [https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/raw/main/homework/HW5/HW5.docx](https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/raw/main/homework/HW5/HW5.docx)
 ### Week 11: November 8, 2023: Diagnostic Classification Models/Bayesian Networks 
