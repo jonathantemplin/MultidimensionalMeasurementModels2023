@@ -155,9 +155,18 @@ This repo contains course materials for the Multidimensional Measurement Models 
 ### Week 11: November 8, 2023: Diagnostic Classification Models/Bayesian Networks 
 
 * Read prior to class:
-  * Rupp, Templin, and Henson (2009): Chapter 3
+  * Rupp, Templin, and Henson (2009): Chapter 3 (via ICON)
+* Formative Assessment 10 Assigned (Due 11/14/2023)--on [ICON](https://icon.uiowa.edu)
+* Links to Lecture Materials:
+  * Slides: 
+  * Mplus Script-Building Process:
+  * Mplus Example Files:
+  * blatent Example Files:
 
+### Week 12: November 15, 2023: Confirmatory Models; Latent Variable Interactions; Models with Specific Purposes (Higher order, bifactor, method factors, extreme response models, scoring approaches)
 
+* Read prior to class:
+  * Fager (2019): Chapter 2 (via ICON)
 
 
 
@@ -167,8 +176,6 @@ Please see the main website for the most up-to-date schedule, required readings,
 
 | Date | Topic | 
 | ---- | ----- |  
-| 11/15/2023 | Confirmatory Models; Latent Variable Interactions; Models with Specific Purposes (Higher order, bifactor, method factors, extreme response models, scoring approaches) |
-
 | 11/22/2023 | No Class (Thanksgiving Break) |
 | 11/29/2023 | Explanatory (Crossed Random Effect) models/G-Theory |
 | **Section 5** | **Multidimensionality is Desired** |
