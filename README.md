@@ -152,6 +152,8 @@ This repo contains course materials for the Multidimensional Measurement Models 
   * Lecture Video: [https://youtu.be/lD8ujxcwlx4](https://youtu.be/lD8ujxcwlx4)
 * Homework 5 Assigned: Due 11/14/2023 via [ICON](https://icon.uiowa.edu)
   * Homework text also available here: [https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/raw/main/homework/HW5/HW5.docx](https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/raw/main/homework/HW5/HW5.docx)
+
+
 ### Week 11: November 8, 2023: Diagnostic Classification Models/Bayesian Networks 
 
 * Read prior to class:
@@ -162,7 +164,7 @@ This repo contains course materials for the Multidimensional Measurement Models 
   * Mplus Script-Building Process: [https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/raw/main/materials/Week11/11_LCDM_Mplus.pdf](https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/raw/main/materials/Week11/11_LCDM_Mplus.pdf)
   * Mplus Example Files: [https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/raw/main/materials/Week11/11_Mplus_example.zip](https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/raw/main/materials/Week11/11_Mplus_example.zip)
   * blatent Example Files: [https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/raw/main/materials/Week11/11_blatent_example.zip](https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/raw/main/materials/Week11/11_blatent_example.zip)
-  * Lecture Video: (available after class)
+  * Lecture Video: [https://youtu.be/soPhTpFwHnM](https://youtu.be/soPhTpFwHnM)
 
 ### Week 12: November 15, 2023: Confirmatory Models; Latent Variable Interactions; Models with Specific Purposes (Higher order, bifactor, method factors, extreme response models, scoring approaches)
 
