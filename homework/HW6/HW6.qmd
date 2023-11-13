@@ -1,5 +1,5 @@
 ---
-title: "Homework #6 (Due November 28, 2023 by 11:59pm)"
+title: "Homework #6 (Due December 5, 2023 by 11:59pm)"
 author: "Multidimensional Measurement Models (Fall 2023)" 
 format: docx
 ---
