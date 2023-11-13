@@ -162,12 +162,26 @@ This repo contains course materials for the Multidimensional Measurement Models 
 * Formative Assessment 10 Assigned (Due 11/14/2023)--on [ICON](https://icon.uiowa.edu)
 * Links to Lecture Materials:
   * Slides: [https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/raw/main/materials/Week11/11_DCMs.pdf](https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/raw/main/materials/Week11/11_DCMs.pdf)
-  * Mplus Script-Building Process: [https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/raw/main/materials/Week11/11_LCDM_Mplus.pdf](https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/raw/main/materials/Week11/11_LCDM_Mplus.pdf)
-  * Mplus Example Files: [https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/raw/main/materials/Week11/11_Mplus_example.zip](https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/raw/main/materials/Week11/11_Mplus_example.zip)
-  * blatent Example Files: [https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/raw/main/materials/Week11/11_blatent_example.zip](https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/raw/main/materials/Week11/11_blatent_example.zip)
   * Lecture Video: [https://youtu.be/soPhTpFwHnM](https://youtu.be/soPhTpFwHnM)
 
 ### Week 12: November 15, 2023: Confirmatory Models; Latent Variable Interactions; Models with Specific Purposes (Higher order, bifactor, method factors, extreme response models, scoring approaches)
+
+* Read prior to class:
+  * Rupp, Templin, and Henson (2009): Chapters 7 and 8 (via ICON)
+* Formative Assessment 11 Assigned (Due 11/28/2023) on [ICON](https://icon.uiowa.edu)
+* Links to Lecture Materials:
+  * Slides:
+  * Example Files: [https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/tree/main/materials/Week12](https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/tree/main/materials/Week12)
+  * Mplus Script-Building Process: [https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/raw/main/materials/Week11/11_LCDM_Mplus.pdf](https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/raw/main/materials/Week11/11_LCDM_Mplus.pdf)
+  * Mplus Example Files: [https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/raw/main/materials/Week11/11_Mplus_example.zip](https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/raw/main/materials/Week11/11_Mplus_example.zip)
+  * blatent Example Files: [https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/raw/main/materials/Week11/11_blatent_example.zip](https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/raw/main/materials/Week11/11_blatent_example.zip)
+  * Lecture Video: Available after class
+* Homework 6 Assigned: Due 11/28/2023 via [ICON](https://icon.uiowa.edu)
+  * Homework text also available here: [https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/raw/main/homework/HW6/HW6.docx](https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/raw/main/homework/HW6/HW6.docx)
+
+### November 22, 2023: No Class (Fall Break)
+
+### Week 13: November 29, 2023: Confirmatory Models; Latent Variable Interactions; Models with Specific Purposes (Higher order, bifactor, method factors, extreme response models, scoring approaches
 
 * Read prior to class:
   * Fager (2019): Chapter 2 (via ICON)
@@ -180,8 +194,6 @@ Please see the main website for the most up-to-date schedule, required readings,
 
 | Date | Topic | 
 | ---- | ----- |  
-| 11/22/2023 | No Class (Thanksgiving Break) |
-| 11/29/2023 | Explanatory (Crossed Random Effect) models/G-Theory |
 | **Section 5** | **Multidimensionality is Desired** |
 | 12/06/2023 | Construct Definitions and the Challenge of Subscores |
 | 12/13/2023 | Final Exam |

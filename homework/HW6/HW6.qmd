@@ -1,0 +1,52 @@
+---
+title: "Homework #6 (Due November 28, 2023 by 11:59pm)"
+author: "Multidimensional Measurement Models (Fall 2023)" 
+format: docx
+---
+
+We will now estimate diagnostic classification models to using mathematics and ELA (reading) standards in our personal class data sets. The goal of this homework is to give you practice in estimating models and attempting to determine the number of groups in your data.
+
+All analyses will be conducted using your personal class data set. The location of that data set is on the campus LSS drive, which can be accessed via the following instructions:
+
+* The copy command is "cp"
+* The name of the data file is [Grade]_[Quarter].RData with underscores between the words of grade. For instance, 2nd Grade in Q1 translates into "2nd_Grade_Q1.RData" (you can find your grade and quarter in the class data list on ICON)
+* The location of the data file is /Shared/lss_jtemplin/MMM2023/studentData
+* The data file contains a list object named "temp"
+* temp$responseMatrix contains the raw data file (item responses coded correct/incorrect)
+* temp$Qmatrix contains the item alignment
+
+Additionally, you may need to refer to the coding system for standards to ensure you are estimating the correct models. See this website: [https://commoncore.tcoe.org/Content/Public/doc/tcoe_understanding_standards_codes.pdf](https://commoncore.tcoe.org/Content/Public/doc/tcoe_understanding_standards_codes.pdf)
+
+Finally, in this document, I use the DCM-style of labeling latent variables as attributes. So, if you read attribute, please understand this implies a set of ordinal two-category latent variables.
+
+## Submission Instructions
+
+* Submit your homework via ICON by including:
+
+1. A zipped folder of all Mplus and R input files (or a single R script file that contains all of your code and uses the MplusAutomation R package). Please do not submit an R Markdown or Quarto file as I need to be able to run your code
+2. A single DOCX (MS Word or equivalent) file that contains the information requested in the code below (Note: you can use R Markdown or Quarto to create the Word document, but only submit the DOCX file)
+
+## Model Estimation
+
+1. Using a Q-matrix that represents each math standard measuring three or more items as an attribute. Add to this the a single ELA-level attribute for all ELA-measuring items. Finally, for all math items, have the Q-matrix denote that the item also measures the ELA attribute (this assumes math items are word problems).
+
+Put your Q-matrix into the word file such that the rows are labeled as your items and the columns are labeled as your latent variables (attributes). 
+
+2. Use the R package blatent to estimate the model using Bayesian methods. In the model, for each item, ensure each attribute has a main effect. For math items (that also measure ELA based on the Q-matrix in question #1), estimate two main effects and one two-way interaction. The main effects are for (1) the math standard and (2) ELA reading.
+
+* In the estimation, ensure that blatent is estimating information criteria and PPMC-based model fit methods 
+
+3. Report the model fit statistics from the output of the blatent model
+
+4. Report each item parameter along with a 95% credible interval. Which two-way interaction credible intervals do not include zero?
+
+5. Report the structural model estimates as the proportion of people in each class
+
+6. Calculate tetrachoric correlations from the structural model
+
+7. Use the R package blatent to estimate the DINA model using Bayesian methods (you will have to come up with the lm() syntax to do this). Use the same Q-matrix from question #1
+
+8. Based on all model fit statistics, which model fits better?
+
+
+
