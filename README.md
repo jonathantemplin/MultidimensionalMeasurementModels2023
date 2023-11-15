@@ -175,7 +175,7 @@ This repo contains course materials for the Multidimensional Measurement Models 
   * Mplus Script-Building Process: [https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/raw/main/materials/Week11/11_LCDM_Mplus.pdf](https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/raw/main/materials/Week11/11_LCDM_Mplus.pdf)
   * Mplus Example Files: [https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/raw/main/materials/Week11/11_Mplus_example.zip](https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/raw/main/materials/Week11/11_Mplus_example.zip)
   * blatent Example Files: [https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/raw/main/materials/Week11/11_blatent_example.zip](https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/raw/main/materials/Week11/11_blatent_example.zip)
-  * Lecture Video: Available after class
+  * Lecture Video: [https://youtu.be/tE05opgg3Kk](https://youtu.be/tE05opgg3Kk)
 * Homework 6 Assigned: Due 11/28/2023 via [ICON](https://icon.uiowa.edu)
   * Homework text also available here: [https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/raw/main/homework/HW6/HW6.docx](https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/raw/main/homework/HW6/HW6.docx)
 
