@@ -170,7 +170,7 @@ This repo contains course materials for the Multidimensional Measurement Models 
   * Rupp, Templin, and Henson (2009): Chapters 7 and 8 (via ICON)
 * Formative Assessment 11 Assigned (Due 11/28/2023) on [ICON](https://icon.uiowa.edu)
 * Links to Lecture Materials:
-  * Slides:
+  * Slides: [https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/raw/main/materials/Week12/12_DCM_Structural_Models.pdf](https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/raw/main/materials/Week12/12_DCM_Structural_Models.pdf)
   * Example Files: [https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/tree/main/materials/Week12](https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/tree/main/materials/Week12)
   * Mplus Script-Building Process: [https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/raw/main/materials/Week11/11_LCDM_Mplus.pdf](https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/raw/main/materials/Week11/11_LCDM_Mplus.pdf)
   * Mplus Example Files: [https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/raw/main/materials/Week11/11_Mplus_example.zip](https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/raw/main/materials/Week11/11_Mplus_example.zip)
@@ -181,26 +181,21 @@ This repo contains course materials for the Multidimensional Measurement Models 
 
 ### November 22, 2023: No Class (Fall Break)
 
-### Week 13: November 29, 2023: Confirmatory Models; Latent Variable Interactions; Models with Specific Purposes (Higher order, bifactor, method factors, extreme response models, scoring approaches
+
+### Week 13: November 29, 2023: On the Use of Test Scores
+
+* Read prior to class: Nothing
+* No More Formative Assessments 
+* Links to Lecture Matrials:
+  * Slides: [https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/raw/main/materials/Week13/13_On_Scores.pdf](https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/raw/main/materials/Week13/13_On_Scores.pdf)
+  * R Syntax: [https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/raw/main/materials/Week13/13_On_Scores.R](https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/raw/main/materials/Week13/13_On_Scores.R)
+  * Data Files
+    * Binary Data: [https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/raw/main/materials/Week13/9-10th_Grade_Q2.RData](https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/raw/main/materials/Week13/9-10th_Grade_Q2.RData)
+    * Likert Data: [https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/raw/main/materials/Week13/gamblingData.csv](https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/raw/main/materials/Week13/gamblingData.csv)
+    * Happiness Data: [https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/raw/main/materials/Week13/happinessData.csv](https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/raw/main/materials/Week13/happinessData.csv)
+
+### Week 14: December 06, 2023: Confirmatory Models; Latent Variable Interactions; Models with Specific Purposes (Higher order, bifactor, method factors, extreme response models, scoring approaches
 
 * Read prior to class:
   * Fager (2019): Chapter 2 (via ICON)
-
-
-
-## Tentative Remaining Course Schedule
-
-Please see the main website for the most up-to-date schedule, required readings, and assignment information.
-
-| Date | Topic | 
-| ---- | ----- |  
-| **Section 5** | **Multidimensionality is Desired** |
-| 12/06/2023 | Construct Definitions and the Challenge of Subscores |
-| 12/13/2023 | Final Exam |
-
-# References
-
-Bartholomew, D. J., Knott, M., & Moustaki, I. (2011). Latent variable models and factor analysis: A unified approach (3rd ed.). Wiley.
-
-Reckase, M. D. (2009). Multidimensional item response theory. Springer.
 
