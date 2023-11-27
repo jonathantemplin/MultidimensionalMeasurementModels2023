@@ -191,7 +191,7 @@ This repo contains course materials for the Multidimensional Measurement Models 
   * R Syntax: [https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/raw/main/materials/Week13/13_On_Scores.R](https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/raw/main/materials/Week13/13_On_Scores.R)
   * Data Files
     * Binary Data: [https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/raw/main/materials/Week13/9-10th_Grade_Q2.RData](https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/raw/main/materials/Week13/9-10th_Grade_Q2.RData)
-    * Likert Data: [https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/raw/main/materials/Week13/gamblingData.csv](https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/raw/main/materials/Week13/gamblingData.csv)
+    * Likert Data: [https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/raw/main/materials/Week13/gamblingdata.csv](https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/raw/main/materials/Week13/gamblingdata.csv)
     * Happiness Data: [https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/raw/main/materials/Week13/happinessData.csv](https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/raw/main/materials/Week13/happinessData.csv)
 
 ### Week 14: December 06, 2023: Confirmatory Models; Latent Variable Interactions; Models with Specific Purposes (Higher order, bifactor, method factors, extreme response models, scoring approaches
