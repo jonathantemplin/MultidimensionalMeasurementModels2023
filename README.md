@@ -198,11 +198,11 @@ This repo contains course materials for the Multidimensional Measurement Models 
 ### Week 14: December 06, 2023: Subscores and Other Models
 
 * Links to Lecture Materials: 
-  * Lecture Document: 
+  * Lecture Document: [https://jonathantemplin.github.io/MultidimensionalMeasurementModels2023/materials/Week14/14_Subscores_and_Popular_Models.html](https://jonathantemplin.github.io/MultidimensionalMeasurementModels2023/materials/Week14/14_Subscores_and_Popular_Models.html)
   * R Syntax Files:
-    * Subscore simulation:
-    * Lecture analyses:
-  * Data File: 
+    * Subscore simulation: [https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/raw/main/materials/Week14/subscoreSame.R](https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/raw/main/materials/Week14/subscoreSame.R)
+    * Lecture analyses: [https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/raw/main/materials/Week14/14_Subscores_and_Popular_Models.R](https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/raw/main/materials/Week14/14_Subscores_and_Popular_Models.R)
+  * Data File: [https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/raw/main/materials/Week14/9-10th_grade_q2.RData](https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/raw/main/materials/Week14/9-10th_grade_q2.RData)
 * Lecture Video: Available after class
 
 
