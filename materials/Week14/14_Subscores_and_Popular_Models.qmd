@@ -1,0 +1,834 @@
+---
+title: "Subscores and Popular Models"
+subtitle: "Multidimensional Measurement Models (Fall 2023): Lecture 14" 
+format:
+  html:
+    html-math-method: mathjax
+    include-in-header:
+      - text: |
+          <script>
+          window.MathJax = {
+            loader: {
+              load: ['[tex]/upgreek', '[tex]/boldsymbol', '[tex]/physics']
+            },
+            tex: {
+              packages: {
+                '[+]': ['upgreek', 'boldsymbol', 'physics']
+              }
+            }
+          };
+          </script>
+---
+
+```{r, echo=FALSE, message=FALSE}
+
+# clear workspace =====================================================================================================
+rm(list = ls())
+
+# load libraries ======================================================================================================
+if (!require("lavaan")) {
+  install.packages("lavaan")
+  library(lavaan)
+}
+
+if (!require("semPlot")) {
+  install.packages("semPlot")
+  library(semPlot)
+}
+
+if (!require("mirtCAT")) {
+  install.packages("mirtCAT")
+  library(mirtCAT)
+}
+
+if (!require("ggplot2")) {
+  install.packages("ggplot2")
+  library(ggplot2)
+}
+
+if (!require("reshape2")) {
+  install.packages("reshape2")
+  library(reshape2)
+}
+
+# load data ===========================================================================================================
+load("9-10th_grade_q2.RData")
+
+```
+
+## Today's Lecture
+
+-   The Educational Measurement Problem: Total vs. Subscores
+    -   The problem with subscores when having a unidimensional total score
+    -   The problem with a unidimensional total score when having a multidimensional assessment
+-   Bifactor IRT Models
+-   Higher Order IRT Models
+-   Historical issues with Bifactor and Higher Order Models
+
+## Key Definition: Subscore
+
+A subscore is a score that is formed by taking some items of an assessment
+
+-  For instance, consider an algebra test measuring four algebra standards:
+
+    -  The total score (measuring algebra) is formed using all the items
+        -   Note: "formed" is intentionally ambiguous and can mean summing all items (a parallel items model) or estimating a latent variable score using scoring methods from IRT
+
+    -   A subscore for each standard can be formed using only the items measuring that standard
+
+## The Educational Measurement Problem: Total vs. Subscores
+
+The issue (from K-12 assessment):
+
+-   Assessment programs are designed to provide a single score for each student for each subject (e.g., reading, math, science, etc.)
+-   However, many states also wish to provide more detailed information to each student
+    -   "Subscores" are often used to provide more detailed information about a student's performance
+-   A subscore is a score that is based on a subset of the items on a test
+    -   For example, a reading test may have a subscore for "vocabulary" and a subscore for "reading comprehension"
+    -   A math test may have a subscore for "algebra" and a subscore for "geometry"
+
+### The problem with subscores when having a unidimensional total score
+
+-   The basic problem is a modeling problem:
+    -   The total score has a unidimensional model
+    -   The subscores have a multidimensional model
+    -   The two models are incompatible and cannot both be correct
+
+### Unidimensional Model
+
+The model for the total score is often a unidimensional model:
+
+$$
+P(Y_{pi} = 1 | \theta_p) = 
+  \frac{\exp \left(a_i \left( \theta_p - b_i \right) \right)}
+  {1 + \exp \left(a_i \left( \theta_p - b_i \right) \right)}
+$$ 
+
+This model applies for all items $i$ and all persons $p$
+
+Note: The model shown is a two-parameter IRT model, but in general, there will be one latent variable in a unidimensional model
+
+```{r unidim, fig.width=6, fig.height=6, fig.align='center', cache = TRUE}
+
+# format data 
+responseMatrix = temp$responseMatrix
+Qmatrix = temp$Qmatrix
+
+reducedQ = Qmatrix[which(rownames(Qmatrix) %in% paste0("item", 11:30)), ]
+reducedQ = reducedQ[, which(colSums(reducedQ) > 0)]
+
+
+# using only Algebra items (11:30) ====================================================================================
+dataMat = responseMatrix[paste0("item", 11:30)]
+
+# remove cases that are all NA ========================================================================================
+dataMat = dataMat[apply(dataMat, 1, function(x) !all(is.na(x))), ]
+
+# create lavaan model for unidimensional model ========================================================================
+
+names(responseMatrix)
+
+unidimensionalModel_syntax = "
+
+theta =~ item11 + item12 + item13 + item14 + item15 + 
+         item16 + item17 + item18 + item19 + item20 + 
+         item21 + item22 + item23 + item24 + item25 + 
+         item26 + item27 + item28 + item29 + item30
+
+"
+
+unidimensionalModel = cfa(
+  model = unidimensionalModel_syntax, 
+  data = responseMatrix, 
+  estimator = "WLSMV", 
+  ordered = paste0("item", 11:30), 
+  std.lv = TRUE, 
+  parameterization = "theta"
+)
+
+summary(unidimensionalModel, fit.measures = TRUE, standardized = TRUE)
+
+unidimensionalScores = lavPredict(unidimensionalModel)
+
+semPlot::semPaths(unidimensionalModel, sizeMan = 2.5, style = "mx", intercepts = FALSE, thresholds = FALSE)
+
+```
+
+### Unidimensional Model Path Diagram
+
+```{r plotUnidimensionalModel, fig.align='center', cache = TRUE}
+semPlot::semPaths(unidimensionalModel, 
+                  sizeMan = 2.5, 
+                  style = "mx", 
+                  intercepts = FALSE, 
+                  thresholds = FALSE)
+
+```
+
+### Common Subscore Estimation Methods
+
+With an overall score from the unidimensional model, often subscores are formed by one of the following methods:
+
+1.   Using the unidimensional model parameters to create IRT-based subscores where:
+  
+     * Each score is a latent variable estimate from the IRT model
+     * Each estimate is with respect to only the set of items that contribute/measure the subdomains
+  
+2.  Summing items that measure the subdomains (here, the standards)
+    
+    * Lecture 13 showed this was a parallel items model
+
+
+Each of these methods has problems (to be discussed)
+
+### Unidimensional IRT-Model Based Subscores
+
+Unidimensional IRT-Model Subscores are created by:
+
+* Taking the estimated parameters of only the items measuring a subdomain
+* Using IRT-based scoring methods
+
+Note: As I am using ```lavaan``` for this lecture, I cannot easily create these scores 
+
+* Instead: Showing a simulation with the ```mirt``` package
+  * See file ```subscoreSame.R``` for methods for constructing scores
+
+### Unidimensional IRT-Model Based Subscores Are Just Short-Form Scores of the Same Construct
+
+![](subscoreSame.png)
+
+### Sum-score Based Subscores
+
+Sum-score based subscores are estimated by summing the items that measure each subdomain
+
+```{r}
+reducedQ = Qmatrix[which(rownames(Qmatrix) %in% paste0("item", 11:30)), ]
+reducedQ = reducedQ[, which(colSums(reducedQ) > 0)]
+
+sumScores = as.matrix(dataMat) %*% as.matrix(reducedQ)
+
+# problem with sumscores: missing data 
+head(sumScores)
+
+```
+
+### Sum-score Based Subscores: Missing Data
+
+One problem with sum-score based subscores is missing data
+
+* If a person omits a response, their total score possible is lower
+
+Solution: Mean-based Subscores (the mean of all items administered)
+
+```{r avgscores, cache = TRUE}
+
+# resolution: make an average score for each student
+averageScores = nItems = matrix(0, nrow = nrow(sumScores), ncol = ncol(sumScores))
+
+for (person in 1:nrow(dataMat)){
+  for (col in 1:ncol(reducedQ)){
+    for (row in 1:nrow(reducedQ)){
+      if (reducedQ[row, col] == 1 && !is.na(dataMat[person, row])){
+        averageScores[person, col] = averageScores[person, col] + dataMat[person, row]
+        nItems[person, col] = nItems[person, col] + 1
+      }   
+    }
+    averageScores[person, col] = averageScores[person, col] / nItems[person, col]
+  }
+}
+
+head(averageScores)
+
+```
+
+### Plots of Subscores vs. Overall Score
+
+```{r sumscorePlot, cache = TRUE}
+# plotting scores:
+par(mfrow = c(2, 2))
+for (standard in 1:ncol(reducedQ)){
+  plot(x = sumScores[,standard], y = unidimensionalScores, main = "Sum Scores vs. Unidimensional Scores", 
+       ylab = "IRT Total Theta",
+       xlab = paste0("Sum Score ", colnames(reducedQ)[standard]))
+}
+par(mfrow = c(1,1))
+```
+
+### Measurement Model Implied by Sumscore-based Subscores
+
+The measurement model implied by sumscore-based subscores is a multidimensional CFA model where:
+
+* Each item intercept, loading, and unique variance are constrained to be equal across subdomains
+* The correlation between factors is fixed to zero
+
+Subscore 1:
+$$
+\begin{array}{c}
+Y_{p1} = \mu_1 + \lambda_1 F_{p1} + e_{p1}; e_{p1} \sim N(0, \psi^2_1) \\
+Y_{p2} = \mu_1 + \lambda_1 F_{p1} + e_{p2}; e_{p2} \sim N(0, \psi^2_1) \\
+\vdots \\
+Y_{p5} = \mu_1 + \lambda_1 F_{p1} + e_{p5}; e_{p5} \sim N(0, \psi^2_1)
+\end{array}
+$$
+
+
+Subscore 2:
+$$
+\begin{array}{c}
+Y_{p6} = \mu_2 + \lambda_2 F_{p2} + e_{p6}; e_{p6} \sim N(0, \psi^2_1) \\
+Y_{p7} = \mu_2 + \lambda_2 F_{p2} + e_{p7}; e_{p7} \sim N(0, \psi^2_1) \\
+\vdots \\
+Y_{p10} = \mu_2 + \lambda_2 F_{p2} + e_{p10}; e_{p10} \sim N(0, \psi^2_1)
+\end{array}
+$$
+
+Structural model:
+
+$$
+\begin{bmatrix}
+\theta_{p1} \\
+\theta_{p2} \\
+\theta_{p3} \\
+\theta_{p4} \\
+\end{bmatrix}
+\sim N \left(\boldsymbol{0}, \boldsymbol{I}_{4} \right) 
+$$
+
+### Implementing Sumscore-Based Subscore Model in ```lavaan```
+
+```{r, cache = TRUE}
+
+parallelItems_syntax = "
+
+# constrain all loadings to be equal within each subscore
+theta1 =~ L1*item11 + L1*item12 + L1*item13 + L1*item14 + L1*item15
+theta2 =~ L2*item16 + L2*item17 + L2*item18 + L2*item19 + L2*item20
+theta3 =~ L3*item21 + L3*item22 + L3*item23 + L3*item24 + L3*item25
+theta4 =~ L4*item26 + L4*item27 + L4*item28 + L4*item29 + L4*item30
+
+# set the unique variances to be equal within each subscore
+item11 ~~ U1*item11; item12 ~~ U1*item12; item13 ~~ U1*item13; item14 ~~ U1*item14; item15 ~~ U1*item15;
+item16 ~~ U2*item16; item17 ~~ U2*item17; item18 ~~ U2*item18; item19 ~~ U2*item19; item20 ~~ U2*item20;
+item21 ~~ U3*item21; item22 ~~ U3*item22; item23 ~~ U3*item23; item24 ~~ U3*item24; item25 ~~ U3*item25;
+item26 ~~ U4*item26; item27 ~~ U4*item27; item28 ~~ U4*item28; item29 ~~ U4*item29; item30 ~~ U4*item30;
+
+# set the item intercepts to be equal within each subscore
+item11 ~ I1*1; item12 ~ I1*1; item13 ~ I1*1; item14 ~ I1*1; item15 ~ I1*1;
+item16 ~ I2*1; item17 ~ I2*1; item18 ~ I2*1; item19 ~ I2*1; item20 ~ I2*1;
+item21 ~ I3*1; item22 ~ I3*1; item23 ~ I3*1; item24 ~ I3*1; item25 ~ I3*1;
+item26 ~ I4*1; item27 ~ I4*1; item28 ~ I4*1; item29 ~ I4*1; item30 ~ I4*1;
+
+# set all covariances to zero
+theta1 ~~ 0*theta2
+theta1 ~~ 0*theta3
+theta1 ~~ 0*theta4
+theta2 ~~ 0*theta3
+theta2 ~~ 0*theta4
+theta3 ~~ 0*theta4
+
+
+"
+
+parallelItemsModel = cfa(
+  model = parallelItems_syntax, 
+  data = dataMat, 
+  estimator = "MLR",
+  std.lv = TRUE, 
+)
+
+summary(parallelItemsModel, fit.measures = TRUE, standardized = TRUE)
+
+```
+
+### Plotting Sumscores vs. Latent Variable Scores
+
+```{r, cache = TRUE}
+
+# create latent variable estimates
+parallelItemsScores = lavPredict(parallelItemsModel)
+
+# plotting model scores with sumscores
+par(mfrow = c(2,2))
+for (standard in 1:ncol(reducedQ)){
+  plot(x = parallelItemsScores[, standard],  y = sumScores[, standard], 
+      main = "Parallel Items Model Score vs. Sum Score", 
+      xlab = paste0("Parallel Items Model Score: ", colnames(reducedQ)[standard]), 
+      ylab = paste0("Sum Score: ", colnames(reducedQ)[standard])
+  )
+}
+par(mfrow = c(1,1))
+
+```
+
+### A Better Measurement Model Implied by Subscores
+
+Contrast the unidimensional model with that assumed by the subscores: the multidimensional model
+
+Standards measured (and measurement model):
+
+-   A.REI.1 ($\theta_{p1}$)
+
+$$P(Y_{pi} = 1 | \theta_{p1}) = 
+\frac{\exp \left(a_i \left( \theta_{p1} - b_i \right) \right)}{1 + \exp \left(a_i \left( \theta_{p1} - b_i \right) \right)} $$
+
+-   A.REI.2 ($\theta_{p2}$)
+
+$$P(Y_{pi} = 1 | \theta_{p2}) = \frac{\exp \left(a_i \left( \theta_{p2} - b_i \right) \right)}{1 + \exp \left(a_i \left( \theta_{p2} - b_i \right) \right)} $$
+
+-   A.REI.8 ($\theta_{p3}$)
+
+$$P(Y_{pi} = 1 | \theta_{p3}) = \frac{\exp \left(a_i \left( \theta_{p3} - b_i \right) \right)}{1 + \exp \left(a_i \left( \theta_{p3} - b_i \right) \right)} $$
+
+-   A.CED.2 ($\theta_{p4}$)
+
+$$P(Y_{pi} = 1 | \theta_{p4}) = \frac{\exp \left(a_i \left( \theta_{p4} - b_i \right) \right)}{1 + \exp \left(a_i \left( \theta_{p4} - b_i \right) \right)} $$
+
+### Structural Model Implied by Subscores
+
+$$
+\begin{bmatrix}
+\theta_{p1} \\
+\theta_{p2} \\
+\theta_{p3} \\
+\theta_{p4} \\
+\end{bmatrix}
+\sim N \left(\boldsymbol{0}, \boldsymbol{\Sigma}_{M} \right) 
+$$
+
+Where:
+
+$$
+\mathbf{\Sigma}_{M} =
+\begin{bmatrix}
+1 & \rho_{\theta_1, \theta_2} & \rho_{\theta_1, \theta_3} & \rho_{\theta_1, \theta_4} \\
+\rho_{\theta_1, \theta_2} & 1 & \rho_{\theta_2, \theta_3} & \rho_{\theta_2, \theta_4} \\
+\rho_{\theta_1, \theta_3} & \rho_{\theta_2, \theta_3} & 1 & \rho_{\theta_3, \theta_4} \\
+\rho_{\theta_1, \theta_4} & \rho_{\theta_2, \theta_4} & \rho_{\theta_3, \theta_4} & 1 \\
+\end{bmatrix}
+$$
+
+Here, $\mathbf{\Sigma}_{M}$ is a correlation matrix implying identification via standardized factors
+
+```{r multidimensionalModel, fig.align='center', cache = TRUE}
+
+multidimensionalModel_syntax = "
+
+theta1 =~ item11 + item12 + item13 + item14 + item15
+theta2 =~ item16 + item17 + item18 + item19 + item20
+theta3 =~ item21 + item22 + item23 + item24 + item25
+theta4 =~ item26 + item27 + item28 + item29 + item30
+
+"
+
+multidimensionalModel = cfa(
+  model = multidimensionalModel_syntax, 
+  data = responseMatrix, 
+  estimator = "WLSMV", 
+  ordered = paste0("item", 11:30), 
+  std.lv = TRUE, 
+  parameterization = "theta"
+)
+
+summary(unidimensionalModel, fit.measures = TRUE, standardized = TRUE)
+```
+
+### Multidimensional Model Path Diagram
+
+```{r plotMultidimensionalModel, fig.align='center', cache = TRUE}
+
+semPlot::semPaths(multidimensionalModel, 
+                  sizeMan = 2.5, 
+                  style = "mx", 
+                  intercepts = FALSE, 
+                  thresholds = FALSE)
+
+```
+
+### Model Score Comparisons
+
+```{r, cache = TRUE}
+multidimensionalScores = lavPredict(multidimensionalModel)
+
+allScores = data.frame(cbind(unidimensionalScores, multidimensionalScores))
+names(allScores) = c("uTheta", paste0("mTheta", 1:4))
+
+plot(allScores, main =  "Unidimensional Score vs. Multidimensional Scores")
+cor(allScores)
+```
+
+### Model Fit Comparison
+
+Which model fits the data better? Chi-square difference test:
+
+
+Note: Comparison is only unidimensional IRT model vs. Multidimensional IRT model
+
+* Sumscore-based MCFA model not comparable as likelihood is on different scale
+  * Observed variables Bernoulli distributed in IRT
+  * Observed variables normally distributed in CFA
+
+
+```{r, cache = TRUE}
+anova(unidimensionalModel, multidimensionalModel)
+```
+
+The MIRT model fits better than the unidimensional model
+
+* So, if reporting both types of scores, discrepancies can arise 
+  * Differing models may have competing information
+* Which score is more accurate? 
+  * Both cannot be correct
+
+### Option 2: Summed Multidimensional Model Scores
+
+Another option for reporting subscores and an overall score is to:
+
+* Estimate subscores from the MIRT model
+* Create the total score with the sum of each of the latent variable estimates from the MIRT model:
+
+```{r, cache = TRUE}
+totalMIRTScores = rowSums(multidimensionalScores)
+plot(x = unidimensionalScores, y = totalMIRTScores, 
+     main = "Unidimensional Score vs. Sum of Multidimensional Scores")
+cor(x = unidimensionalScores, y = totalMIRTScores)
+```
+
+### Evaluating Option 2
+
+Option 2 is closer to what is needed in that it uses MIRT to form a total score
+
+* But, what is the model that Option 2 implies?
+
+$$
+\begin{array}{c}
+\theta_{p1} = \mu + \lambda F + e_{p1}; e \sim N(0, \psi^2) \\
+\theta_{p2} = \mu + \lambda F + e_{p2}; e \sim N(0, \psi^2) \\
+\theta_{p3} = \mu + \lambda F + e_{p3}; e \sim N(0, \psi^2) \\
+\theta_{p4} = \mu + \lambda F + e_{p4}; e \sim N(0, \psi^2) \\
+\end{array}
+$$
+
+Where $F \sim N(0, 1)$
+
+### Testing if Summed MIRT Score Model Fits Data
+
+```{r, cache = TRUE}
+summedMIRT_syntax = "
+
+# constrain all loadings to be equal
+total =~ L1*theta1 + L1*theta2 + L1*theta3 + L1*theta4
+
+# set the unique variances to be equal
+theta1 ~~ U1*theta1; theta2 ~~ U1*theta2; theta3 ~~ U1*theta3; theta4 ~~ U1*theta4;
+
+# set the item intercepts to be equal
+theta1 ~ I1*1; theta2 ~ I1*1; theta3 ~ I1*1; theta4 ~ I1*1;
+
+"
+
+summedMIRTModel = cfa(
+  model = summedMIRT_syntax, 
+  data = multidimensionalScores, 
+  estimator = "MLR",
+  std.lv = TRUE, 
+)
+
+summary(summedMIRTModel, fit.measures = TRUE, standardized = TRUE)
+
+```
+
+### Demonstrating Equivalence (Scalar) with Summed MIRT Scores
+ 
+```{r}
+summedMIRTScores = lavPredict(summedMIRTModel)
+plot(x = summedMIRTScores, y = totalMIRTScores, 
+     main = "Summed MIRT Score vs. Sum of Multidimensional Scores")
+```
+
+## Option #3: Bifactor Model
+
+A bifactor model is a multidimensional model where:
+
+* Each item loads on a general factor and a specific factor
+* The general factor is uncorrelated with the specific factors
+* The specific factors can be uncorrelated with each other (as a method factor) or correlated with each other (as a multidimensional model)
+
+### Bifactor Model Notation
+
+The bifactor model is:
+
+Subscore 1:
+
+$$
+\begin{array}{c}
+\text{logit}\left( P\left( Y_{p1} = 1 \mid \theta_{p1}, g_p \right) \right) = \mu_1 + \lambda_{11} \theta_{p1} + \lambda_{1g} g_p \\
+\text{logit}\left( P\left( Y_{p2} = 1 \mid \theta_{p2}, g_p \right) \right) = \mu_2 + \lambda_{21} \theta_{p1} + \lambda_{2g} g_p \\
+\vdots \\
+\text{logit}\left( P\left( Y_{p5} = 1 \mid \theta_{p5}, g_p \right) \right) = \mu_5 + \lambda_{51} \theta_{p1} + \lambda_{5g} g_p \\
+\end{array}
+$$
+
+Subscore 2:
+
+$$
+\begin{array}{c}
+\text{logit}\left( P\left( Y_{p6} = 1 \mid \theta_{p6}, g_p \right) \right) = \mu_6 + \lambda_{61} \theta_{p2} + \lambda_{6g} g_p \\
+\text{logit}\left( P\left( Y_{p7} = 1 \mid \theta_{p7}, g_p \right) \right) = \mu_7 + \lambda_{71} \theta_{p2} + \lambda_{7g} g_p \\
+\vdots \\
+\text{logit}\left( P\left( Y_{p10} = 1 \mid \theta_{p10}, g_p \right) \right) = \mu_{10} + \lambda_{101} \theta_{p2} + \lambda_{10g} g_p \\
+\end{array}
+$$
+
+
+### Bifactor Model in ```lavaan ```
+
+```{r, cache = TRUE}
+
+bifactorModel_syntax = "
+
+g =~ item11 + item12 + item13 + item14 + item15 + 
+     item16 + item17 + item18 + item19 + item20 + 
+     item21 + item22 + item23 + item24 + item25 + 
+     item26 + item27 + item28 + item29 + item30
+         
+theta1 =~ item11 + item12 + item13 + item14 + item15
+theta2 =~ item16 + item17 + item18 + item19 + item20
+theta3 =~ item21 + item22 + item23 + item24 + item25
+theta4 =~ item26 + item27 + item28 + item29 + item30
+
+g ~~ 0*theta1
+g ~~ 0*theta2
+g ~~ 0*theta3
+g ~~ 0*theta4
+
+
+"
+
+bifactorModel = cfa(
+  model = bifactorModel_syntax, 
+  data = responseMatrix, 
+  estimator = "WLSMV", 
+  ordered = paste0("item", 11:30), 
+  std.lv = TRUE, 
+  parameterization = "theta"
+)
+
+
+
+summary(bifactorModel, fit.measures = TRUE, standardized = TRUE)
+
+```
+
+### Bifactor Model Path Diagram
+
+```{r plotBifactorModel, fig.align='center', cache = TRUE}
+
+semPlot::semPaths(bifactorModel, sizeMan = 2.5, style = "mx", intercepts = FALSE, thresholds = FALSE)
+
+```
+Note: as rendered when this lecture was constructed, the plot has correlations between $g$ and the $\theta$, which are not present in the model
+
+### Bifactor Model Score Comparisons: Unidimensional IRT model $\theta$ vs. Bifactor IRT model $g$
+
+```{r, cache = TRUE}
+bifactorScores = lavPredict(bifactorModel)
+
+plot(x = unidimensionalScores, y = bifactorScores[, "g"], 
+     main = "Unidimensional Score vs. Bifactor Score")
+```
+
+### Bifactor Model Score Comparisons: Standards
+
+```{r, cache = TRUE}
+par(mfrow = c(2,2))
+plot(x = multidimensionalScores[, 1], y = bifactorScores[, "theta1"],
+     main = "Multidimensional Score vs. Bifactor Score for Theta 1")
+plot(x = multidimensionalScores[, 2], y = bifactorScores[, "theta2"],
+     main = "Multidimensional Score vs. Bifactor Score for Theta 1")
+plot(x = multidimensionalScores[, 3], y = bifactorScores[, "theta3"],
+     main = "Multidimensional Score vs. Bifactor Score for Theta 1")
+plot(x = multidimensionalScores[, 4], y = bifactorScores[, "theta4"],
+     main = "Multidimensional Score vs. Bifactor Score for Theta 1")
+par(mfrow = c(1,1))
+```
+
+
+### From Score Plot: Scores are Not Same
+
+The bifactor model scores are not the same as the multidimensional model scores
+
+* The general factor is not the same as total score in the unidimensional model
+  * Rather, it is the score of the domain that does not include the subdomains
+  * Put another way: It is everything left over in algebra after controlling for a person's ability in the algebra standards
+  * Sometimes considered a residual
+
+### Model Fit Comparison
+
+But...the bifactor model nearly always fits better than a similar multidimensional model
+
+```{r, cache = TRUE}
+anova(unidimensionalModel, multidimensionalModel, bifactorModel)
+```
+
+### Option #4: Higher Order Model
+
+A higher order model is a multidimensional model where:
+
+* Each item loads onto its subdomain factor, identically with the multidimensional model (MIRT)
+* Each factor then loads onto a general factor 
+
+### Higher Order Model Notation
+
+Subscore 1:
+
+$$
+\begin{array}{c}
+\text{logit}\left( P\left( Y_{p1} = 1 \mid \theta_{p1} \right) \right) = \mu_1 + \lambda_{11} \theta_{p1} \\
+\text{logit}\left( P\left( Y_{p2} = 1 \mid \theta_{p2} \right) \right) = \mu_2 + \lambda_{21} \theta_{p1} \\
+\vdots \\
+\text{logit}\left( P\left( Y_{p5} = 1 \mid \theta_{p5} \right) \right) = \mu_5 + \lambda_{51} \theta_{p1} \\
+\end{array}
+$$
+
+Subscore 2:
+
+$$
+\begin{array}{c}
+\text{logit}\left( P\left( Y_{p6} = 1 \mid \theta_{p6} \right) \right) = \mu_6 + \lambda_{61} \theta_{p2} \\
+\text{logit}\left( P\left( Y_{p7} = 1 \mid \theta_{p7} \right) \right) = \mu_7 + \lambda_{71} \theta_{p2} \\
+\vdots \\
+\text{logit}\left( P\left( Y_{p10} = 1 \mid \theta_{p10} \right) \right) = \mu_{10} + \lambda_{101} \theta_{p2} \\
+\end{array}
+$$
+
+Structural Model -- a unidimensional CFA model for the subdomains:
+
+$$
+\begin{array}{c}
+\theta_{p1} = \mu + \lambda_{1} F + e_{p1}; e_{p1} \sim N(0, \psi^2_1) \\
+\theta_{p2} = \mu + \lambda_{2} F + e_{p2}; e_{p2} \sim N(0, \psi^2_2) \\
+\theta_{p3} = \mu + \lambda_{3} F + e_{p3}; e_{p3} \sim N(0, \psi^2_3) \\
+\theta_{p4} = \mu + \lambda_{4} F + e_{p4}; e_{p4} \sim N(0, \psi^2_4) \\
+\end{array}
+$$
+
+### Model-Implied Covariance Matrix of Subdomain Latent Variables
+
+$$
+\begin{bmatrix}
+\theta_{p1} \\
+\theta_{p2} \\
+\theta_{p3} \\
+\theta_{p4} \\
+\end{bmatrix}
+\sim N \left(\boldsymbol{0}, \boldsymbol{\Sigma}_{M} \right)
+$$
+
+Where:
+
+$$
+\mathbf{\Sigma}_{M} = \mathbf{\Lambda} \mathbf{\Phi} \mathbf{\Lambda}^T + \boldsymbol{\Psi}
+$$
+
+So, the higher order model is the MIRT model with a more restricted structure on the covariance matrix of the subdomain latent variables
+
+### Higher Order Model in ```lavaan```
+
+```{r, cache = TRUE}
+
+
+higherOrderModel_syntax = "
+
+theta1 =~ item11 + item12 + item13 + item14 + item15
+theta2 =~ item16 + item17 + item18 + item19 + item20
+theta3 =~ item21 + item22 + item23 + item24 + item25
+theta4 =~ item26 + item27 + item28 + item29 + item30
+
+algebra =~ theta1 + theta2 + theta3 + theta4
+
+"
+
+higherOrderModel = cfa(
+  model = higherOrderModel_syntax, 
+  data = responseMatrix, 
+  estimator = "WLSMV", 
+  ordered = paste0("item", 11:30), 
+  std.lv = TRUE, 
+  parameterization = "theta"
+)
+
+summary(higherOrderModel, fit.measures = TRUE, standardized = TRUE)
+
+```
+
+### Higher Order Model Path Diagram
+
+```{r plotHigherOrderModel, fig.align='center', cache = TRUE}
+
+semPlot::semPaths(higherOrderModel, sizeMan = 2.5, style = "mx", intercepts = FALSE, thresholds = FALSE)
+
+```
+
+### Higher Order Model Score Comparisons: Unidimensional IRT model $\theta$ vs. Higher Order IRT model $F$
+
+```{r, cache = TRUE}
+higherOrderScores = lavPredict(higherOrderModel)
+
+plot(x = unidimensionalScores, y = higherOrderScores[, "algebra"], 
+     main = "Unidimensional Score vs. Higher Order Score")
+```
+
+### Higher Order Model Score Comparisons: Standards
+
+```{r, cache = TRUE}
+par(mfrow = c(2,2))
+
+plot(x = multidimensionalScores[, 1], y = higherOrderScores[, "theta1"],
+     main = "Multidimensional Score vs. Higher Order Score for Theta 1")
+plot(x = multidimensionalScores[, 2], y = higherOrderScores[, "theta2"],
+      main = "Multidimensional Score vs. Higher Order Score for Theta 2")
+plot(x = multidimensionalScores[, 3], y = higherOrderScores[, "theta3"],
+      main = "Multidimensional Score vs. Higher Order Score for Theta 3")
+plot(x = multidimensionalScores[, 4], y = higherOrderScores[, "theta4"],
+      main = "Multidimensional Score vs. Higher Order Score for Theta 4")
+
+par(mfrow = c(1,1))
+```
+
+
+### Model Fit Comparison
+
+```{r, cache = TRUE}
+
+anova(unidimensionalModel, multidimensionalModel, higherOrderModel)
+
+```
+
+So, the higher order model is really what is needed...but, what if it does not fit?
+* We can use CFA-based tools (modification indices) to help make the model fit better
+
+## Historical Issues with Bifactor and Higher Order Models
+
+Historically, bifactor and higher order models have been used to create subscores
+
+* In some cases, the models are related
+
+Schmid and Leiman (1957) showed how, in an EFA context, a bifactor model could be transformed into a higher order model
+
+* Assumed loadings of general to subfactors were proportional within a subfactor
+  * Testable assumption 
+  * Not really valid for measurement purposes, however
+
+  
+
+## Summary
+
+Today we investigated a classic educational measurement problem: The need for having both subscores and a total score
+
+* We showed that the subscores and total score are incompatible models
+* We showed how several models were not valid for reporting both subscores and a total score
+* We showed how a higher order model was the best model for reporting both subscores and a total score
+
+
+
+

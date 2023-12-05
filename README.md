@@ -64,7 +64,7 @@ This repo contains course materials for the Multidimensional Measurement Models 
 * Links to Lecture Materials:
   * Lecture Slides: [https://jonathantemplin.github.io/MultidimensionalMeasurementModels2023/materials/Week03/03_Psychometric_Prerequisites.html#/title-slide](https://jonathantemplin.github.io/MultidimensionalMeasurementModels2023/materials/Week03/03_Psychometric_Prerequisites.html#/title-slide)
   * Lecture Video: [https://youtu.be/ksK3-bvMKn4](https://youtu.be/ksK3-bvMKn4)
-  * Lecture Handout (Same content as slides, but in docx format): [https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/raw/main/materials/Week03/03_Psychometric_Prerequisites_Handout.docx](https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/raw/main/materials/Week03/03_Psychometric_Prerequisites_Handout.docx)
+  * Lecture Handout (Same content as slides, but in DOCX format): [https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/raw/main/materials/Week03/03_Psychometric_Prerequisites_Handout.docx](https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/raw/main/materials/Week03/03_Psychometric_Prerequisites_Handout.docx)
   * Coding Activity: [https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/blob/main/materials/Week03/03_Coding_Activity.md](https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/blob/main/materials/Week03/03_Coding_Activity.md)
     * My Coding Activity File: [https://raw.githubusercontent.com/jonathantemplin/MultidimensionalMeasurementModels2023/main/materials/Week03/03_classSimulation.R](https://raw.githubusercontent.com/jonathantemplin/MultidimensionalMeasurementModels2023/main/materials/Week03/03_classSimulation.R)
 
@@ -81,7 +81,7 @@ This repo contains course materials for the Multidimensional Measurement Models 
   
 * Links to Lecture Materials:
   * Lecture Slides: [https://jonathantemplin.github.io/MultidimensionalMeasurementModels2023/materials/Week04/04_Model_Fit.html#/title-slide](https://jonathantemplin.github.io/MultidimensionalMeasurementModels2023/materials/Week04/04_Model_Fit.html#/title-slide)
-  * Lecture Handout (Same content as slides, but in docx format): [https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/raw/main/materials/Week04/04_Model_Fit_Handout.docx](https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/raw/main/materials/Week04/04_Model_Fit_Handout.docx)
+  * Lecture Handout (Same content as slides, but in DOCX format): [https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/raw/main/materials/Week04/04_Model_Fit_Handout.docx](https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/raw/main/materials/Week04/04_Model_Fit_Handout.docx)
   * Lecture Videos:
     * Part 1: [https://youtu.be/ojufSzYIBTA](https://youtu.be/ojufSzYIBTA)
     * Part 2: [https://youtu.be/AwDcNQ31ca8](https://youtu.be/AwDcNQ31ca8)
@@ -95,7 +95,7 @@ This repo contains course materials for the Multidimensional Measurement Models 
 * Formative Assessment 4 Assigned (Due 09/26/2023)--on [ICON](https://icon.uiowa.edu)
 * Links to Lecture Materials:
   * Lecture Slides: [https://jonathantemplin.github.io/MultidimensionalMeasurementModels2023/materials/Week05/05_Difficulties.html](https://jonathantemplin.github.io/MultidimensionalMeasurementModels2023/materials/Week05/05_Difficulties.html)
-  * Lecture Handout (Same content as slides, but in docx format): [https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/raw/main/materials/Week05/05_Difficulties_Handout.docx](https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/raw/main/materials/Week05/05_Difficulties_Handout.docx)
+  * Lecture Handout (Same content as slides, but in DOCX format): [https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/raw/main/materials/Week05/05_Difficulties_Handout.docx](https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/raw/main/materials/Week05/05_Difficulties_Handout.docx)
   * Lecture Video: [https://youtu.be/-05XICYqnlo](https://youtu.be/-05XICYqnlo) 
   * Coding Activity: [https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/blob/main/materials/Week05/05_Coding_Activity.md](https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/blob/main/materials/Week05/05_Coding_Activity.md)
 
@@ -105,7 +105,7 @@ This repo contains course materials for the Multidimensional Measurement Models 
 * Formative Assessment 5 Assigned (Due 10/03/2023)--on [ICON](https://icon.uiowa.edu)
 * Links to Lecture Materials:
   * Lecture Slides: [https://jonathantemplin.github.io/MultidimensionalMeasurementModels2023/materials/Week06/06_Estimation.html#/title-slide](https://jonathantemplin.github.io/MultidimensionalMeasurementModels2023/materials/Week06/06_Estimation.html#/title-slide)
-  * Lecture Handout (Same content as slides, but in docx format): [https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/raw/main/materials/Week06/06_Estimation_Handout.docx](https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/raw/main/materials/Week06/06_Estimation_Handout.docx)
+  * Lecture Handout (Same content as slides, but in DOCX format): [https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/raw/main/materials/Week06/06_Estimation_Handout.docx](https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/raw/main/materials/Week06/06_Estimation_Handout.docx)
   * Lecture Video: [https://youtu.be/8BQ28HqQ0CU](https://youtu.be/8BQ28HqQ0CU)
   * Coding Activity: None
 * Homework 3 Due 10/11/2023 via [ICON](https://icon.uiowa.edu)
@@ -186,16 +186,23 @@ This repo contains course materials for the Multidimensional Measurement Models 
 
 * Read prior to class: Nothing
 * No More Formative Assessments 
-* Links to Lecture Matrials:
+* Links to Lecture Materials:
   * Slides: [https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/raw/main/materials/Week13/13_On_Scores.pdf](https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/raw/main/materials/Week13/13_On_Scores.pdf)
   * R Syntax: [https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/raw/main/materials/Week13/13_On_Scores.R](https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/raw/main/materials/Week13/13_On_Scores.R)
   * Data Files
     * Binary Data: [https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/raw/main/materials/Week13/9-10th_Grade_Q2.RData](https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/raw/main/materials/Week13/9-10th_Grade_Q2.RData)
     * Likert Data: [https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/raw/main/materials/Week13/gamblingdata.csv](https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/raw/main/materials/Week13/gamblingdata.csv)
     * Happiness Data: [https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/raw/main/materials/Week13/happinessData.csv](https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/raw/main/materials/Week13/happinessData.csv)
+* Lecture Video: [https://youtu.be/p8x6pgDf-Ag](https://youtu.be/p8x6pgDf-Ag)
 
-### Week 14: December 06, 2023: Confirmatory Models; Latent Variable Interactions; Models with Specific Purposes (Higher order, bifactor, method factors, extreme response models, scoring approaches
+### Week 14: December 06, 2023: Subscores and Other Models
 
-* Read prior to class:
-  * Fager (2019): Chapter 2 (via ICON)
+* Links to Lecture Materials: 
+  * Lecture Document: 
+  * R Syntax Files:
+    * Subscore simulation:
+    * Lecture analyses:
+  * Data File: 
+* Lecture Video: Available after class
+
 

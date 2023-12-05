@@ -1,0 +1,3 @@
+{"rule":"WHITESPACE_RULE","sentence":"^\\QCourse Information\\E$"}
+{"rule":"SENTENCE_WHITESPACE","sentence":"^\\QR\\E$"}
+{"rule":"SENTENCE_WHITESPACE","sentence":"^\\QR\nData Files\nBinary Data: https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/raw/main/materials/Week13/9-10th_Grade_Q2.RData\nLikert Data: https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/raw/main/materials/Week13/gamblingdata.csv\nHappiness Data: https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/raw/main/materials/Week13/happinessData.csv\nLecture Video: https://youtu.be/p8x6pgDf-Ag\\E$"}
