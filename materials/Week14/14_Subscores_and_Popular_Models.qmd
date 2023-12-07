@@ -265,9 +265,9 @@ Subscore 1:
 $$
 \begin{array}{c}
 Y_{p1} = \mu_1 + \lambda_1 F_{p1} + e_{p1}; e_{p1} \sim N(0, \psi^2_1) \\
-Y_{p2} = \mu_1 + \lambda_1 F_{p1} + e_{p2}; e_{p2} \sim N(0, \psi^2_1) \\
+Y_{p2} = \mu_2 + \lambda_1 F_{p1} + e_{p2}; e_{p2} \sim N(0, \psi^2_1) \\
 \vdots \\
-Y_{p5} = \mu_1 + \lambda_1 F_{p1} + e_{p5}; e_{p5} \sim N(0, \psi^2_1)
+Y_{p5} = \mu_5 + \lambda_1 F_{p1} + e_{p5}; e_{p5} \sim N(0, \psi^2_1)
 \end{array}
 $$
 
@@ -275,10 +275,10 @@ $$
 Subscore 2:
 $$
 \begin{array}{c}
-Y_{p6} = \mu_2 + \lambda_2 F_{p2} + e_{p6}; e_{p6} \sim N(0, \psi^2_1) \\
-Y_{p7} = \mu_2 + \lambda_2 F_{p2} + e_{p7}; e_{p7} \sim N(0, \psi^2_1) \\
+Y_{p6} = \mu_6 + \lambda_2 F_{p2} + e_{p6}; e_{p6} \sim N(0, \psi^2_2) \\
+Y_{p7} = \mu_7 + \lambda_2 F_{p2} + e_{p7}; e_{p7} \sim N(0, \psi^2_2) \\
 \vdots \\
-Y_{p10} = \mu_2 + \lambda_2 F_{p2} + e_{p10}; e_{p10} \sim N(0, \psi^2_1)
+Y_{p10} = \mu_10 + \lambda_2 F_{p2} + e_{p10}; e_{p10} \sim N(0, \psi^2_2)
 \end{array}
 $$
 
@@ -311,12 +311,6 @@ item11 ~~ U1*item11; item12 ~~ U1*item12; item13 ~~ U1*item13; item14 ~~ U1*item
 item16 ~~ U2*item16; item17 ~~ U2*item17; item18 ~~ U2*item18; item19 ~~ U2*item19; item20 ~~ U2*item20;
 item21 ~~ U3*item21; item22 ~~ U3*item22; item23 ~~ U3*item23; item24 ~~ U3*item24; item25 ~~ U3*item25;
 item26 ~~ U4*item26; item27 ~~ U4*item27; item28 ~~ U4*item28; item29 ~~ U4*item29; item30 ~~ U4*item30;
-
-# set the item intercepts to be equal within each subscore
-item11 ~ I1*1; item12 ~ I1*1; item13 ~ I1*1; item14 ~ I1*1; item15 ~ I1*1;
-item16 ~ I2*1; item17 ~ I2*1; item18 ~ I2*1; item19 ~ I2*1; item20 ~ I2*1;
-item21 ~ I3*1; item22 ~ I3*1; item23 ~ I3*1; item24 ~ I3*1; item25 ~ I3*1;
-item26 ~ I4*1; item27 ~ I4*1; item28 ~ I4*1; item29 ~ I4*1; item30 ~ I4*1;
 
 # set all covariances to zero
 theta1 ~~ 0*theta2
@@ -429,7 +423,7 @@ multidimensionalModel = cfa(
   parameterization = "theta"
 )
 
-summary(unidimensionalModel, fit.measures = TRUE, standardized = TRUE)
+summary(multidimensionalModel, fit.measures = TRUE, standardized = TRUE)
 ```
 
 ### Multidimensional Model Path Diagram
@@ -501,10 +495,10 @@ Option 2 is closer to what is needed in that it uses MIRT to form a total score
 
 $$
 \begin{array}{c}
-\theta_{p1} = \mu + \lambda F + e_{p1}; e \sim N(0, \psi^2) \\
-\theta_{p2} = \mu + \lambda F + e_{p2}; e \sim N(0, \psi^2) \\
-\theta_{p3} = \mu + \lambda F + e_{p3}; e \sim N(0, \psi^2) \\
-\theta_{p4} = \mu + \lambda F + e_{p4}; e \sim N(0, \psi^2) \\
+\theta_{p1} = \mu_1 + \lambda F + e_{p1}; e \sim N(0, \psi^2) \\
+\theta_{p2} = \mu_2 + \lambda F + e_{p2}; e \sim N(0, \psi^2) \\
+\theta_{p3} = \mu_3 + \lambda F + e_{p3}; e \sim N(0, \psi^2) \\
+\theta_{p4} = \mu_4 + \lambda F + e_{p4}; e \sim N(0, \psi^2) \\
 \end{array}
 $$
 
@@ -521,8 +515,6 @@ total =~ L1*theta1 + L1*theta2 + L1*theta3 + L1*theta4
 # set the unique variances to be equal
 theta1 ~~ U1*theta1; theta2 ~~ U1*theta2; theta3 ~~ U1*theta3; theta4 ~~ U1*theta4;
 
-# set the item intercepts to be equal
-theta1 ~ I1*1; theta2 ~ I1*1; theta3 ~ I1*1; theta4 ~ I1*1;
 
 "
 
@@ -705,10 +697,10 @@ Structural Model -- a unidimensional CFA model for the subdomains:
 
 $$
 \begin{array}{c}
-\theta_{p1} = \mu + \lambda_{1} F + e_{p1}; e_{p1} \sim N(0, \psi^2_1) \\
-\theta_{p2} = \mu + \lambda_{2} F + e_{p2}; e_{p2} \sim N(0, \psi^2_2) \\
-\theta_{p3} = \mu + \lambda_{3} F + e_{p3}; e_{p3} \sim N(0, \psi^2_3) \\
-\theta_{p4} = \mu + \lambda_{4} F + e_{p4}; e_{p4} \sim N(0, \psi^2_4) \\
+\theta_{p1} = \mu_1 + \lambda_{1} F + e_{p1}; e_{p1} \sim N(0, \psi^2_1) \\
+\theta_{p2} = \mu_2 + \lambda_{2} F + e_{p2}; e_{p2} \sim N(0, \psi^2_2) \\
+\theta_{p3} = \mu_3 + \lambda_{3} F + e_{p3}; e_{p3} \sim N(0, \psi^2_3) \\
+\theta_{p4} = \mu_4 + \lambda_{4} F + e_{p4}; e_{p4} \sim N(0, \psi^2_4) \\
 \end{array}
 $$
 

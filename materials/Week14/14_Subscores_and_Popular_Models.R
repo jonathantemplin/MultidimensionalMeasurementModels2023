@@ -119,12 +119,6 @@ item16 ~~ U2*item16; item17 ~~ U2*item17; item18 ~~ U2*item18; item19 ~~ U2*item
 item21 ~~ U3*item21; item22 ~~ U3*item22; item23 ~~ U3*item23; item24 ~~ U3*item24; item25 ~~ U3*item25;
 item26 ~~ U4*item26; item27 ~~ U4*item27; item28 ~~ U4*item28; item29 ~~ U4*item29; item30 ~~ U4*item30;
 
-# set the item intercepts to be equal within each subscore
-item11 ~ I1*1; item12 ~ I1*1; item13 ~ I1*1; item14 ~ I1*1; item15 ~ I1*1;
-item16 ~ I2*1; item17 ~ I2*1; item18 ~ I2*1; item19 ~ I2*1; item20 ~ I2*1;
-item21 ~ I3*1; item22 ~ I3*1; item23 ~ I3*1; item24 ~ I3*1; item25 ~ I3*1;
-item26 ~ I4*1; item27 ~ I4*1; item28 ~ I4*1; item29 ~ I4*1; item30 ~ I4*1;
-
 # set all covariances to zero
 theta1 ~~ 0*theta2
 theta1 ~~ 0*theta3
@@ -184,7 +178,7 @@ summary(multidimensionalModel, fit.measures = TRUE, standardized = TRUE)
 
 semPlot::semPaths(multidimensionalModel, sizeMan = 2.5, style = "mx", intercepts = FALSE, thresholds = FALSE)
 
-
+multidimensionalScores = lavPredict(multidimensionalModel)
 
 
 anova(unidimensionalModel, multidimensionalModel)
@@ -206,9 +200,6 @@ total =~ L1*theta1 + L1*theta2 + L1*theta3 + L1*theta4
 
 # set the unique variances to be equal
 theta1 ~~ U1*theta1; theta2 ~~ U1*theta2; theta3 ~~ U1*theta3; theta4 ~~ U1*theta4;
-
-# set the item intercepts to be equal
-theta1 ~ I1*1; theta2 ~ I1*1; theta3 ~ I1*1; theta4 ~ I1*1;
 
 "
 

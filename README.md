@@ -203,6 +203,6 @@ This repo contains course materials for the Multidimensional Measurement Models 
     * Subscore simulation: [https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/raw/main/materials/Week14/subscoreSame.R](https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/raw/main/materials/Week14/subscoreSame.R)
     * Lecture analyses: [https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/raw/main/materials/Week14/14_Subscores_and_Popular_Models.R](https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/raw/main/materials/Week14/14_Subscores_and_Popular_Models.R)
   * Data File: [https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/raw/main/materials/Week14/9-10th_grade_q2.RData](https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/raw/main/materials/Week14/9-10th_grade_q2.RData)
-* Lecture Video: Available after class
+* Lecture Video: Unavailable due to technical difficulties.
 
 

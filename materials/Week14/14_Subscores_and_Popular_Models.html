@@ -547,17 +547,17 @@ Scales y*:
 <p>Subscore 1: <span class="math display">\[
 \begin{array}{c}
 Y_{p1} = \mu_1 + \lambda_1 F_{p1} + e_{p1}; e_{p1} \sim N(0, \psi^2_1) \\
-Y_{p2} = \mu_1 + \lambda_1 F_{p1} + e_{p2}; e_{p2} \sim N(0, \psi^2_1) \\
+Y_{p2} = \mu_2 + \lambda_1 F_{p1} + e_{p2}; e_{p2} \sim N(0, \psi^2_1) \\
 \vdots \\
-Y_{p5} = \mu_1 + \lambda_1 F_{p1} + e_{p5}; e_{p5} \sim N(0, \psi^2_1)
+Y_{p5} = \mu_5 + \lambda_1 F_{p1} + e_{p5}; e_{p5} \sim N(0, \psi^2_1)
 \end{array}
 \]</span></p>
 <p>Subscore 2: <span class="math display">\[
 \begin{array}{c}
-Y_{p6} = \mu_2 + \lambda_2 F_{p2} + e_{p6}; e_{p6} \sim N(0, \psi^2_1) \\
-Y_{p7} = \mu_2 + \lambda_2 F_{p2} + e_{p7}; e_{p7} \sim N(0, \psi^2_1) \\
+Y_{p6} = \mu_6 + \lambda_2 F_{p2} + e_{p6}; e_{p6} \sim N(0, \psi^2_2) \\
+Y_{p7} = \mu_7 + \lambda_2 F_{p2} + e_{p7}; e_{p7} \sim N(0, \psi^2_2) \\
 \vdots \\
-Y_{p10} = \mu_2 + \lambda_2 F_{p2} + e_{p10}; e_{p10} \sim N(0, \psi^2_1)
+Y_{p10} = \mu_10 + \lambda_2 F_{p2} + e_{p10}; e_{p10} \sim N(0, \psi^2_2)
 \end{array}
 \]</span></p>
 <p>Structural model:</p>
@@ -573,7 +573,7 @@ Y_{p10} = \mu_2 + \lambda_2 F_{p2} + e_{p10}; e_{p10} \sim N(0, \psi^2_1)
 </section>
 <section id="implementing-sumscore-based-subscore-model-in-lavaan" class="level3">
 <h3 class="anchored" data-anchor-id="implementing-sumscore-based-subscore-model-in-lavaan">Implementing Sumscore-Based Subscore Model in <code>lavaan</code></h3>
-<div class="cell" data-hash="14_Subscores_and_Popular_Models_cache/html/unnamed-chunk-3_196edd61dcdc6d53e11b7d6b9584167f">
+<div class="cell" data-hash="14_Subscores_and_Popular_Models_cache/html/unnamed-chunk-3_cd21cb570e80ffb5c7531a140c8fc756">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>parallelItems_syntax <span class="ot">=</span> <span class="st">"</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="st"># constrain all loadings to be equal within each subscore</span></span>
@@ -588,53 +588,41 @@ Y_{p10} = \mu_2 + \lambda_2 F_{p2} + e_{p10}; e_{p10} \sim N(0, \psi^2_1)
 <span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a><span class="st">item21 ~~ U3*item21; item22 ~~ U3*item22; item23 ~~ U3*item23; item24 ~~ U3*item24; item25 ~~ U3*item25;</span></span>
 <span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a><span class="st">item26 ~~ U4*item26; item27 ~~ U4*item27; item28 ~~ U4*item28; item29 ~~ U4*item29; item30 ~~ U4*item30;</span></span>
 <span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a><span class="st"># set the item intercepts to be equal within each subscore</span></span>
-<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a><span class="st">item11 ~ I1*1; item12 ~ I1*1; item13 ~ I1*1; item14 ~ I1*1; item15 ~ I1*1;</span></span>
-<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a><span class="st">item16 ~ I2*1; item17 ~ I2*1; item18 ~ I2*1; item19 ~ I2*1; item20 ~ I2*1;</span></span>
-<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a><span class="st">item21 ~ I3*1; item22 ~ I3*1; item23 ~ I3*1; item24 ~ I3*1; item25 ~ I3*1;</span></span>
-<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a><span class="st">item26 ~ I4*1; item27 ~ I4*1; item28 ~ I4*1; item29 ~ I4*1; item30 ~ I4*1;</span></span>
-<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a><span class="st"># set all covariances to zero</span></span>
-<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a><span class="st">theta1 ~~ 0*theta2</span></span>
-<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a><span class="st">theta1 ~~ 0*theta3</span></span>
-<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a><span class="st">theta1 ~~ 0*theta4</span></span>
-<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a><span class="st">theta2 ~~ 0*theta3</span></span>
-<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a><span class="st">theta2 ~~ 0*theta4</span></span>
-<span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a><span class="st">theta3 ~~ 0*theta4</span></span>
-<span id="cb13-28"><a href="#cb13-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-29"><a href="#cb13-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-30"><a href="#cb13-30" aria-hidden="true" tabindex="-1"></a><span class="st">"</span></span>
-<span id="cb13-31"><a href="#cb13-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-32"><a href="#cb13-32" aria-hidden="true" tabindex="-1"></a>parallelItemsModel <span class="ot">=</span> <span class="fu">cfa</span>(</span>
-<span id="cb13-33"><a href="#cb13-33" aria-hidden="true" tabindex="-1"></a>  <span class="at">model =</span> parallelItems_syntax, </span>
-<span id="cb13-34"><a href="#cb13-34" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> dataMat, </span>
-<span id="cb13-35"><a href="#cb13-35" aria-hidden="true" tabindex="-1"></a>  <span class="at">estimator =</span> <span class="st">"MLR"</span>,</span>
-<span id="cb13-36"><a href="#cb13-36" aria-hidden="true" tabindex="-1"></a>  <span class="at">std.lv =</span> <span class="cn">TRUE</span>, </span>
-<span id="cb13-37"><a href="#cb13-37" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in lav_model_vcov(lavmodel = lavmodel, lavsamplestats = lavsamplestats, : lavaan WARNING:
-    The variance-covariance matrix of the estimated parameters (vcov)
-    does not appear to be positive definite! The smallest eigenvalue
-    (= 4.546369e-19) is close to zero. This may be a symptom that the
-    model is not identified.</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(parallelItemsModel, <span class="at">fit.measures =</span> <span class="cn">TRUE</span>, <span class="at">standardized =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a><span class="st"># set all covariances to zero</span></span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a><span class="st">theta1 ~~ 0*theta2</span></span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a><span class="st">theta1 ~~ 0*theta3</span></span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a><span class="st">theta1 ~~ 0*theta4</span></span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a><span class="st">theta2 ~~ 0*theta3</span></span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a><span class="st">theta2 ~~ 0*theta4</span></span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a><span class="st">theta3 ~~ 0*theta4</span></span>
+<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a><span class="st">"</span></span>
+<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a>parallelItemsModel <span class="ot">=</span> <span class="fu">cfa</span>(</span>
+<span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a>  <span class="at">model =</span> parallelItems_syntax, </span>
+<span id="cb13-28"><a href="#cb13-28" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> dataMat, </span>
+<span id="cb13-29"><a href="#cb13-29" aria-hidden="true" tabindex="-1"></a>  <span class="at">estimator =</span> <span class="st">"MLR"</span>,</span>
+<span id="cb13-30"><a href="#cb13-30" aria-hidden="true" tabindex="-1"></a>  <span class="at">std.lv =</span> <span class="cn">TRUE</span>, </span>
+<span id="cb13-31"><a href="#cb13-31" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb13-32"><a href="#cb13-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-33"><a href="#cb13-33" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(parallelItemsModel, <span class="at">fit.measures =</span> <span class="cn">TRUE</span>, <span class="at">standardized =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>lavaan 0.6.15 ended normally after 20 iterations
+<pre><code>lavaan 0.6.15 ended normally after 17 iterations
 
   Estimator                                         ML
   Optimization method                           NLMINB
-  Number of model parameters                        60
-  Number of equality constraints                    48
+  Number of model parameters                        40
+  Number of equality constraints                    32
 
   Number of observations                          1099
 
 Model Test User Model:
                                               Standard      Scaled
-  Test Statistic                              1844.317    1911.638
-  Degrees of freedom                               218         218
+  Test Statistic                              1189.531    1236.996
+  Degrees of freedom                               202         202
   P-value (Chi-square)                           0.000       0.000
-  Scaling correction factor                                  0.965
+  Scaling correction factor                                  0.962
     Yuan-Bentler correction (Mplus variant)                       
 
 Model Test Baseline Model:
@@ -646,42 +634,42 @@ Model Test Baseline Model:
 
 User Model versus Baseline Model:
 
-  Comparative Fit Index (CFI)                    0.249       0.192
-  Tucker-Lewis Index (TLI)                       0.345       0.296
+  Comparative Fit Index (CFI)                    0.544       0.506
+  Tucker-Lewis Index (TLI)                       0.571       0.536
                                                                   
-  Robust Comparative Fit Index (CFI)                         0.243
-  Robust Tucker-Lewis Index (TLI)                            0.340
+  Robust Comparative Fit Index (CFI)                         0.539
+  Robust Tucker-Lewis Index (TLI)                            0.566
 
 Loglikelihood and Information Criteria:
 
-  Loglikelihood user model (H0)             -14495.333  -14495.333
-  Scaling correction factor                                  0.171
+  Loglikelihood user model (H0)             -14167.940  -14167.940
+  Scaling correction factor                                  0.158
       for the MLR correction                                      
   Loglikelihood unrestricted model (H1)     -13573.174  -13573.174
-  Scaling correction factor                                  0.959
+  Scaling correction factor                                  0.955
       for the MLR correction                                      
                                                                   
-  Akaike (AIC)                               29014.665   29014.665
-  Bayesian (BIC)                             29074.691   29074.691
-  Sample-size adjusted Bayesian (SABIC)      29036.576   29036.576
+  Akaike (AIC)                               28351.879   28351.879
+  Bayesian (BIC)                             28391.896   28391.896
+  Sample-size adjusted Bayesian (SABIC)      28366.487   28366.487
 
 Root Mean Square Error of Approximation:
 
-  RMSEA                                          0.082       0.084
-  90 Percent confidence interval - lower         0.079       0.081
-  90 Percent confidence interval - upper         0.086       0.088
+  RMSEA                                          0.067       0.068
+  90 Percent confidence interval - lower         0.063       0.065
+  90 Percent confidence interval - upper         0.070       0.072
   P-value H_0: RMSEA &lt;= 0.050                    0.000       0.000
-  P-value H_0: RMSEA &gt;= 0.080                    0.874       0.972
+  P-value H_0: RMSEA &gt;= 0.080                    0.000       0.000
                                                                   
-  Robust RMSEA                                               0.083
-  90 Percent confidence interval - lower                     0.079
-  90 Percent confidence interval - upper                     0.086
+  Robust RMSEA                                               0.067
+  90 Percent confidence interval - lower                     0.063
+  90 Percent confidence interval - upper                     0.071
   P-value H_0: Robust RMSEA &lt;= 0.050                         0.000
-  P-value H_0: Robust RMSEA &gt;= 0.080                         0.896
+  P-value H_0: Robust RMSEA &gt;= 0.080                         0.000
 
 Standardized Root Mean Square Residual:
 
-  SRMR                                           0.124       0.124
+  SRMR                                           0.119       0.119
 
 Parameter Estimates:
 
@@ -692,29 +680,29 @@ Parameter Estimates:
 Latent Variables:
                    Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all
   theta1 =~                                                             
-    item11    (L1)    0.204    0.008   24.414    0.000    0.204    0.415
-    item12    (L1)    0.204    0.008   24.414    0.000    0.204    0.415
-    item13    (L1)    0.204    0.008   24.414    0.000    0.204    0.415
-    item14    (L1)    0.204    0.008   24.414    0.000    0.204    0.415
-    item15    (L1)    0.204    0.008   24.414    0.000    0.204    0.415
+    item11    (L1)    0.207    0.008   25.443    0.000    0.207    0.428
+    item12    (L1)    0.207    0.008   25.443    0.000    0.207    0.428
+    item13    (L1)    0.207    0.008   25.443    0.000    0.207    0.428
+    item14    (L1)    0.207    0.008   25.443    0.000    0.207    0.428
+    item15    (L1)    0.207    0.008   25.443    0.000    0.207    0.428
   theta2 =~                                                             
-    item16    (L2)    0.264    0.007   38.318    0.000    0.264    0.528
-    item17    (L2)    0.264    0.007   38.318    0.000    0.264    0.528
-    item18    (L2)    0.264    0.007   38.318    0.000    0.264    0.528
-    item19    (L2)    0.264    0.007   38.318    0.000    0.264    0.528
-    item20    (L2)    0.264    0.007   38.318    0.000    0.264    0.528
+    item16    (L2)    0.267    0.007   39.947    0.000    0.267    0.542
+    item17    (L2)    0.267    0.007   39.947    0.000    0.267    0.542
+    item18    (L2)    0.267    0.007   39.947    0.000    0.267    0.542
+    item19    (L2)    0.267    0.007   39.947    0.000    0.267    0.542
+    item20    (L2)    0.267    0.007   39.947    0.000    0.267    0.542
   theta3 =~                                                             
-    item21    (L3)    0.148    0.011   13.909    0.000    0.148    0.321
-    item22    (L3)    0.148    0.011   13.909    0.000    0.148    0.321
-    item23    (L3)    0.148    0.011   13.909    0.000    0.148    0.321
-    item24    (L3)    0.148    0.011   13.909    0.000    0.148    0.321
-    item25    (L3)    0.148    0.011   13.909    0.000    0.148    0.321
+    item21    (L3)    0.151    0.010   14.505    0.000    0.151    0.330
+    item22    (L3)    0.151    0.010   14.505    0.000    0.151    0.330
+    item23    (L3)    0.151    0.010   14.505    0.000    0.151    0.330
+    item24    (L3)    0.151    0.010   14.505    0.000    0.151    0.330
+    item25    (L3)    0.151    0.010   14.505    0.000    0.151    0.330
   theta4 =~                                                             
-    item26    (L4)    0.177    0.010   18.241    0.000    0.177    0.376
-    item27    (L4)    0.177    0.010   18.241    0.000    0.177    0.376
-    item28    (L4)    0.177    0.010   18.241    0.000    0.177    0.376
-    item29    (L4)    0.177    0.010   18.241    0.000    0.177    0.376
-    item30    (L4)    0.177    0.010   18.241    0.000    0.177    0.376
+    item26    (L4)    0.180    0.009   19.182    0.000    0.180    0.389
+    item27    (L4)    0.180    0.009   19.182    0.000    0.180    0.389
+    item28    (L4)    0.180    0.009   19.182    0.000    0.180    0.389
+    item29    (L4)    0.180    0.009   19.182    0.000    0.180    0.389
+    item30    (L4)    0.180    0.009   19.182    0.000    0.180    0.389
 
 Covariances:
                    Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all
@@ -728,55 +716,28 @@ Covariances:
   theta3 ~~                                                             
     theta4            0.000                               0.000    0.000
 
-Intercepts:
-                   Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all
-   .item11    (I1)    0.403    0.009   46.887    0.000    0.403    0.822
-   .item12    (I1)    0.403    0.009   46.887    0.000    0.403    0.822
-   .item13    (I1)    0.403    0.009   46.887    0.000    0.403    0.822
-   .item14    (I1)    0.403    0.009   46.887    0.000    0.403    0.822
-   .item15    (I1)    0.403    0.009   46.887    0.000    0.403    0.822
-   .item16    (I2)    0.485    0.010   49.448    0.000    0.485    0.970
-   .item17    (I2)    0.485    0.010   49.448    0.000    0.485    0.970
-   .item18    (I2)    0.485    0.010   49.448    0.000    0.485    0.970
-   .item19    (I2)    0.485    0.010   49.448    0.000    0.485    0.970
-   .item20    (I2)    0.485    0.010   49.448    0.000    0.485    0.970
-   .item21    (I3)    0.308    0.007   41.616    0.000    0.308    0.667
-   .item22    (I3)    0.308    0.007   41.616    0.000    0.308    0.667
-   .item23    (I3)    0.308    0.007   41.616    0.000    0.308    0.667
-   .item24    (I3)    0.308    0.007   41.616    0.000    0.308    0.667
-   .item25    (I3)    0.308    0.007   41.616    0.000    0.308    0.667
-   .item26    (I4)    0.329    0.008   41.509    0.000    0.329    0.701
-   .item27    (I4)    0.329    0.008   41.509    0.000    0.329    0.701
-   .item28    (I4)    0.329    0.008   41.509    0.000    0.329    0.701
-   .item29    (I4)    0.329    0.008   41.509    0.000    0.329    0.701
-   .item30    (I4)    0.329    0.008   41.509    0.000    0.329    0.701
-    theta1            0.000                               0.000    0.000
-    theta2            0.000                               0.000    0.000
-    theta3            0.000                               0.000    0.000
-    theta4            0.000                               0.000    0.000
-
 Variances:
                    Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all
-   .item11    (U1)    0.199    0.003   58.235    0.000    0.199    0.828
-   .item12    (U1)    0.199    0.003   58.235    0.000    0.199    0.828
-   .item13    (U1)    0.199    0.003   58.235    0.000    0.199    0.828
-   .item14    (U1)    0.199    0.003   58.235    0.000    0.199    0.828
-   .item15    (U1)    0.199    0.003   58.235    0.000    0.199    0.828
-   .item16    (U2)    0.180    0.004   50.089    0.000    0.180    0.722
-   .item17    (U2)    0.180    0.004   50.089    0.000    0.180    0.722
-   .item18    (U2)    0.180    0.004   50.089    0.000    0.180    0.722
-   .item19    (U2)    0.180    0.004   50.089    0.000    0.180    0.722
-   .item20    (U2)    0.180    0.004   50.089    0.000    0.180    0.722
-   .item21    (U3)    0.191    0.003   56.507    0.000    0.191    0.897
-   .item22    (U3)    0.191    0.003   56.507    0.000    0.191    0.897
-   .item23    (U3)    0.191    0.003   56.507    0.000    0.191    0.897
-   .item24    (U3)    0.191    0.003   56.507    0.000    0.191    0.897
-   .item25    (U3)    0.191    0.003   56.507    0.000    0.191    0.897
-   .item26    (U4)    0.190    0.004   53.380    0.000    0.190    0.859
-   .item27    (U4)    0.190    0.004   53.380    0.000    0.190    0.859
-   .item28    (U4)    0.190    0.004   53.380    0.000    0.190    0.859
-   .item29    (U4)    0.190    0.004   53.380    0.000    0.190    0.859
-   .item30    (U4)    0.190    0.004   53.380    0.000    0.190    0.859
+   .item11    (U1)    0.192    0.003   56.690    0.000    0.192    0.817
+   .item12    (U1)    0.192    0.003   56.690    0.000    0.192    0.817
+   .item13    (U1)    0.192    0.003   56.690    0.000    0.192    0.817
+   .item14    (U1)    0.192    0.003   56.690    0.000    0.192    0.817
+   .item15    (U1)    0.192    0.003   56.690    0.000    0.192    0.817
+   .item16    (U2)    0.171    0.003   49.772    0.000    0.171    0.706
+   .item17    (U2)    0.171    0.003   49.772    0.000    0.171    0.706
+   .item18    (U2)    0.171    0.003   49.772    0.000    0.171    0.706
+   .item19    (U2)    0.171    0.003   49.772    0.000    0.171    0.706
+   .item20    (U2)    0.171    0.003   49.772    0.000    0.171    0.706
+   .item21    (U3)    0.187    0.003   55.545    0.000    0.187    0.891
+   .item22    (U3)    0.187    0.003   55.545    0.000    0.187    0.891
+   .item23    (U3)    0.187    0.003   55.545    0.000    0.187    0.891
+   .item24    (U3)    0.187    0.003   55.545    0.000    0.187    0.891
+   .item25    (U3)    0.187    0.003   55.545    0.000    0.187    0.891
+   .item26    (U4)    0.183    0.003   53.285    0.000    0.183    0.849
+   .item27    (U4)    0.183    0.003   53.285    0.000    0.183    0.849
+   .item28    (U4)    0.183    0.003   53.285    0.000    0.183    0.849
+   .item29    (U4)    0.183    0.003   53.285    0.000    0.183    0.849
+   .item30    (U4)    0.183    0.003   53.285    0.000    0.183    0.849
     theta1            1.000                               1.000    1.000
     theta2            1.000                               1.000    1.000
     theta3            1.000                               1.000    1.000
@@ -787,22 +748,22 @@ Variances:
 <section id="plotting-sumscores-vs.-latent-variable-scores" class="level3">
 <h3 class="anchored" data-anchor-id="plotting-sumscores-vs.-latent-variable-scores">Plotting Sumscores vs.&nbsp;Latent Variable Scores</h3>
 <div class="cell" data-hash="14_Subscores_and_Popular_Models_cache/html/unnamed-chunk-4_0af615b444a962e5bf62fed971cdede8">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create latent variable estimates</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>parallelItemsScores <span class="ot">=</span> <span class="fu">lavPredict</span>(parallelItemsModel)</span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="co"># plotting model scores with sumscores</span></span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (standard <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">ncol</span>(reducedQ)){</span>
-<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(<span class="at">x =</span> parallelItemsScores[, standard],  <span class="at">y =</span> sumScores[, standard], </span>
-<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>      <span class="at">main =</span> <span class="st">"Parallel Items Model Score vs. Sum Score"</span>, </span>
-<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>      <span class="at">xlab =</span> <span class="fu">paste0</span>(<span class="st">"Parallel Items Model Score: "</span>, <span class="fu">colnames</span>(reducedQ)[standard]), </span>
-<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>      <span class="at">ylab =</span> <span class="fu">paste0</span>(<span class="st">"Sum Score: "</span>, <span class="fu">colnames</span>(reducedQ)[standard])</span>
-<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create latent variable estimates</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>parallelItemsScores <span class="ot">=</span> <span class="fu">lavPredict</span>(parallelItemsModel)</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="co"># plotting model scores with sumscores</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (standard <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">ncol</span>(reducedQ)){</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(<span class="at">x =</span> parallelItemsScores[, standard],  <span class="at">y =</span> sumScores[, standard], </span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>      <span class="at">main =</span> <span class="st">"Parallel Items Model Score vs. Sum Score"</span>, </span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>      <span class="at">xlab =</span> <span class="fu">paste0</span>(<span class="st">"Parallel Items Model Score: "</span>, <span class="fu">colnames</span>(reducedQ)[standard]), </span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>      <span class="at">ylab =</span> <span class="fu">paste0</span>(<span class="st">"Sum Score: "</span>, <span class="fu">colnames</span>(reducedQ)[standard])</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="14_Subscores_and_Popular_Models_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
 </div>
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="a-better-measurement-model-implied-by-subscores" class="level3">
@@ -849,43 +810,43 @@ Variances:
 \end{bmatrix}
 \]</span></p>
 <p>Here, <span class="math inline">\(\mathbf{\Sigma}_{M}\)</span> is a correlation matrix implying identification via standardized factors</p>
-<div class="cell" data-layout-align="center" data-hash="14_Subscores_and_Popular_Models_cache/html/multidimensionalModel_de58645aa2a55969b27cd644d45b3470">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>multidimensionalModel_syntax <span class="ot">=</span> <span class="st">"</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="st">theta1 =~ item11 + item12 + item13 + item14 + item15</span></span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="st">theta2 =~ item16 + item17 + item18 + item19 + item20</span></span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="st">theta3 =~ item21 + item22 + item23 + item24 + item25</span></span>
-<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="st">theta4 =~ item26 + item27 + item28 + item29 + item30</span></span>
-<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a><span class="st">"</span></span>
-<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>multidimensionalModel <span class="ot">=</span> <span class="fu">cfa</span>(</span>
-<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">model =</span> multidimensionalModel_syntax, </span>
-<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> responseMatrix, </span>
-<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">estimator =</span> <span class="st">"WLSMV"</span>, </span>
-<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">ordered =</span> <span class="fu">paste0</span>(<span class="st">"item"</span>, <span class="dv">11</span><span class="sc">:</span><span class="dv">30</span>), </span>
-<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">std.lv =</span> <span class="cn">TRUE</span>, </span>
-<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">parameterization =</span> <span class="st">"theta"</span></span>
-<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(unidimensionalModel, <span class="at">fit.measures =</span> <span class="cn">TRUE</span>, <span class="at">standardized =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-layout-align="center" data-hash="14_Subscores_and_Popular_Models_cache/html/multidimensionalModel_86d981a7cd402f735273719fd78a52a2">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>multidimensionalModel_syntax <span class="ot">=</span> <span class="st">"</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="st">theta1 =~ item11 + item12 + item13 + item14 + item15</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="st">theta2 =~ item16 + item17 + item18 + item19 + item20</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="st">theta3 =~ item21 + item22 + item23 + item24 + item25</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="st">theta4 =~ item26 + item27 + item28 + item29 + item30</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a><span class="st">"</span></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>multidimensionalModel <span class="ot">=</span> <span class="fu">cfa</span>(</span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">model =</span> multidimensionalModel_syntax, </span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> responseMatrix, </span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">estimator =</span> <span class="st">"WLSMV"</span>, </span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">ordered =</span> <span class="fu">paste0</span>(<span class="st">"item"</span>, <span class="dv">11</span><span class="sc">:</span><span class="dv">30</span>), </span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">std.lv =</span> <span class="cn">TRUE</span>, </span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">parameterization =</span> <span class="st">"theta"</span></span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(multidimensionalModel, <span class="at">fit.measures =</span> <span class="cn">TRUE</span>, <span class="at">standardized =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>lavaan 0.6.15 ended normally after 15 iterations
+<pre><code>lavaan 0.6.16 ended normally after 26 iterations
 
   Estimator                                       DWLS
   Optimization method                           NLMINB
-  Number of model parameters                        40
+  Number of model parameters                        46
 
                                                   Used       Total
   Number of observations                          1099        2541
 
 Model Test User Model:
                                               Standard      Scaled
-  Test Statistic                               419.002     514.212
-  Degrees of freedom                               170         170
+  Test Statistic                               233.931     298.881
+  Degrees of freedom                               164         164
   P-value (Chi-square)                           0.000       0.000
-  Scaling correction factor                                  0.847
-  Shift parameter                                           19.655
+  Scaling correction factor                                  0.832
+  Shift parameter                                           17.797
     simple second-order correction                                
 
 Model Test Baseline Model:
@@ -897,29 +858,29 @@ Model Test Baseline Model:
 
 User Model versus Baseline Model:
 
-  Comparative Fit Index (CFI)                    0.952       0.890
-  Tucker-Lewis Index (TLI)                       0.946       0.877
+  Comparative Fit Index (CFI)                    0.986       0.957
+  Tucker-Lewis Index (TLI)                       0.984       0.950
                                                                   
-  Robust Comparative Fit Index (CFI)                         0.799
-  Robust Tucker-Lewis Index (TLI)                            0.775
+  Robust Comparative Fit Index (CFI)                         0.916
+  Robust Tucker-Lewis Index (TLI)                            0.903
 
 Root Mean Square Error of Approximation:
 
-  RMSEA                                          0.037       0.043
-  90 Percent confidence interval - lower         0.032       0.039
-  90 Percent confidence interval - upper         0.041       0.047
-  P-value H_0: RMSEA &lt;= 0.050                    1.000       0.997
+  RMSEA                                          0.020       0.027
+  90 Percent confidence interval - lower         0.014       0.022
+  90 Percent confidence interval - upper         0.025       0.032
+  P-value H_0: RMSEA &lt;= 0.050                    1.000       1.000
   P-value H_0: RMSEA &gt;= 0.080                    0.000       0.000
                                                                   
-  Robust RMSEA                                               0.073
-  90 Percent confidence interval - lower                     0.065
-  90 Percent confidence interval - upper                     0.080
-  P-value H_0: Robust RMSEA &lt;= 0.050                         0.000
-  P-value H_0: Robust RMSEA &gt;= 0.080                         0.061
+  Robust RMSEA                                               0.048
+  90 Percent confidence interval - lower                     0.038
+  90 Percent confidence interval - upper                     0.057
+  P-value H_0: Robust RMSEA &lt;= 0.050                         0.642
+  P-value H_0: Robust RMSEA &gt;= 0.080                         0.000
 
 Standardized Root Mean Square Residual:
 
-  SRMR                                           0.066       0.066
+  SRMR                                           0.051       0.051
 
 Parameter Estimates:
 
@@ -929,27 +890,42 @@ Parameter Estimates:
 
 Latent Variables:
                    Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all
-  theta =~                                                              
-    item11            0.864    0.074   11.634    0.000    0.864    0.654
-    item12            0.286    0.053    5.421    0.000    0.286    0.275
-    item13            0.768    0.062   12.382    0.000    0.768    0.609
-    item14            0.589    0.053   11.017    0.000    0.589    0.508
-    item15            0.474    0.049    9.626    0.000    0.474    0.428
-    item16            0.703    0.055   12.835    0.000    0.703    0.575
-    item17            0.710    0.056   12.576    0.000    0.710    0.579
-    item18            0.867    0.066   13.192    0.000    0.867    0.655
-    item19            0.912    0.067   13.547    0.000    0.912    0.674
-    item20            0.820    0.078   10.577    0.000    0.820    0.634
-    item21            0.173    0.045    3.799    0.000    0.173    0.170
-    item22            0.310    0.057    5.441    0.000    0.310    0.296
-    item23            0.437    0.056    7.736    0.000    0.437    0.400
-    item24            0.374    0.052    7.164    0.000    0.374    0.350
-    item25            0.433    0.053    8.129    0.000    0.433    0.398
-    item26            0.569    0.062    9.150    0.000    0.569    0.494
-    item27            0.422    0.048    8.785    0.000    0.422    0.389
-    item28            0.605    0.057   10.706    0.000    0.605    0.518
-    item29            0.257    0.058    4.411    0.000    0.257    0.249
-    item30            0.390    0.053    7.292    0.000    0.390    0.363
+  theta1 =~                                                             
+    item11            1.060    0.109    9.769    0.000    1.060    0.727
+    item12            0.307    0.057    5.362    0.000    0.307    0.294
+    item13            0.914    0.083   10.988    0.000    0.914    0.675
+    item14            0.678    0.065   10.470    0.000    0.678    0.561
+    item15            0.531    0.056    9.410    0.000    0.531    0.469
+  theta2 =~                                                             
+    item16            0.808    0.067   12.124    0.000    0.808    0.629
+    item17            0.809    0.069   11.760    0.000    0.809    0.629
+    item18            1.005    0.086   11.670    0.000    1.005    0.709
+    item19            1.072    0.090   11.864    0.000    1.072    0.731
+    item20            0.919    0.098    9.397    0.000    0.919    0.677
+  theta3 =~                                                             
+    item21            0.227    0.058    3.920    0.000    0.227    0.221
+    item22            0.419    0.078    5.408    0.000    0.419    0.387
+    item23            0.679    0.093    7.333    0.000    0.679    0.562
+    item24            0.593    0.079    7.537    0.000    0.593    0.510
+    item25            0.680    0.088    7.758    0.000    0.680    0.562
+  theta4 =~                                                             
+    item26            0.764    0.094    8.152    0.000    0.764    0.607
+    item27            0.565    0.062    9.161    0.000    0.565    0.492
+    item28            0.857    0.089    9.609    0.000    0.857    0.651
+    item29            0.325    0.070    4.665    0.000    0.325    0.309
+    item30            0.498    0.067    7.434    0.000    0.498    0.446
+
+Covariances:
+                   Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all
+  theta1 ~~                                                             
+    theta2            0.754    0.036   20.945    0.000    0.754    0.754
+    theta3            0.522    0.056    9.336    0.000    0.522    0.522
+    theta4            0.765    0.044   17.284    0.000    0.765    0.765
+  theta2 ~~                                                             
+    theta3            0.624    0.047   13.315    0.000    0.624    0.624
+    theta4            0.583    0.045   12.964    0.000    0.583    0.583
+  theta3 ~~                                                             
+    theta4            0.542    0.066    8.179    0.000    0.542    0.542
 
 Intercepts:
                    Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all
@@ -973,88 +949,94 @@ Intercepts:
    .item28            0.000                               0.000    0.000
    .item29            0.000                               0.000    0.000
    .item30            0.000                               0.000    0.000
-    theta             0.000                               0.000    0.000
+    theta1            0.000                               0.000    0.000
+    theta2            0.000                               0.000    0.000
+    theta3            0.000                               0.000    0.000
+    theta4            0.000                               0.000    0.000
 
 Thresholds:
                    Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all
-    item11|t1         0.460    0.055    8.384    0.000    0.460    0.348
-    item12|t1         0.645    0.043   14.979    0.000    0.645    0.620
-    item13|t1         0.128    0.048    2.654    0.008    0.128    0.102
-    item14|t1         0.131    0.044    2.966    0.003    0.131    0.113
-    item15|t1         0.082    0.042    1.955    0.051    0.082    0.074
-    item16|t1        -0.141    0.046   -3.060    0.002   -0.141   -0.115
-    item17|t1        -0.038    0.046   -0.815    0.415   -0.038   -0.031
-    item18|t1        -0.044    0.050   -0.877    0.381   -0.044   -0.033
-    item19|t1        -0.113    0.051   -2.214    0.027   -0.113   -0.083
-    item20|t1         0.610    0.057   10.675    0.000    0.610    0.472
-    item21|t1         0.266    0.039    6.824    0.000    0.266    0.262
-    item22|t1         0.824    0.046   17.874    0.000    0.824    0.787
-    item23|t1         0.623    0.046   13.661    0.000    0.623    0.571
-    item24|t1         0.512    0.043   11.893    0.000    0.512    0.480
-    item25|t1         0.484    0.044   11.049    0.000    0.484    0.444
-    item26|t1         0.618    0.049   12.572    0.000    0.618    0.537
-    item27|t1         0.170    0.041    4.109    0.000    0.170    0.157
-    item28|t1         0.345    0.046    7.485    0.000    0.345    0.295
-    item29|t1         0.781    0.045   17.458    0.000    0.781    0.756
-    item30|t1         0.551    0.044   12.571    0.000    0.551    0.513
+    item11|t1         0.507    0.065    7.814    0.000    0.507    0.348
+    item12|t1         0.649    0.044   14.888    0.000    0.649    0.620
+    item13|t1         0.138    0.052    2.639    0.008    0.138    0.102
+    item14|t1         0.137    0.046    2.956    0.003    0.137    0.113
+    item15|t1         0.084    0.043    1.954    0.051    0.084    0.074
+    item16|t1        -0.148    0.049   -3.060    0.002   -0.148   -0.115
+    item17|t1        -0.040    0.049   -0.816    0.415   -0.040   -0.031
+    item18|t1        -0.047    0.053   -0.877    0.381   -0.047   -0.033
+    item19|t1        -0.122    0.055   -2.215    0.027   -0.122   -0.083
+    item20|t1         0.641    0.063   10.109    0.000    0.641    0.472
+    item21|t1         0.268    0.040    6.797    0.000    0.268    0.262
+    item22|t1         0.853    0.052   16.444    0.000    0.853    0.787
+    item23|t1         0.690    0.059   11.726    0.000    0.690    0.571
+    item24|t1         0.558    0.051   10.915    0.000    0.558    0.480
+    item25|t1         0.537    0.054    9.898    0.000    0.537    0.444
+    item26|t1         0.676    0.061   11.023    0.000    0.676    0.537
+    item27|t1         0.180    0.044    4.071    0.000    0.180    0.157
+    item28|t1         0.389    0.056    7.001    0.000    0.389    0.295
+    item29|t1         0.795    0.047   16.808    0.000    0.795    0.756
+    item30|t1         0.573    0.047   12.089    0.000    0.573    0.513
 
 Variances:
                    Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all
-   .item11            1.000                               1.000    0.572
-   .item12            1.000                               1.000    0.925
-   .item13            1.000                               1.000    0.629
-   .item14            1.000                               1.000    0.742
-   .item15            1.000                               1.000    0.817
-   .item16            1.000                               1.000    0.669
-   .item17            1.000                               1.000    0.665
-   .item18            1.000                               1.000    0.571
-   .item19            1.000                               1.000    0.546
-   .item20            1.000                               1.000    0.598
-   .item21            1.000                               1.000    0.971
-   .item22            1.000                               1.000    0.912
-   .item23            1.000                               1.000    0.840
-   .item24            1.000                               1.000    0.877
-   .item25            1.000                               1.000    0.842
-   .item26            1.000                               1.000    0.755
-   .item27            1.000                               1.000    0.849
-   .item28            1.000                               1.000    0.732
-   .item29            1.000                               1.000    0.938
-   .item30            1.000                               1.000    0.868
-    theta             1.000                               1.000    1.000
+   .item11            1.000                               1.000    0.471
+   .item12            1.000                               1.000    0.914
+   .item13            1.000                               1.000    0.545
+   .item14            1.000                               1.000    0.685
+   .item15            1.000                               1.000    0.780
+   .item16            1.000                               1.000    0.605
+   .item17            1.000                               1.000    0.605
+   .item18            1.000                               1.000    0.497
+   .item19            1.000                               1.000    0.465
+   .item20            1.000                               1.000    0.542
+   .item21            1.000                               1.000    0.951
+   .item22            1.000                               1.000    0.851
+   .item23            1.000                               1.000    0.685
+   .item24            1.000                               1.000    0.740
+   .item25            1.000                               1.000    0.684
+   .item26            1.000                               1.000    0.631
+   .item27            1.000                               1.000    0.758
+   .item28            1.000                               1.000    0.576
+   .item29            1.000                               1.000    0.904
+   .item30            1.000                               1.000    0.801
+    theta1            1.000                               1.000    1.000
+    theta2            1.000                               1.000    1.000
+    theta3            1.000                               1.000    1.000
+    theta4            1.000                               1.000    1.000
 
 Scales y*:
                    Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all
-    item11            0.757                               0.757    1.000
-    item12            0.962                               0.962    1.000
-    item13            0.793                               0.793    1.000
-    item14            0.862                               0.862    1.000
-    item15            0.904                               0.904    1.000
-    item16            0.818                               0.818    1.000
-    item17            0.816                               0.816    1.000
-    item18            0.756                               0.756    1.000
-    item19            0.739                               0.739    1.000
-    item20            0.773                               0.773    1.000
-    item21            0.985                               0.985    1.000
-    item22            0.955                               0.955    1.000
-    item23            0.916                               0.916    1.000
-    item24            0.937                               0.937    1.000
-    item25            0.918                               0.918    1.000
-    item26            0.869                               0.869    1.000
-    item27            0.921                               0.921    1.000
-    item28            0.856                               0.856    1.000
-    item29            0.969                               0.969    1.000
-    item30            0.932                               0.932    1.000</code></pre>
+    item11            0.686                               0.686    1.000
+    item12            0.956                               0.956    1.000
+    item13            0.738                               0.738    1.000
+    item14            0.828                               0.828    1.000
+    item15            0.883                               0.883    1.000
+    item16            0.778                               0.778    1.000
+    item17            0.778                               0.778    1.000
+    item18            0.705                               0.705    1.000
+    item19            0.682                               0.682    1.000
+    item20            0.736                               0.736    1.000
+    item21            0.975                               0.975    1.000
+    item22            0.922                               0.922    1.000
+    item23            0.827                               0.827    1.000
+    item24            0.860                               0.860    1.000
+    item25            0.827                               0.827    1.000
+    item26            0.795                               0.795    1.000
+    item27            0.871                               0.871    1.000
+    item28            0.759                               0.759    1.000
+    item29            0.951                               0.951    1.000
+    item30            0.895                               0.895    1.000</code></pre>
 </div>
 </div>
 </section>
 <section id="multidimensional-model-path-diagram" class="level3">
 <h3 class="anchored" data-anchor-id="multidimensional-model-path-diagram">Multidimensional Model Path Diagram</h3>
 <div class="cell" data-layout-align="center" data-hash="14_Subscores_and_Popular_Models_cache/html/plotMultidimensionalModel_2bfd402eeece41805ebe6b622f67c70b">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>semPlot<span class="sc">::</span><span class="fu">semPaths</span>(multidimensionalModel, </span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>                  <span class="at">sizeMan =</span> <span class="fl">2.5</span>, </span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>                  <span class="at">style =</span> <span class="st">"mx"</span>, </span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>                  <span class="at">intercepts =</span> <span class="cn">FALSE</span>, </span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>                  <span class="at">thresholds =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>semPlot<span class="sc">::</span><span class="fu">semPaths</span>(multidimensionalModel, </span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>                  <span class="at">sizeMan =</span> <span class="fl">2.5</span>, </span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>                  <span class="at">style =</span> <span class="st">"mx"</span>, </span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>                  <span class="at">intercepts =</span> <span class="cn">FALSE</span>, </span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>                  <span class="at">thresholds =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -1067,16 +1049,16 @@ Scales y*:
 <section id="model-score-comparisons" class="level3">
 <h3 class="anchored" data-anchor-id="model-score-comparisons">Model Score Comparisons</h3>
 <div class="cell" data-hash="14_Subscores_and_Popular_Models_cache/html/unnamed-chunk-5_2f640be9f957f6be9e821e01dfbac1f3">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>multidimensionalScores <span class="ot">=</span> <span class="fu">lavPredict</span>(multidimensionalModel)</span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>allScores <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="fu">cbind</span>(unidimensionalScores, multidimensionalScores))</span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(allScores) <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"uTheta"</span>, <span class="fu">paste0</span>(<span class="st">"mTheta"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>))</span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(allScores, <span class="at">main =</span>  <span class="st">"Unidimensional Score vs. Multidimensional Scores"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>multidimensionalScores <span class="ot">=</span> <span class="fu">lavPredict</span>(multidimensionalModel)</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>allScores <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="fu">cbind</span>(unidimensionalScores, multidimensionalScores))</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(allScores) <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"uTheta"</span>, <span class="fu">paste0</span>(<span class="st">"mTheta"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>))</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(allScores, <span class="at">main =</span>  <span class="st">"Unidimensional Score vs. Multidimensional Scores"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="14_Subscores_and_Popular_Models_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
 </div>
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(allScores)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(allScores)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>           uTheta   mTheta1   mTheta2   mTheta3   mTheta4
 uTheta  1.0000000 0.9763872 0.9734620 0.8953982 0.9324452
@@ -1099,7 +1081,7 @@ mTheta4 0.9324452 0.9400688 0.8361691 0.8101180 1.0000000</code></pre>
 </ul></li>
 </ul>
 <div class="cell" data-hash="14_Subscores_and_Popular_Models_cache/html/unnamed-chunk-6_285c92737bd9304985f382ccb8797314">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(unidimensionalModel, multidimensionalModel)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(unidimensionalModel, multidimensionalModel)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Scaled Chi-Squared Difference Test (method = "satorra.2000")
@@ -1136,13 +1118,13 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <li>Create the total score with the sum of each of the latent variable estimates from the MIRT model:</li>
 </ul>
 <div class="cell" data-hash="14_Subscores_and_Popular_Models_cache/html/unnamed-chunk-7_f1d3f0ed70fa15a25a3d4afd9eb33b7b">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>totalMIRTScores <span class="ot">=</span> <span class="fu">rowSums</span>(multidimensionalScores)</span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="at">x =</span> unidimensionalScores, <span class="at">y =</span> totalMIRTScores, </span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">"Unidimensional Score vs. Sum of Multidimensional Scores"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>totalMIRTScores <span class="ot">=</span> <span class="fu">rowSums</span>(multidimensionalScores)</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="at">x =</span> unidimensionalScores, <span class="at">y =</span> totalMIRTScores, </span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">"Unidimensional Score vs. Sum of Multidimensional Scores"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="14_Subscores_and_Popular_Models_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
 </div>
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(<span class="at">x =</span> unidimensionalScores, <span class="at">y =</span> totalMIRTScores)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(<span class="at">x =</span> unidimensionalScores, <span class="at">y =</span> totalMIRTScores)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>           [,1]
 theta 0.9973215</code></pre>
@@ -1157,54 +1139,52 @@ theta 0.9973215</code></pre>
 </ul>
 <p><span class="math display">\[
 \begin{array}{c}
-\theta_{p1} = \mu + \lambda F + e_{p1}; e \sim N(0, \psi^2) \\
-\theta_{p2} = \mu + \lambda F + e_{p2}; e \sim N(0, \psi^2) \\
-\theta_{p3} = \mu + \lambda F + e_{p3}; e \sim N(0, \psi^2) \\
-\theta_{p4} = \mu + \lambda F + e_{p4}; e \sim N(0, \psi^2) \\
+\theta_{p1} = \mu_1 + \lambda F + e_{p1}; e \sim N(0, \psi^2) \\
+\theta_{p2} = \mu_2 + \lambda F + e_{p2}; e \sim N(0, \psi^2) \\
+\theta_{p3} = \mu_3 + \lambda F + e_{p3}; e \sim N(0, \psi^2) \\
+\theta_{p4} = \mu_4 + \lambda F + e_{p4}; e \sim N(0, \psi^2) \\
 \end{array}
 \]</span></p>
 <p>Where <span class="math inline">\(F \sim N(0, 1)\)</span></p>
 </section>
 <section id="testing-if-summed-mirt-score-model-fits-data" class="level3">
 <h3 class="anchored" data-anchor-id="testing-if-summed-mirt-score-model-fits-data">Testing if Summed MIRT Score Model Fits Data</h3>
-<div class="cell" data-hash="14_Subscores_and_Popular_Models_cache/html/unnamed-chunk-8_1c09417b0d1786ee971bd323cf29b21b">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>summedMIRT_syntax <span class="ot">=</span> <span class="st">"</span></span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="st"># constrain all loadings to be equal</span></span>
-<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a><span class="st">total =~ L1*theta1 + L1*theta2 + L1*theta3 + L1*theta4</span></span>
-<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a><span class="st"># set the unique variances to be equal</span></span>
-<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a><span class="st">theta1 ~~ U1*theta1; theta2 ~~ U1*theta2; theta3 ~~ U1*theta3; theta4 ~~ U1*theta4;</span></span>
-<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a><span class="st"># set the item intercepts to be equal</span></span>
-<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a><span class="st">theta1 ~ I1*1; theta2 ~ I1*1; theta3 ~ I1*1; theta4 ~ I1*1;</span></span>
-<span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-12"><a href="#cb30-12" aria-hidden="true" tabindex="-1"></a><span class="st">"</span></span>
-<span id="cb30-13"><a href="#cb30-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-14"><a href="#cb30-14" aria-hidden="true" tabindex="-1"></a>summedMIRTModel <span class="ot">=</span> <span class="fu">cfa</span>(</span>
-<span id="cb30-15"><a href="#cb30-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">model =</span> summedMIRT_syntax, </span>
-<span id="cb30-16"><a href="#cb30-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> multidimensionalScores, </span>
-<span id="cb30-17"><a href="#cb30-17" aria-hidden="true" tabindex="-1"></a>  <span class="at">estimator =</span> <span class="st">"MLR"</span>,</span>
-<span id="cb30-18"><a href="#cb30-18" aria-hidden="true" tabindex="-1"></a>  <span class="at">std.lv =</span> <span class="cn">TRUE</span>, </span>
-<span id="cb30-19"><a href="#cb30-19" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb30-20"><a href="#cb30-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-21"><a href="#cb30-21" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(summedMIRTModel, <span class="at">fit.measures =</span> <span class="cn">TRUE</span>, <span class="at">standardized =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-hash="14_Subscores_and_Popular_Models_cache/html/unnamed-chunk-8_87d9530c2a4ab2ab6e0c6a1f20415d0f">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>summedMIRT_syntax <span class="ot">=</span> <span class="st">"</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="st"># constrain all loadings to be equal</span></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a><span class="st">total =~ L1*theta1 + L1*theta2 + L1*theta3 + L1*theta4</span></span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a><span class="st"># set the unique variances to be equal</span></span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a><span class="st">theta1 ~~ U1*theta1; theta2 ~~ U1*theta2; theta3 ~~ U1*theta3; theta4 ~~ U1*theta4;</span></span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a><span class="st">"</span></span>
+<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-12"><a href="#cb28-12" aria-hidden="true" tabindex="-1"></a>summedMIRTModel <span class="ot">=</span> <span class="fu">cfa</span>(</span>
+<span id="cb28-13"><a href="#cb28-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">model =</span> summedMIRT_syntax, </span>
+<span id="cb28-14"><a href="#cb28-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> multidimensionalScores, </span>
+<span id="cb28-15"><a href="#cb28-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">estimator =</span> <span class="st">"MLR"</span>,</span>
+<span id="cb28-16"><a href="#cb28-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">std.lv =</span> <span class="cn">TRUE</span>, </span>
+<span id="cb28-17"><a href="#cb28-17" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb28-18"><a href="#cb28-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-19"><a href="#cb28-19" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(summedMIRTModel, <span class="at">fit.measures =</span> <span class="cn">TRUE</span>, <span class="at">standardized =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>lavaan 0.6.15 ended normally after 11 iterations
+<pre><code>lavaan 0.6.15 ended normally after 10 iterations
 
   Estimator                                         ML
   Optimization method                           NLMINB
-  Number of model parameters                        12
-  Number of equality constraints                     9
+  Number of model parameters                         8
+  Number of equality constraints                     6
 
   Number of observations                          1099
 
 Model Test User Model:
                                               Standard      Scaled
-  Test Statistic                              1243.184    1420.103
-  Degrees of freedom                                11          11
+  Test Statistic                              1240.195    1493.422
+  Degrees of freedom                                 8           8
   P-value (Chi-square)                           0.000       0.000
-  Scaling correction factor                                  0.875
+  Scaling correction factor                                  0.830
     Yuan-Bentler correction (Mplus variant)                       
 
 Model Test Baseline Model:
@@ -1216,42 +1196,42 @@ Model Test Baseline Model:
 
 User Model versus Baseline Model:
 
-  Comparative Fit Index (CFI)                    0.805       0.834
-  Tucker-Lewis Index (TLI)                       0.894       0.910
+  Comparative Fit Index (CFI)                    0.805       0.825
+  Tucker-Lewis Index (TLI)                       0.854       0.869
                                                                   
   Robust Comparative Fit Index (CFI)                         0.805
-  Robust Tucker-Lewis Index (TLI)                            0.894
+  Robust Tucker-Lewis Index (TLI)                            0.854
 
 Loglikelihood and Information Criteria:
 
-  Loglikelihood user model (H0)              -2773.497   -2773.497
-  Scaling correction factor                                  0.286
+  Loglikelihood user model (H0)              -2772.002   -2772.002
+  Scaling correction factor                                  0.303
       for the MLR correction                                      
   Loglikelihood unrestricted model (H1)      -2151.905   -2151.905
-  Scaling correction factor                                  0.933
+  Scaling correction factor                                  0.907
       for the MLR correction                                      
                                                                   
-  Akaike (AIC)                                5552.993    5552.993
-  Bayesian (BIC)                              5568.000    5568.000
-  Sample-size adjusted Bayesian (SABIC)       5558.471    5558.471
+  Akaike (AIC)                                5548.005    5548.005
+  Bayesian (BIC)                              5558.009    5558.009
+  Sample-size adjusted Bayesian (SABIC)       5551.657    5551.657
 
 Root Mean Square Error of Approximation:
 
-  RMSEA                                          0.319       0.341
-  90 Percent confidence interval - lower         0.304       0.326
-  90 Percent confidence interval - upper         0.334       0.358
+  RMSEA                                          0.374       0.411
+  90 Percent confidence interval - lower         0.357       0.392
+  90 Percent confidence interval - upper         0.392       0.430
   P-value H_0: RMSEA &lt;= 0.050                    0.000       0.000
   P-value H_0: RMSEA &gt;= 0.080                    1.000       1.000
                                                                   
-  Robust RMSEA                                               0.319
-  90 Percent confidence interval - lower                     0.306
-  90 Percent confidence interval - upper                     0.334
+  Robust RMSEA                                               0.375
+  90 Percent confidence interval - lower                     0.359
+  90 Percent confidence interval - upper                     0.391
   P-value H_0: Robust RMSEA &lt;= 0.050                         0.000
   P-value H_0: Robust RMSEA &gt;= 0.080                         1.000
 
 Standardized Root Mean Square Residual:
 
-  SRMR                                           0.108       0.108
+  SRMR                                           0.128       0.128
 
 Parameter Estimates:
 
@@ -1262,25 +1242,17 @@ Parameter Estimates:
 Latent Variables:
                    Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all
   total =~                                                              
-    theta1    (L1)    0.757    0.019   40.073    0.000    0.757    0.929
-    theta2    (L1)    0.757    0.019   40.073    0.000    0.757    0.929
-    theta3    (L1)    0.757    0.019   40.073    0.000    0.757    0.929
-    theta4    (L1)    0.757    0.019   40.073    0.000    0.757    0.929
-
-Intercepts:
-                   Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all
-   .theta1    (I1)   -0.021    0.023   -0.923    0.356   -0.021   -0.026
-   .theta2    (I1)   -0.021    0.023   -0.923    0.356   -0.021   -0.026
-   .theta3    (I1)   -0.021    0.023   -0.923    0.356   -0.021   -0.026
-   .theta4    (I1)   -0.021    0.023   -0.923    0.356   -0.021   -0.026
-    total             0.000                               0.000    0.000
+    theta1    (L1)    0.757    0.019   40.075    0.000    0.757    0.929
+    theta2    (L1)    0.757    0.019   40.075    0.000    0.757    0.929
+    theta3    (L1)    0.757    0.019   40.075    0.000    0.757    0.929
+    theta4    (L1)    0.757    0.019   40.075    0.000    0.757    0.929
 
 Variances:
                    Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all
-   .theta1    (U1)    0.092    0.002   37.374    0.000    0.092    0.138
-   .theta2    (U1)    0.092    0.002   37.374    0.000    0.092    0.138
-   .theta3    (U1)    0.092    0.002   37.374    0.000    0.092    0.138
-   .theta4    (U1)    0.092    0.002   37.374    0.000    0.092    0.138
+   .theta1    (U1)    0.091    0.002   37.596    0.000    0.091    0.138
+   .theta2    (U1)    0.091    0.002   37.596    0.000    0.091    0.138
+   .theta3    (U1)    0.091    0.002   37.596    0.000    0.091    0.138
+   .theta4    (U1)    0.091    0.002   37.596    0.000    0.091    0.138
     total             1.000                               1.000    1.000</code></pre>
 </div>
 </div>
@@ -1288,9 +1260,9 @@ Variances:
 <section id="demonstrating-equivalence-scalar-with-summed-mirt-scores" class="level3">
 <h3 class="anchored" data-anchor-id="demonstrating-equivalence-scalar-with-summed-mirt-scores">Demonstrating Equivalence (Scalar) with Summed MIRT Scores</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>summedMIRTScores <span class="ot">=</span> <span class="fu">lavPredict</span>(summedMIRTModel)</span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="at">x =</span> summedMIRTScores, <span class="at">y =</span> totalMIRTScores, </span>
-<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">"Summed MIRT Score vs. Sum of Multidimensional Scores"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>summedMIRTScores <span class="ot">=</span> <span class="fu">lavPredict</span>(summedMIRTModel)</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="at">x =</span> summedMIRTScores, <span class="at">y =</span> totalMIRTScores, </span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">"Summed MIRT Score vs. Sum of Multidimensional Scores"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="14_Subscores_and_Popular_Models_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="672"></p>
 </div>
@@ -1330,38 +1302,38 @@ Variances:
 <section id="bifactor-model-in-lavaan" class="level3">
 <h3 class="anchored" data-anchor-id="bifactor-model-in-lavaan">Bifactor Model in <code>lavaan</code></h3>
 <div class="cell" data-hash="14_Subscores_and_Popular_Models_cache/html/unnamed-chunk-10_ce0ead30247431146a73de2b46b93e07">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>bifactorModel_syntax <span class="ot">=</span> <span class="st">"</span></span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="st">g =~ item11 + item12 + item13 + item14 + item15 + </span></span>
-<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a><span class="st">     item16 + item17 + item18 + item19 + item20 + </span></span>
-<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a><span class="st">     item21 + item22 + item23 + item24 + item25 + </span></span>
-<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a><span class="st">     item26 + item27 + item28 + item29 + item30</span></span>
-<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a><span class="st">         </span></span>
-<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a><span class="st">theta1 =~ item11 + item12 + item13 + item14 + item15</span></span>
-<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a><span class="st">theta2 =~ item16 + item17 + item18 + item19 + item20</span></span>
-<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a><span class="st">theta3 =~ item21 + item22 + item23 + item24 + item25</span></span>
-<span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a><span class="st">theta4 =~ item26 + item27 + item28 + item29 + item30</span></span>
-<span id="cb33-12"><a href="#cb33-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-13"><a href="#cb33-13" aria-hidden="true" tabindex="-1"></a><span class="st">g ~~ 0*theta1</span></span>
-<span id="cb33-14"><a href="#cb33-14" aria-hidden="true" tabindex="-1"></a><span class="st">g ~~ 0*theta2</span></span>
-<span id="cb33-15"><a href="#cb33-15" aria-hidden="true" tabindex="-1"></a><span class="st">g ~~ 0*theta3</span></span>
-<span id="cb33-16"><a href="#cb33-16" aria-hidden="true" tabindex="-1"></a><span class="st">g ~~ 0*theta4</span></span>
-<span id="cb33-17"><a href="#cb33-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-18"><a href="#cb33-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-19"><a href="#cb33-19" aria-hidden="true" tabindex="-1"></a><span class="st">"</span></span>
-<span id="cb33-20"><a href="#cb33-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-21"><a href="#cb33-21" aria-hidden="true" tabindex="-1"></a>bifactorModel <span class="ot">=</span> <span class="fu">cfa</span>(</span>
-<span id="cb33-22"><a href="#cb33-22" aria-hidden="true" tabindex="-1"></a>  <span class="at">model =</span> bifactorModel_syntax, </span>
-<span id="cb33-23"><a href="#cb33-23" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> responseMatrix, </span>
-<span id="cb33-24"><a href="#cb33-24" aria-hidden="true" tabindex="-1"></a>  <span class="at">estimator =</span> <span class="st">"WLSMV"</span>, </span>
-<span id="cb33-25"><a href="#cb33-25" aria-hidden="true" tabindex="-1"></a>  <span class="at">ordered =</span> <span class="fu">paste0</span>(<span class="st">"item"</span>, <span class="dv">11</span><span class="sc">:</span><span class="dv">30</span>), </span>
-<span id="cb33-26"><a href="#cb33-26" aria-hidden="true" tabindex="-1"></a>  <span class="at">std.lv =</span> <span class="cn">TRUE</span>, </span>
-<span id="cb33-27"><a href="#cb33-27" aria-hidden="true" tabindex="-1"></a>  <span class="at">parameterization =</span> <span class="st">"theta"</span></span>
-<span id="cb33-28"><a href="#cb33-28" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb33-29"><a href="#cb33-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-30"><a href="#cb33-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-31"><a href="#cb33-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-32"><a href="#cb33-32" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(bifactorModel, <span class="at">fit.measures =</span> <span class="cn">TRUE</span>, <span class="at">standardized =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>bifactorModel_syntax <span class="ot">=</span> <span class="st">"</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="st">g =~ item11 + item12 + item13 + item14 + item15 + </span></span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a><span class="st">     item16 + item17 + item18 + item19 + item20 + </span></span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a><span class="st">     item21 + item22 + item23 + item24 + item25 + </span></span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a><span class="st">     item26 + item27 + item28 + item29 + item30</span></span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a><span class="st">         </span></span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a><span class="st">theta1 =~ item11 + item12 + item13 + item14 + item15</span></span>
+<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a><span class="st">theta2 =~ item16 + item17 + item18 + item19 + item20</span></span>
+<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a><span class="st">theta3 =~ item21 + item22 + item23 + item24 + item25</span></span>
+<span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a><span class="st">theta4 =~ item26 + item27 + item28 + item29 + item30</span></span>
+<span id="cb31-12"><a href="#cb31-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-13"><a href="#cb31-13" aria-hidden="true" tabindex="-1"></a><span class="st">g ~~ 0*theta1</span></span>
+<span id="cb31-14"><a href="#cb31-14" aria-hidden="true" tabindex="-1"></a><span class="st">g ~~ 0*theta2</span></span>
+<span id="cb31-15"><a href="#cb31-15" aria-hidden="true" tabindex="-1"></a><span class="st">g ~~ 0*theta3</span></span>
+<span id="cb31-16"><a href="#cb31-16" aria-hidden="true" tabindex="-1"></a><span class="st">g ~~ 0*theta4</span></span>
+<span id="cb31-17"><a href="#cb31-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-18"><a href="#cb31-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-19"><a href="#cb31-19" aria-hidden="true" tabindex="-1"></a><span class="st">"</span></span>
+<span id="cb31-20"><a href="#cb31-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-21"><a href="#cb31-21" aria-hidden="true" tabindex="-1"></a>bifactorModel <span class="ot">=</span> <span class="fu">cfa</span>(</span>
+<span id="cb31-22"><a href="#cb31-22" aria-hidden="true" tabindex="-1"></a>  <span class="at">model =</span> bifactorModel_syntax, </span>
+<span id="cb31-23"><a href="#cb31-23" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> responseMatrix, </span>
+<span id="cb31-24"><a href="#cb31-24" aria-hidden="true" tabindex="-1"></a>  <span class="at">estimator =</span> <span class="st">"WLSMV"</span>, </span>
+<span id="cb31-25"><a href="#cb31-25" aria-hidden="true" tabindex="-1"></a>  <span class="at">ordered =</span> <span class="fu">paste0</span>(<span class="st">"item"</span>, <span class="dv">11</span><span class="sc">:</span><span class="dv">30</span>), </span>
+<span id="cb31-26"><a href="#cb31-26" aria-hidden="true" tabindex="-1"></a>  <span class="at">std.lv =</span> <span class="cn">TRUE</span>, </span>
+<span id="cb31-27"><a href="#cb31-27" aria-hidden="true" tabindex="-1"></a>  <span class="at">parameterization =</span> <span class="st">"theta"</span></span>
+<span id="cb31-28"><a href="#cb31-28" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb31-29"><a href="#cb31-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-30"><a href="#cb31-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-31"><a href="#cb31-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-32"><a href="#cb31-32" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(bifactorModel, <span class="at">fit.measures =</span> <span class="cn">TRUE</span>, <span class="at">standardized =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>lavaan 0.6.15 ended normally after 85 iterations
 
@@ -1592,7 +1564,7 @@ Scales y*:
 <section id="bifactor-model-path-diagram" class="level3">
 <h3 class="anchored" data-anchor-id="bifactor-model-path-diagram">Bifactor Model Path Diagram</h3>
 <div class="cell" data-layout-align="center" data-hash="14_Subscores_and_Popular_Models_cache/html/plotBifactorModel_99030bbf91217d72b378e42f4bb42406">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>semPlot<span class="sc">::</span><span class="fu">semPaths</span>(bifactorModel, <span class="at">sizeMan =</span> <span class="fl">2.5</span>, <span class="at">style =</span> <span class="st">"mx"</span>, <span class="at">intercepts =</span> <span class="cn">FALSE</span>, <span class="at">thresholds =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>semPlot<span class="sc">::</span><span class="fu">semPaths</span>(bifactorModel, <span class="at">sizeMan =</span> <span class="fl">2.5</span>, <span class="at">style =</span> <span class="st">"mx"</span>, <span class="at">intercepts =</span> <span class="cn">FALSE</span>, <span class="at">thresholds =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -1606,10 +1578,10 @@ Scales y*:
 <section id="bifactor-model-score-comparisons-unidimensional-irt-model-theta-vs.-bifactor-irt-model-g" class="level3">
 <h3 class="anchored" data-anchor-id="bifactor-model-score-comparisons-unidimensional-irt-model-theta-vs.-bifactor-irt-model-g">Bifactor Model Score Comparisons: Unidimensional IRT model <span class="math inline">\(\theta\)</span> vs.&nbsp;Bifactor IRT model <span class="math inline">\(g\)</span></h3>
 <div class="cell" data-hash="14_Subscores_and_Popular_Models_cache/html/unnamed-chunk-11_65ac438a2f9ab32ee83123e0c7f8a491">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>bifactorScores <span class="ot">=</span> <span class="fu">lavPredict</span>(bifactorModel)</span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="at">x =</span> unidimensionalScores, <span class="at">y =</span> bifactorScores[, <span class="st">"g"</span>], </span>
-<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">"Unidimensional Score vs. Bifactor Score"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>bifactorScores <span class="ot">=</span> <span class="fu">lavPredict</span>(bifactorModel)</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="at">x =</span> unidimensionalScores, <span class="at">y =</span> bifactorScores[, <span class="st">"g"</span>], </span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">"Unidimensional Score vs. Bifactor Score"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="14_Subscores_and_Popular_Models_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="672"></p>
 </div>
@@ -1618,19 +1590,19 @@ Scales y*:
 <section id="bifactor-model-score-comparisons-standards" class="level3">
 <h3 class="anchored" data-anchor-id="bifactor-model-score-comparisons-standards">Bifactor Model Score Comparisons: Standards</h3>
 <div class="cell" data-hash="14_Subscores_and_Popular_Models_cache/html/unnamed-chunk-12_cf76f69da47d54ff97903e30d0966697">
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
-<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="at">x =</span> multidimensionalScores[, <span class="dv">1</span>], <span class="at">y =</span> bifactorScores[, <span class="st">"theta1"</span>],</span>
-<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">"Multidimensional Score vs. Bifactor Score for Theta 1"</span>)</span>
-<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="at">x =</span> multidimensionalScores[, <span class="dv">2</span>], <span class="at">y =</span> bifactorScores[, <span class="st">"theta2"</span>],</span>
-<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">"Multidimensional Score vs. Bifactor Score for Theta 1"</span>)</span>
-<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="at">x =</span> multidimensionalScores[, <span class="dv">3</span>], <span class="at">y =</span> bifactorScores[, <span class="st">"theta3"</span>],</span>
-<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">"Multidimensional Score vs. Bifactor Score for Theta 1"</span>)</span>
-<span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="at">x =</span> multidimensionalScores[, <span class="dv">4</span>], <span class="at">y =</span> bifactorScores[, <span class="st">"theta4"</span>],</span>
-<span id="cb37-9"><a href="#cb37-9" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">"Multidimensional Score vs. Bifactor Score for Theta 1"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="at">x =</span> multidimensionalScores[, <span class="dv">1</span>], <span class="at">y =</span> bifactorScores[, <span class="st">"theta1"</span>],</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">"Multidimensional Score vs. Bifactor Score for Theta 1"</span>)</span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="at">x =</span> multidimensionalScores[, <span class="dv">2</span>], <span class="at">y =</span> bifactorScores[, <span class="st">"theta2"</span>],</span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">"Multidimensional Score vs. Bifactor Score for Theta 1"</span>)</span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="at">x =</span> multidimensionalScores[, <span class="dv">3</span>], <span class="at">y =</span> bifactorScores[, <span class="st">"theta3"</span>],</span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">"Multidimensional Score vs. Bifactor Score for Theta 1"</span>)</span>
+<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="at">x =</span> multidimensionalScores[, <span class="dv">4</span>], <span class="at">y =</span> bifactorScores[, <span class="st">"theta4"</span>],</span>
+<span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">"Multidimensional Score vs. Bifactor Score for Theta 1"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="14_Subscores_and_Popular_Models_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid" width="672"></p>
 </div>
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="from-score-plot-scores-are-not-same" class="level3">
@@ -1649,7 +1621,7 @@ Scales y*:
 <h3 class="anchored" data-anchor-id="model-fit-comparison-1">Model Fit Comparison</h3>
 <p>But…the bifactor model nearly always fits better than a similar multidimensional model</p>
 <div class="cell" data-hash="14_Subscores_and_Popular_Models_cache/html/unnamed-chunk-13_a9973ef9349e6b2b4e9736d2b792d361">
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(unidimensionalModel, multidimensionalModel, bifactorModel)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(unidimensionalModel, multidimensionalModel, bifactorModel)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Scaled Chi-Squared Difference Test (method = "satorra.2000")
@@ -1699,10 +1671,10 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <p>Structural Model – a unidimensional CFA model for the subdomains:</p>
 <p><span class="math display">\[
 \begin{array}{c}
-\theta_{p1} = \mu + \lambda_{1} F + e_{p1}; e_{p1} \sim N(0, \psi^2_1) \\
-\theta_{p2} = \mu + \lambda_{2} F + e_{p2}; e_{p2} \sim N(0, \psi^2_2) \\
-\theta_{p3} = \mu + \lambda_{3} F + e_{p3}; e_{p3} \sim N(0, \psi^2_3) \\
-\theta_{p4} = \mu + \lambda_{4} F + e_{p4}; e_{p4} \sim N(0, \psi^2_4) \\
+\theta_{p1} = \mu_1 + \lambda_{1} F + e_{p1}; e_{p1} \sim N(0, \psi^2_1) \\
+\theta_{p2} = \mu_2 + \lambda_{2} F + e_{p2}; e_{p2} \sim N(0, \psi^2_2) \\
+\theta_{p3} = \mu_3 + \lambda_{3} F + e_{p3}; e_{p3} \sim N(0, \psi^2_3) \\
+\theta_{p4} = \mu_4 + \lambda_{4} F + e_{p4}; e_{p4} \sim N(0, \psi^2_4) \\
 \end{array}
 \]</span></p>
 </section>
@@ -1726,27 +1698,27 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <section id="higher-order-model-in-lavaan" class="level3">
 <h3 class="anchored" data-anchor-id="higher-order-model-in-lavaan">Higher Order Model in <code>lavaan</code></h3>
 <div class="cell" data-hash="14_Subscores_and_Popular_Models_cache/html/unnamed-chunk-14_11a8d6369b25af2e3368e5ce381581d8">
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>higherOrderModel_syntax <span class="ot">=</span> <span class="st">"</span></span>
-<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a><span class="st">theta1 =~ item11 + item12 + item13 + item14 + item15</span></span>
-<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a><span class="st">theta2 =~ item16 + item17 + item18 + item19 + item20</span></span>
-<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a><span class="st">theta3 =~ item21 + item22 + item23 + item24 + item25</span></span>
-<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a><span class="st">theta4 =~ item26 + item27 + item28 + item29 + item30</span></span>
-<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-8"><a href="#cb41-8" aria-hidden="true" tabindex="-1"></a><span class="st">algebra =~ theta1 + theta2 + theta3 + theta4</span></span>
-<span id="cb41-9"><a href="#cb41-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-10"><a href="#cb41-10" aria-hidden="true" tabindex="-1"></a><span class="st">"</span></span>
-<span id="cb41-11"><a href="#cb41-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-12"><a href="#cb41-12" aria-hidden="true" tabindex="-1"></a>higherOrderModel <span class="ot">=</span> <span class="fu">cfa</span>(</span>
-<span id="cb41-13"><a href="#cb41-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">model =</span> higherOrderModel_syntax, </span>
-<span id="cb41-14"><a href="#cb41-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> responseMatrix, </span>
-<span id="cb41-15"><a href="#cb41-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">estimator =</span> <span class="st">"WLSMV"</span>, </span>
-<span id="cb41-16"><a href="#cb41-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">ordered =</span> <span class="fu">paste0</span>(<span class="st">"item"</span>, <span class="dv">11</span><span class="sc">:</span><span class="dv">30</span>), </span>
-<span id="cb41-17"><a href="#cb41-17" aria-hidden="true" tabindex="-1"></a>  <span class="at">std.lv =</span> <span class="cn">TRUE</span>, </span>
-<span id="cb41-18"><a href="#cb41-18" aria-hidden="true" tabindex="-1"></a>  <span class="at">parameterization =</span> <span class="st">"theta"</span></span>
-<span id="cb41-19"><a href="#cb41-19" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb41-20"><a href="#cb41-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-21"><a href="#cb41-21" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(higherOrderModel, <span class="at">fit.measures =</span> <span class="cn">TRUE</span>, <span class="at">standardized =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>higherOrderModel_syntax <span class="ot">=</span> <span class="st">"</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a><span class="st">theta1 =~ item11 + item12 + item13 + item14 + item15</span></span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a><span class="st">theta2 =~ item16 + item17 + item18 + item19 + item20</span></span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a><span class="st">theta3 =~ item21 + item22 + item23 + item24 + item25</span></span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a><span class="st">theta4 =~ item26 + item27 + item28 + item29 + item30</span></span>
+<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a><span class="st">algebra =~ theta1 + theta2 + theta3 + theta4</span></span>
+<span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-10"><a href="#cb39-10" aria-hidden="true" tabindex="-1"></a><span class="st">"</span></span>
+<span id="cb39-11"><a href="#cb39-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-12"><a href="#cb39-12" aria-hidden="true" tabindex="-1"></a>higherOrderModel <span class="ot">=</span> <span class="fu">cfa</span>(</span>
+<span id="cb39-13"><a href="#cb39-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">model =</span> higherOrderModel_syntax, </span>
+<span id="cb39-14"><a href="#cb39-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> responseMatrix, </span>
+<span id="cb39-15"><a href="#cb39-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">estimator =</span> <span class="st">"WLSMV"</span>, </span>
+<span id="cb39-16"><a href="#cb39-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">ordered =</span> <span class="fu">paste0</span>(<span class="st">"item"</span>, <span class="dv">11</span><span class="sc">:</span><span class="dv">30</span>), </span>
+<span id="cb39-17"><a href="#cb39-17" aria-hidden="true" tabindex="-1"></a>  <span class="at">std.lv =</span> <span class="cn">TRUE</span>, </span>
+<span id="cb39-18"><a href="#cb39-18" aria-hidden="true" tabindex="-1"></a>  <span class="at">parameterization =</span> <span class="st">"theta"</span></span>
+<span id="cb39-19"><a href="#cb39-19" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb39-20"><a href="#cb39-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-21"><a href="#cb39-21" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(higherOrderModel, <span class="at">fit.measures =</span> <span class="cn">TRUE</span>, <span class="at">standardized =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>lavaan 0.6.15 ended normally after 47 iterations
 
@@ -1944,7 +1916,7 @@ Scales y*:
 <section id="higher-order-model-path-diagram" class="level3">
 <h3 class="anchored" data-anchor-id="higher-order-model-path-diagram">Higher Order Model Path Diagram</h3>
 <div class="cell" data-layout-align="center" data-hash="14_Subscores_and_Popular_Models_cache/html/plotHigherOrderModel_63154ecaa6c727274c69c6b8c32b4dac">
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>semPlot<span class="sc">::</span><span class="fu">semPaths</span>(higherOrderModel, <span class="at">sizeMan =</span> <span class="fl">2.5</span>, <span class="at">style =</span> <span class="st">"mx"</span>, <span class="at">intercepts =</span> <span class="cn">FALSE</span>, <span class="at">thresholds =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>semPlot<span class="sc">::</span><span class="fu">semPaths</span>(higherOrderModel, <span class="at">sizeMan =</span> <span class="fl">2.5</span>, <span class="at">style =</span> <span class="st">"mx"</span>, <span class="at">intercepts =</span> <span class="cn">FALSE</span>, <span class="at">thresholds =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -1957,10 +1929,10 @@ Scales y*:
 <section id="higher-order-model-score-comparisons-unidimensional-irt-model-theta-vs.-higher-order-irt-model-f" class="level3">
 <h3 class="anchored" data-anchor-id="higher-order-model-score-comparisons-unidimensional-irt-model-theta-vs.-higher-order-irt-model-f">Higher Order Model Score Comparisons: Unidimensional IRT model <span class="math inline">\(\theta\)</span> vs.&nbsp;Higher Order IRT model <span class="math inline">\(F\)</span></h3>
 <div class="cell" data-hash="14_Subscores_and_Popular_Models_cache/html/unnamed-chunk-15_187e6503361d7cff8c50089b983186f1">
-<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>higherOrderScores <span class="ot">=</span> <span class="fu">lavPredict</span>(higherOrderModel)</span>
-<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="at">x =</span> unidimensionalScores, <span class="at">y =</span> higherOrderScores[, <span class="st">"algebra"</span>], </span>
-<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">"Unidimensional Score vs. Higher Order Score"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>higherOrderScores <span class="ot">=</span> <span class="fu">lavPredict</span>(higherOrderModel)</span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="at">x =</span> unidimensionalScores, <span class="at">y =</span> higherOrderScores[, <span class="st">"algebra"</span>], </span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">"Unidimensional Score vs. Higher Order Score"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="14_Subscores_and_Popular_Models_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid" width="672"></p>
 </div>
@@ -1969,26 +1941,26 @@ Scales y*:
 <section id="higher-order-model-score-comparisons-standards" class="level3">
 <h3 class="anchored" data-anchor-id="higher-order-model-score-comparisons-standards">Higher Order Model Score Comparisons: Standards</h3>
 <div class="cell" data-hash="14_Subscores_and_Popular_Models_cache/html/unnamed-chunk-16_766917ee82e0283a669efd8f148e22f3">
-<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
-<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="at">x =</span> multidimensionalScores[, <span class="dv">1</span>], <span class="at">y =</span> higherOrderScores[, <span class="st">"theta1"</span>],</span>
-<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">"Multidimensional Score vs. Higher Order Score for Theta 1"</span>)</span>
-<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="at">x =</span> multidimensionalScores[, <span class="dv">2</span>], <span class="at">y =</span> higherOrderScores[, <span class="st">"theta2"</span>],</span>
-<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a>      <span class="at">main =</span> <span class="st">"Multidimensional Score vs. Higher Order Score for Theta 2"</span>)</span>
-<span id="cb45-7"><a href="#cb45-7" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="at">x =</span> multidimensionalScores[, <span class="dv">3</span>], <span class="at">y =</span> higherOrderScores[, <span class="st">"theta3"</span>],</span>
-<span id="cb45-8"><a href="#cb45-8" aria-hidden="true" tabindex="-1"></a>      <span class="at">main =</span> <span class="st">"Multidimensional Score vs. Higher Order Score for Theta 3"</span>)</span>
-<span id="cb45-9"><a href="#cb45-9" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="at">x =</span> multidimensionalScores[, <span class="dv">4</span>], <span class="at">y =</span> higherOrderScores[, <span class="st">"theta4"</span>],</span>
-<span id="cb45-10"><a href="#cb45-10" aria-hidden="true" tabindex="-1"></a>      <span class="at">main =</span> <span class="st">"Multidimensional Score vs. Higher Order Score for Theta 4"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="at">x =</span> multidimensionalScores[, <span class="dv">1</span>], <span class="at">y =</span> higherOrderScores[, <span class="st">"theta1"</span>],</span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">"Multidimensional Score vs. Higher Order Score for Theta 1"</span>)</span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="at">x =</span> multidimensionalScores[, <span class="dv">2</span>], <span class="at">y =</span> higherOrderScores[, <span class="st">"theta2"</span>],</span>
+<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a>      <span class="at">main =</span> <span class="st">"Multidimensional Score vs. Higher Order Score for Theta 2"</span>)</span>
+<span id="cb43-7"><a href="#cb43-7" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="at">x =</span> multidimensionalScores[, <span class="dv">3</span>], <span class="at">y =</span> higherOrderScores[, <span class="st">"theta3"</span>],</span>
+<span id="cb43-8"><a href="#cb43-8" aria-hidden="true" tabindex="-1"></a>      <span class="at">main =</span> <span class="st">"Multidimensional Score vs. Higher Order Score for Theta 3"</span>)</span>
+<span id="cb43-9"><a href="#cb43-9" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="at">x =</span> multidimensionalScores[, <span class="dv">4</span>], <span class="at">y =</span> higherOrderScores[, <span class="st">"theta4"</span>],</span>
+<span id="cb43-10"><a href="#cb43-10" aria-hidden="true" tabindex="-1"></a>      <span class="at">main =</span> <span class="st">"Multidimensional Score vs. Higher Order Score for Theta 4"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="14_Subscores_and_Popular_Models_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid" width="672"></p>
 </div>
-<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="model-fit-comparison-2" class="level3">
 <h3 class="anchored" data-anchor-id="model-fit-comparison-2">Model Fit Comparison</h3>
 <div class="cell" data-hash="14_Subscores_and_Popular_Models_cache/html/unnamed-chunk-17_5f314e98aef7fa7538a7350f71272d0b">
-<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(unidimensionalModel, multidimensionalModel, higherOrderModel)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(unidimensionalModel, multidimensionalModel, higherOrderModel)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Scaled Chi-Squared Difference Test (method = "satorra.2000")

@@ -1,3 +1,5 @@
 {"rule":"WHITESPACE_RULE","sentence":"^\\QCourse Information\\E$"}
 {"rule":"SENTENCE_WHITESPACE","sentence":"^\\QR\\E$"}
 {"rule":"SENTENCE_WHITESPACE","sentence":"^\\QR\nData Files\nBinary Data: https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/raw/main/materials/Week13/9-10th_Grade_Q2.RData\nLikert Data: https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/raw/main/materials/Week13/gamblingdata.csv\nHappiness Data: https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/raw/main/materials/Week13/happinessData.csv\nLecture Video: https://youtu.be/p8x6pgDf-Ag\\E$"}
+{"rule":"SENTENCE_WHITESPACE","sentence":"^\\QR\nLecture analyses: https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/raw/main/materials/Week14/14_Subscores_and_Popular_Models.\\E$"}
+{"rule":"SENTENCE_WHITESPACE","sentence":"^\\QR\nData File: https://github.com/jonathantemplin/MultidimensionalMeasurementModels2023/raw/main/materials/Week14/9-10th_grade_q2.RData\nLecture Video: Available after class\\E$"}
